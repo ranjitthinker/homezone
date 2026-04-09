@@ -26,7 +26,7 @@ import WalkScore from '@/components/property/property-single-style/common/WalkSc
 import { getPropertyById } from '@/utils/services/propertyService';
 import MobileBottomBar from '@/components/property/property-single-style/common/MobileBottomBar';
 import PropertyNavBar from '@/components/property/property-single-style/common/PropertyNavBar';
-import Form from "@/components/pages/contact/Form";
+import Form from '@/components/pages/contact/Form';
 
 export const metadata = {
   title: 'Property Single V4 || Homez - Real Estate NextJS Template',
@@ -36,7 +36,7 @@ const SingleV4 = async (props) => {
   // const property = []
   const params = await props.params;
   const property = await getPropertyById(params.id);
-  
+
   return (
     <>
       {/* Main Header Nav */}
@@ -47,7 +47,6 @@ const SingleV4 = async (props) => {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-
       {/* Property All Single V4 */}
       <section className="pt-2 pb90 bgc-white">
         <div className="container">
@@ -56,15 +55,14 @@ const SingleV4 = async (props) => {
           </div>
           {/* End .row */}
 
-             {/* Property Slider Gallery */}
+          {/* Property Slider Gallery */}
           <div className="row mb30 mt30">
             <PropertyGallery property={property} />
           </div>
           {/* End Property Slider Gallery */}
 
-                   {/* // PROPERTY NAVBAR */}
-            <PropertyNavBar />
-  
+          {/* // PROPERTY NAVBAR */}
+          <PropertyNavBar />
 
           <div className="row wrap">
             <div className="col-lg-8">
@@ -272,14 +270,12 @@ const SingleV4 = async (props) => {
           {/* End .row */}
 
           <div className="row mt30 align-items-center justify-content-between">
-           <div className="col-auto">
-            <div className="main-title">
-              <h2 className="title">Discover Our Featured Listings</h2>
-              <p className="paragraph">
-                Explore a curated selection of premium properties tailored to your needs.
-              </p>
+            <div className="col-auto">
+              <div className="main-title">
+                <h2 className="title">Discover Our Featured Listings</h2>
+                <p className="paragraph">Explore a curated selection of premium properties tailored to your needs.</p>
+              </div>
             </div>
-          </div>
 
             <div className="col-auto mb30">
               <div className="row align-items-center justify-content-center">

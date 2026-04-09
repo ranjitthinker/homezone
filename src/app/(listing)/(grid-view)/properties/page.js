@@ -1,13 +1,13 @@
-import DefaultHeader from "@/components/common/DefaultHeader";
+import DefaultHeader from '@/components/common/DefaultHeader';
 
-import Footer from "@/components/common/default-footer";
-import MobileMenu from "@/components/common/mobile-menu";
+import Footer from '@/components/common/default-footer';
+import MobileMenu from '@/components/common/mobile-menu';
 
-import ProperteyFiltering from "@/components/listing/grid-view/grid-full-3-col/ProperteyFiltering";
+import ProperteyFiltering from '@/components/listing/grid-view/grid-full-3-col/ProperteyFiltering';
 
-import React, { Suspense } from "react";  
+import React, { Suspense } from 'react';
 export const metadata = {
-  title: "Gird Full 3 Column || Homez - Real Estate NextJS Template",
+  title: 'Gird Full 3 Column || Homez - Real Estate NextJS Template',
 };
 
 const GridFull3Col = () => {
@@ -27,7 +27,7 @@ const GridFull3Col = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="breadcumb-style1">
-                <h2 className="title">Homes for Sale</h2>
+                <h2 className="title">Homes for Sales</h2>
                 <div className="breadcumb-list">
                   <a href="#">Home</a>
                   <a href="#">For Rent</a>

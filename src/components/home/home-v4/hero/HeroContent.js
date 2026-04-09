@@ -1,6 +1,6 @@
-"use client";
-import React from "react";
-import { useRouter } from "next/navigation";
+'use client';
+import React from 'react';
+import { useRouter } from 'next/navigation';
 
 const HeroContent = () => {
   const router = useRouter();
@@ -31,13 +31,15 @@ const HeroContent = () => {
                 className="advance-search-btn"
                 type="button"
                 data-bs-toggle="modal"
-                data-bs-target="#advanceSeachModal">
+                data-bs-target="#advanceSeachModal"
+              >
                 <span className="flaticon-settings" /> Advanced
               </button>
               <button
                 className="advance-search-icon ud-btn btn-dark ms-4"
                 type="button"
-                onClick={() => router.push("/grid-full-3-col")}>
+                onClick={() => router.push('/grid-full-3-col')}
+              >
                 <span className="flaticon-search" />
               </button>
             </div>

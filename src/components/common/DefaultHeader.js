@@ -13,34 +13,39 @@ import AdvanceFilterModal from '@/components/common/advance-filter';
 import MainMenu from './MainMenu';
 
 const DefaultHeader = () => {
-  const [navbar, setNavbar]                   = useState(false);
-  const [mounted, setMounted]                 = useState(false);
-  const [search, setSearch]                   = useState('');
-  const [cityId, setCityId]                   = useState('');
-  const [suggestions, setSuggestions]         = useState([]);
+  const [navbar, setNavbar] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [search, setSearch] = useState('');
+  const [cityId, setCityId] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [searching, setSearching]             = useState(false);
-  const [isFocused, setIsFocused]             = useState(false);
+  const [searching, setSearching] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const [isDetectingLocation, setIsDetectingLocation] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
   const debounceRef = useRef(null);
-  const wrapperRef  = useRef(null);
-  const router      = useRouter();
-  const pathname    = usePathname();
-  const settings    = useSettings();
+  const wrapperRef = useRef(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const settings = useSettings();
 
   const isHomePage = pathname === '/';
 
-  const siteLogo = settings?.data?.find((item) => item.key === 'site_logo')?.value
-    || '/images/header-logo2.svg';
+  const siteLogo = settings?.data?.find((item) => item.key === 'site_logo')?.value || '/images/header-logo2.svg';
 
   // ✅ Mount flag — fixes hydration mismatch
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // ✅ Search suggestions with debounce
   useEffect(() => {
-    if (!search.trim()) { setSuggestions([]); setShowSuggestions(false); return; }
+    if (!search.trim()) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
     clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(async () => {
       try {
@@ -78,14 +83,13 @@ const DefaultHeader = () => {
     return () => window.removeEventListener('scroll', changeBackground);
   }, []);
 
-    // ✅ Detect when scrolled past hero section on home page
-    useEffect(() => {
+  // ✅ Detect when scrolled past hero section on home page
+  useEffect(() => {
     if (!isHomePage) return;
 
     const handleScroll = () => {
       // ✅ Try multiple specific selectors in order of priority
-      const heroSection =
-        document.getElementById('hero-x')
+      const heroSection = document.getElementById('hero-x');
 
       if (heroSection) {
         const heroBottom = heroSection.getBoundingClientRect().bottom; // ✅ use getBoundingClientRect, not offsetTop
@@ -277,43 +281,38 @@ const DefaultHeader = () => {
 
       <header
         className={`glass-header-pro d-none d-lg-block ${navbar ? 'shadow-sm' : ''}`}
-        style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, padding: '12px 0', transition: 'padding 0.4s ease' }}>
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          padding: '12px 0',
+          transition: 'padding 0.4s ease',
+        }}
+      >
         <div className="container-fluid px-4">
-
           {/* ✅ Single flex row — logo | middle | hamburger */}
           <div className="d-flex align-items-center justify-content-between gap-3">
-
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/">
-                <Image
-                  width={140}
-                  height={45}
-                  src={siteLogo}
-                  alt="Header Logo"
-                  style={{ objectFit: 'contain' }}
-                />
+                <Image width={140} height={45} src={siteLogo} alt="Header Logo" style={{ objectFit: 'contain' }} />
               </Link>
             </div>
 
             {/* ✅ Middle section — null on server, conditional on client */}
             <div className="flex-grow-1 d-none d-lg-flex justify-content-center">
               {!mounted ? null : isHomePage && !scrolledPastHero ? (
-
                 // ✅ Home page (before scrolling past hero) → Main Menu
                 <MainMenu />
-
               ) : (
-
                 // ✅ Home page (after scrolling past hero) or other pages → Search Bar
                 <div className="search-master-wrapper" ref={wrapperRef}>
                   <div className={`search-island-pill ${isFocused ? 'is-focused' : ''}`}>
-
                     {/* City dropdown */}
                     <div style={{ minWidth: '120px', flexShrink: 0 }}>
-                      <SelectDropdown
-                        onChange={(selected) => setCityId(selected?.value || '')}
-                      />
+                      <SelectDropdown onChange={(selected) => setCityId(selected?.value || '')} />
                     </div>
 
                     {/* Auto-detect location button */}
@@ -321,7 +320,8 @@ const DefaultHeader = () => {
                       type="button"
                       className="btn-detect ms-2"
                       onClick={handleAutoDetectLocation}
-                      title="Detect my location">
+                      title="Detect my location"
+                    >
                       {isDetectingLocation ? (
                         <div className="spinner-border" role="status">
                           <span className="visually-hidden">Loading...</span>
@@ -363,13 +363,11 @@ const DefaultHeader = () => {
                         className="btn-text-only"
                         type="button"
                         data-bs-toggle="modal"
-                        data-bs-target="#advanceSeachModalTwo">
+                        data-bs-target="#advanceSeachModalTwo"
+                      >
                         <span className="flaticon-settings" /> Advanced
                       </button>
-                      <button
-                        className="btn-solid-action"
-                        type="button"
-                        onClick={handleSearchSubmit}>
+                      <button className="btn-solid-action" type="button" onClick={handleSearchSubmit}>
                         <i className="flaticon-search" />
                       </button>
                     </div>
@@ -383,18 +381,26 @@ const DefaultHeader = () => {
                           key={property.id}
                           href={`/property/${property.slug}`}
                           onClick={() => setShowSuggestions(false)}
-                          className="drop-item">
-                          <div style={{
-                            width: '42px', height: '42px', borderRadius: '10px',
-                            background: '#fff5f3', display: 'flex', alignItems: 'center',
-                            justifyContent: 'center', color: '#eb6753', fontSize: '16px', flexShrink: 0,
-                          }}>
+                          className="drop-item"
+                        >
+                          <div
+                            style={{
+                              width: '42px',
+                              height: '42px',
+                              borderRadius: '10px',
+                              background: '#fff5f3',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              color: '#eb6753',
+                              fontSize: '16px',
+                              flexShrink: 0,
+                            }}
+                          >
                             <span className="flaticon-home-1" />
                           </div>
                           <div>
-                            <div style={{ fontWeight: 700, fontSize: '14px', color: '#1a1a1a' }}>
-                              {property.title}
-                            </div>
+                            <div style={{ fontWeight: 700, fontSize: '14px', color: '#1a1a1a' }}>{property.title}</div>
                             <div style={{ fontSize: '12px', color: '#777' }}>
                               {property.location?.address || 'N/A'} &bull;{' '}
                               <span style={{ color: '#eb6753', fontWeight: 600 }}>
@@ -407,11 +413,17 @@ const DefaultHeader = () => {
                       <div
                         onClick={handleSearchSubmit}
                         style={{
-                          padding: '14px', textAlign: 'center', fontWeight: 700,
-                          cursor: 'pointer', fontSize: '13px', background: '#fafafa', color: '#1a1a1a',
+                          padding: '14px',
+                          textAlign: 'center',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          fontSize: '13px',
+                          background: '#fafafa',
+                          color: '#1a1a1a',
                         }}
-                        onMouseEnter={e => e.currentTarget.style.color = '#eb6753'}
-                        onMouseLeave={e => e.currentTarget.style.color = '#1a1a1a'}>
+                        onMouseEnter={(e) => (e.currentTarget.style.color = '#eb6753')}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = '#1a1a1a')}
+                      >
                         Show all results &rarr;
                       </div>
                     </div>
@@ -428,19 +440,19 @@ const DefaultHeader = () => {
             </div>
 
             {/* ✅ Hamburger — always right */}
-            {  !isHomePage &&    
+            {!isHomePage && (
               <div className="flex-shrink-0">
-                    <a
-                      className="circle-menu-btn"
-                      href="#"
-                      data-bs-toggle="offcanvas"
-                      data-bs-target="#mobileMenu"
-                      aria-controls="mobileMenu">
-                      <Image width={20} height={14} src="/images/dark-nav-icon.svg" alt="menu" />
-                    </a>
-                  </div>
-            }
-
+                <a
+                  className="circle-menu-btn"
+                  href="#"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#mobileMenu"
+                  aria-controls="mobileMenu"
+                >
+                  <Image width={20} height={14} src="/images/dark-nav-icon.svg" alt="menu" />
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </header>
