@@ -277,7 +277,7 @@ const DefaultHeader = () => {
 
       <header
         className={`glass-header-pro d-none d-lg-block ${navbar ? 'shadow-sm' : ''}`}
-        style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, padding: '12px 0', transition: 'padding 0.4s ease' }}>
+        style={{ zIndex: 1000, padding: '12px 0', transition: 'padding 0.4s ease' }}>
         <div className="container-fluid px-4">
 
           {/* ✅ Single flex row — logo | middle | hamburger */}
@@ -446,7 +446,7 @@ const DefaultHeader = () => {
       </header>
 
       {/* Spacer to prevent content from being hidden behind fixed header */}
-      <div style={{ height: '69px' }} className="d-none d-lg-block" />
+      {/* <div style={{ height: '69px' }} className="d-none d-lg-block" /> */}
 
       {/* ✅ Advance filter modal — only on client, only on non-home pages */}
       {mounted && !isHomePage && (

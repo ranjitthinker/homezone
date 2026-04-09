@@ -10,6 +10,7 @@ import { API_URLS } from "@/utils/api/apiUrls";
 import SelectDropdown from '@/components/home/home-v2/hero/SelectDropdown';
 const FALLBACK_IMAGE = '/images/home/home-9.jpg';
 import Image from "next/image";
+
 const Hero = () => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,11 +61,144 @@ const Hero = () => {
   if (loading) return <div className="text-center py-5">Loading...</div>;
   return (
     <>
+      <style jsx>{`
+        /* styles/DefaultHeader.module.css  OR add to your main.scss */
+
+.glass-header-pro {
+  background: #f6dcbc !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.8);
+  transition: all 0.4s cubic-bezier(0.25,0.8,0.25,1);
+}
+.search-master-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+}
+.search-island-pill {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 60px;
+  padding: 8px 10px 8px 20px;
+  transition: all 0.4s cubic-bezier(0.25,0.8,0.25,1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.search-island-pill:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.search-island-pill.is-focused {
+  box-shadow: 0 12px 36px rgba(235,103,83,0.15);
+  border-color: rgba(235,103,83,0.4);
+  background: #fffdfc;
+}
+.invisible-input {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: 15px;
+  color: #222;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 100%;
+}
+.invisible-input::placeholder { color: #888; font-weight: 400; }
+.btn-detect {
+  background: #f5f5f5;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: all 0.2s;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.btn-detect:hover { background: #cf933b; color: white; }
+.btn-text-only {
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+  background: transparent;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 30px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-text-only:hover { background: #f0f0f0; color: #111; }
+.btn-solid-action {
+  background: linear-gradient(135deg, #f0932b, #eb6753);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px 18px;
+  border-radius: 40px;
+  border: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(235,103,83,0.3);
+  white-space: nowrap;
+}
+.btn-solid-action:hover { transform: scale(1.04); box-shadow: 0 8px 25px rgba(235,103,83,0.45); }
+@keyframes slideDownFadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.floating-dropdown {
+  animation: slideDownFadeIn 0.3s ease forwards;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.06);
+  overflow: hidden;
+  z-index: 9999;
+}
+.drop-item {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  border-bottom: 1px solid #f5f5f5;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.drop-item:hover { background: #fafafa; }
+.circle-menu-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #e2e2e2;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.circle-menu-btn:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.pill-divider {
+  width: 1px;
+  height: 28px;
+  background: #e2e2e2;
+  margin: 0 14px;
+  flex-shrink: 0;
+}
+        }
+      `}</style>
       <div
   className="inner-banner-style4 d-flex align-items-center"
   style={{
     height: "90vh",
-    backgroundImage: `url("/images/about/element-9.jpg.jpeg.png")`,
+    backgroundImage: `url("/images/about/element-9.jpg.jpeg.png")`, 
     backgroundSize: "cover",
     backgroundPosition: "center",
   }}
@@ -141,7 +275,7 @@ const Hero = () => {
                   className="btn-text-only"
                   type="button"
                   data-bs-toggle="modal"
-                  data-bs-target="#advanceSeachModal">
+                  data-bs-target="#advanceSeachModalTwo">
                   <span className="flaticon-settings" /> Advanced
                 </button>
                 <button
