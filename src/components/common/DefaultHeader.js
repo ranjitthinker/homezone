@@ -9,7 +9,7 @@ import { useSettings } from '@/context/SettingsProvider';
 import SelectDropdown from '@/components/home/home-v2/hero/SelectDropdown';
 import apiService from '@/utils/api/apiService';
 import { API_URLS } from '@/utils/api/apiUrls';
-import AdvanceFilterModal from '@/components/common/advance-filter';
+import AdvanceFilterModal from '@/components/common/advance-filter-two';
 import MainMenu from './MainMenu';
 
 const DefaultHeader = () => {
@@ -277,7 +277,7 @@ const DefaultHeader = () => {
 
       <header
         className={`glass-header-pro d-none d-lg-block ${navbar ? 'shadow-sm' : ''}`}
-        style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000, padding: '12px 0', transition: 'padding 0.4s ease' }}>
+        style={{zIndex: 1000, padding: '12px 0', transition: 'padding 0.4s ease' }}>
         <div className="container-fluid px-4">
 
           {/* ✅ Single flex row — logo | middle | hamburger */}
@@ -448,10 +448,11 @@ const DefaultHeader = () => {
       {/* Spacer to prevent content from being hidden behind fixed header */}
       <div style={{ height: '69px' }} className="d-none d-lg-block" />
 
-      {/* ✅ Advance filter modal — only on client, only on non-home pages */}
-      {mounted && !isHomePage && (
+
+      {/* ✅ Advance filter modal Two — for header search */}
+      {mounted && (
         <div className="advance-feature-modal">
-          <div className="modal fade" id="advanceSeachModal" tabIndex={-1} aria-hidden="true">
+          <div className="modal fade" id="advanceSeachModalTwo" tabIndex={-1} aria-hidden="true">
             <AdvanceFilterModal />
           </div>
         </div>

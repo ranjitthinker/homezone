@@ -275,7 +275,7 @@ const Hero = () => {
                   className="btn-text-only"
                   type="button"
                   data-bs-toggle="modal"
-                  data-bs-target="#advanceSeachModal">
+                  data-bs-target="#advanceSeachModalTwo">
                   <span className="flaticon-settings" /> Advanced
                 </button>
                 <button
