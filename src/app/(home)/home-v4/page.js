@@ -22,12 +22,7 @@ import 'swiper/swiper-bundle.css';
 import { useSettings } from '@/context/SettingsProvider';
 
 export const metadata = {
-  title: 'Home Zone - Find Your Dream Home with Home Zone - Your Ultimate Real Estate Destination',
-  description:
-    'Discover your perfect home with Home Zone, your ultimate real estate destination. Explore a wide range of properties, from cozy apartments to luxurious villas, all tailored to your needs and lifestyle. Start your journey to finding your dream home today!',
-  keywords: 'Home Zone, Real Estate, Property, Search, Buy, Sell, Rent, Home, Apartment, Villa, Home Zone Real Estate',
-  robots: 'index, follow',
-  canonical: 'https://www.homezone.com/',
+  title: 'Home v4 || Homez - Real Estate NextJS Template',
 };
 
 const Home_V4 = async () => {
@@ -42,7 +37,7 @@ const Home_V4 = async () => {
     <>
       {/* Main Header Nav */}
       {/* <DefaultHeader /> */}
-      <Header />
+      <Header/>
       {/* End Main Header Nav */}
 
       {/* Mobile Nav  */}
@@ -147,9 +142,15 @@ const Home_V4 = async () => {
         <div className="container">
           <div className="row  justify-content-between align-items-center">
             <div className="col-auto">
-              <div className="main-title" data-aos="fade-up" data-aos-delay="100">
+              <div
+                className="main-title"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
                 <h2 className="title">Featured Homes</h2>
-                <p className="paragraph">Get some Inspirations from 800+ Properties</p>
+                <p className="paragraph">
+                  Get some Inspirations from 800+ Properties
+                </p>
               </div>
             </div>
             {/* End header */}
@@ -205,13 +206,18 @@ const Home_V4 = async () => {
           <div className="container">
             <div className="row">
               <div className="col-md-6 col-lg-5 pl30-md pl15-xs" data-aos="fade-left" data-aos-delay="300">
-                <div className="main-title mb40">
-                  <h2 className="title">Real Estate Inquiry Form</h2>
-                  <p className="paragraph fz15">As the complexity of buildings to increase</p>
+                <div className="mb30">
+                  <h2 className="title text-capitalize">
+                    Let’s find the right <br className="d-none d-md-block" /> selling option for you
+                  </h2>
                 </div>
-                <div className="inquiry-form mb30-md">
-                  <InqueryForm />
+                <div className="why-chose-list style2">
+                  <Features />
                 </div>
+                <Link href="#" className="ud-btn btn-dark">
+                  Learn More
+                  <i className="fal fa-arrow-right-long" />
+                </Link>
               </div>
             </div>
           </div>
@@ -221,7 +227,54 @@ const Home_V4 = async () => {
 
       {/* Funfact */}
 
-      {/* End Funfact */}
+                <div className="col-auto">
+                  <button className="next__active swiper_button">
+                    <i className="far fa-arrow-right-long" />
+                  </button>
+                </div>
+                {/* End Next */}
+              </div>
+            </div>
+            {/* End .col for navigation and pagination */}
+          </div>
+          {/* End .row */}
+
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="explore-apartment-slider" data-aos="fade-up" data-aos-delay="300">
+                <ApartmentType />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* End Explore Apartment */}
+
+      {/* Explore Apartment */}
+      <section className="pt0 pb90 pb10-md">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6 m-auto" data-aos="fade-up" data-aos-delay="300">
+              <div className="main-title text-center">
+                <h2 className="title">See How Realton Can Help</h2>
+                <p className="paragraph">Aliquam lacinia diam quis lacus euismod</p>
+              </div>
+            </div>
+          </div>
+          {/* End .row */}
+
+          <div className="row">
+            <Explore />
+          </div>
+        </div>
+      </section>
+      {/* End Explore Apartment */}
+
+      {/* About Us */}
+      <section className="pt0 pb40-md">
+        <About /> 
+      </section>
+      {/* End About Us */}
 
       {/* Our Testimonials */}
       <section className="pt110 pb40-md">
@@ -289,6 +342,49 @@ const Home_V4 = async () => {
           </div>
         </div>
       </section>
+
+        {/* Real Estate Inquiry Form */}
+      <section>
+        <div className="container">
+          <div className="row">
+            <div
+              className="col-lg-6 col-xl-5"
+              data-aos="fade-left"
+              data-aos-delay="0"
+            >
+              <div className="main-title mb40">
+                <h2 className="title">Real Estate Inquiry Form</h2>
+                <p className="paragraph fz15">
+                  As the complexity of buildings to increase
+                </p>
+              </div>
+              <div className="inquiry-form mb30-md">
+                <InqueryForm />
+              </div>
+            </div>
+            {/* End col-6 */}
+
+            <div
+              className="col-lg-6 col-xl-6 offset-xl-1"
+              data-aos="fade-right"
+              data-aos-delay="300"
+            >
+              <div className="inquiry-form">
+                <div className="inquiry-img">
+                  <Image
+                    width={591}
+                    height={778}
+                    className="w-100 h-100 cover"
+                    src="/images/about/about-4.webp"
+                    alt="about"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Real Estate Inquiry Form */}
 
       {/* Our CTA */}
       <section className="our-cta p-0">

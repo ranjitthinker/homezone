@@ -458,7 +458,7 @@ const DefaultHeader = () => {
       </header>
 
       {/* Spacer to prevent content from being hidden behind fixed header */}
-      <div style={{ height: '69px' }} className="d-none d-lg-block" />
+      {/* <div style={{ height: '69px' }} className="d-none d-lg-block" /> */}
 
       {/* ✅ Advance filter modal — only on client, only on non-home pages */}
       {mounted && !isHomePage && (
