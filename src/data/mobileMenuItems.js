@@ -9,7 +9,7 @@ module.exports = [
   },
   {
     label: "Blog",
-    path: "/blog-list-v3",
+    path: "/blog",
   },
   {
     label: "About",
