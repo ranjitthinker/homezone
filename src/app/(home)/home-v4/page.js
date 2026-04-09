@@ -2,7 +2,7 @@ import MobileMenu from '@/components/common/mobile-menu';
 import CallToActions from '@/components/home/home-v4/CallToActions';
 // import DefaultHeader from '@/components/common/DefaultHeader';
 import PropertiesByCities from '@/components/home/home-v1/PropertiesByCities';
-import Hero from '@/components/home/home-v9/Hero';
+import Hero from '@/components/home/home-v4/hero';
 import Features from '@/components/home/home-v4/Features';
 import Link from 'next/link';
 import Funfact from '@/components/home/home-v4/Funfact';
@@ -15,9 +15,11 @@ import ApartmentType from '@/components/home/home-v1/ApartmentType';
 import Explore from '@/components/common/Explore';
 import Blog from '@/components/common/Blog';
 import Header from '@/components/home/home-v1/Header';
-import FeaturedHomes from "@/components/home/home-v7/FeaturedHomes";
-import InqueryForm from "@/components/home/home-v7/InqueryForm";
-import Image from "next/image";
+import FeaturedHomes from '@/components/home/home-v7/FeaturedHomes';
+import InqueryForm from '@/components/home/home-v7/InqueryForm';
+import Image from 'next/image';
+import 'swiper/swiper-bundle.css';
+import { useSettings } from '@/context/SettingsProvider';
 
 export const metadata = {
   title: 'Home v4 || Homez - Real Estate NextJS Template',
@@ -29,6 +31,7 @@ const Home_V4 = async () => {
   // const settings = response.data; // Axios puts data here directly
 
   //
+  // ✅ Correct
 
   return (
     <>
@@ -42,10 +45,11 @@ const Home_V4 = async () => {
       {/* End Mobile Nav  */}
 
       {/* Hero Slide */}
-      <div id="hero-x"  className="banner-wrapper main-banner-wrapper  position-relative banner-style-one ">
+
+      {/* Home Banner Style V1 */}
+      <section className="home-banner-style4 p0 bgc-white">
         <Hero />
-      </div>
-      {/* Edn Hero Slide */}
+      </section>
 
       {/* Explore property-city */}
       <section className="pb40-md pb90">
@@ -82,7 +86,7 @@ const Home_V4 = async () => {
       {/* End Explore property-city */}
 
       {/* Featured Listings */}
-      <section className="pb80 pb30-md">
+      <section className="pb40 pb30-md">
         <div className="container">
           <div className="row  justify-content-between align-items-center">
             <div className="col-auto">
@@ -222,40 +226,6 @@ const Home_V4 = async () => {
       {/* Abut intro */}
 
       {/* Funfact */}
-      <section className="pt45 pb-0">
-        <div className="container maxw1600 bdrb1 pb50">
-          <div className="row justify-content-center wow fadeInUp" data-wow-delay="300ms">
-            <Funfact />
-          </div>
-        </div>
-      </section>
-      {/* End Funfact */}
-
-      {/* Explore Apartment */}
-      <section id="explore-property" className="pb90 pb30-md">
-        <div className="container">
-          <div className="row  justify-content-between align-items-center">
-            <div className="col-auto">
-              <div className="main-title" data-aos="fade-up" data-aos-delay="300">
-                <h2 className="title">Explore Apartment Types</h2>
-                <p className="paragraph">Get some Inspirations from 1800+ skills</p>
-              </div>
-            </div>
-            {/* End header */}
-
-            <div className="col-auto mb30">
-              <div className="row align-items-center justify-content-center">
-                <div className="col-auto">
-                  <button className="prev__active swiper_button">
-                    <i className="far fa-arrow-left-long" />
-                  </button>
-                </div>
-                {/* End prev */}
-
-                <div className="col-auto">
-                  <div className="pagination swiper--pagination pagination__active" />
-                </div>
-                {/* End pagination */}
 
                 <div className="col-auto">
                   <button className="next__active swiper_button">
@@ -307,7 +277,7 @@ const Home_V4 = async () => {
       {/* End About Us */}
 
       {/* Our Testimonials */}
-      <section className="pt0 pb40-md">
+      <section className="pt110 pb40-md">
         <div className="container">
           <div className="row  justify-content-between align-items-center">
             <div className="col-auto">
@@ -354,78 +324,6 @@ const Home_V4 = async () => {
         </div>
       </section>
       {/* End Our Testimonials */}
-
-      {/* Our Partners */}
-      {/* <section className="our-partners bgc-white">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12" data-aos="fade-up">
-              <div className="main-title text-center">
-                <h6>Trusted by the world’s best</h6>
-              </div>
-            </div>
-            <div className="col-lg-12 text-center">
-              <div
-                className="dots_none nav_none"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                <Partner />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-      {/* End Our Partners */}
-
-      {/* Featured Homes */}
-      {/* <section className="pt-0 pb90 pb30-md bgc-white">
-        <div className="container">
-          <div className="row  justify-content-between align-items-center">
-            <div className="col-auto">
-              <div
-                className="main-title"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                <h2 className="title">Featured Homes</h2>
-                <p className="paragraph">
-                  Get some Inspirations from 800+ Properties
-                </p>
-              </div>
-            </div>
-
-            <div className="col-auto mb30">
-              <div className="row align-items-center justify-content-center">
-                <div className="col-auto">
-                  <button className="properties_homes-prev__active swiper_button">
-                    <i className="far fa-arrow-left-long" />
-                  </button>
-                </div>
-
-                <div className="col-auto">
-                  <div className="pagination swiper--pagination properties_homes_pagination__active" />
-                </div>
-
-                <div className="col-auto">
-                  <button className="properties_homes-next__active swiper_button">
-                    <i className="far fa-arrow-right-long" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-lg-12" data-aos="fade-up" data-aos-delay="300">
-              <div className="explore-apartment-5col-slider">
-                <FeaturedHomes />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-      {/* End Featured Homes */}
 
       {/* Explore Blog */}
       <section className="mb75 mb0-md pb30-md">
