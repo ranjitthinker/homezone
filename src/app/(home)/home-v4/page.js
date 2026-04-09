@@ -18,9 +18,9 @@ import Header from '@/components/home/home-v1/Header';
 import FeaturedHomes from '@/components/home/home-v7/FeaturedHomes';
 import InqueryForm from '@/components/home/home-v7/InqueryForm';
 import Image from 'next/image';
-import settings from '@/utils/settings';
+// import settings from '@/utils/settings';
 
-console.log(settings);
+// console.log(settings);
 export const metadata = {
   title: 'Home Zone - Find Your Dream Home with Home Zone - Your Ultimate Real Estate Destination',
   description:
