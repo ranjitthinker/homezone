@@ -1,40 +1,40 @@
-import DefaultHeader from "@/components/common/DefaultHeader";
-import Footer from "@/components/common/default-footer";
-import MobileMenu from "@/components/common/mobile-menu";
-import EnergyClass from "@/components/property/property-single-style/common/EnergyClass";
-import FloorPlans from "@/components/property/property-single-style/common/FloorPlans";
-import HomeValueChart from "@/components/property/property-single-style/common/HomeValueChart";
-import InfoWithForm from "@/components/property/property-single-style/common/more-info";
-import NearbySimilarProperty from "@/components/property/property-single-style/common/NearbySimilarProperty";
-import OverView from "@/components/property/property-single-style/common/OverView";
-import PropertyAddress from "@/components/property/property-single-style/common/PropertyAddress";
-import PropertyDetails from "@/components/property/property-single-style/common/PropertyDetails";
-import PropertyFeaturesAminites from "@/components/property/property-single-style/common/PropertyFeaturesAminites";
-import PropertyHeader from "@/components/property/property-single-style/common/PropertyHeader";
-import PropertyNearby from "@/components/property/property-single-style/common/PropertyNearby";
-import PropertyVideo from "@/components/property/property-single-style/common/PropertyVideo";
-import PropertyViews from "@/components/property/property-single-style/common/property-view";
-import ProperytyDescriptions from "@/components/property/property-single-style/common/ProperytyDescriptions";
-import ReviewBoxForm from "@/components/property/property-single-style/common/ReviewBoxForm";
-import VirtualTour360 from "@/components/property/property-single-style/common/VirtualTour360";
-import AllReviews from "@/components/property/property-single-style/common/reviews";
-import ContactWithAgent from "@/components/property/property-single-style/sidebar/ContactWithAgent";
-import ScheduleTour from "@/components/property/property-single-style/sidebar/ScheduleTour";
-import PropertyGallery from "@/components/property/property-single-style/single-v6/PropertyGallery";
-import React from "react";
-import MortgageCalculator from "@/components/property/property-single-style/common/MortgageCalculator";
-import WalkScore from "@/components/property/property-single-style/common/WalkScore";
-import MobileBottomBar from "@/components/property/property-single-style/common/MobileBottomBar";
-import {getPropertyById} from "@/utils/services/propertyService";
+import DefaultHeader from '@/components/common/DefaultHeader';
+import Footer from '@/components/common/default-footer';
+import MobileMenu from '@/components/common/mobile-menu';
+import EnergyClass from '@/components/property/property-single-style/common/EnergyClass';
+import FloorPlans from '@/components/property/property-single-style/common/FloorPlans';
+import HomeValueChart from '@/components/property/property-single-style/common/HomeValueChart';
+import InfoWithForm from '@/components/property/property-single-style/common/more-info';
+import NearbySimilarProperty from '@/components/property/property-single-style/common/NearbySimilarProperty';
+import OverView from '@/components/property/property-single-style/common/OverView';
+import PropertyAddress from '@/components/property/property-single-style/common/PropertyAddress';
+import PropertyDetails from '@/components/property/property-single-style/common/PropertyDetails';
+import PropertyFeaturesAminites from '@/components/property/property-single-style/common/PropertyFeaturesAminites';
+import PropertyHeader from '@/components/property/property-single-style/common/PropertyHeader';
+import PropertyNearby from '@/components/property/property-single-style/common/PropertyNearby';
+import PropertyVideo from '@/components/property/property-single-style/common/PropertyVideo';
+import PropertyViews from '@/components/property/property-single-style/common/property-view';
+import ProperytyDescriptions from '@/components/property/property-single-style/common/ProperytyDescriptions';
+import ReviewBoxForm from '@/components/property/property-single-style/common/ReviewBoxForm';
+import VirtualTour360 from '@/components/property/property-single-style/common/VirtualTour360';
+import AllReviews from '@/components/property/property-single-style/common/reviews';
+import ContactWithAgent from '@/components/property/property-single-style/sidebar/ContactWithAgent';
+import ScheduleTour from '@/components/property/property-single-style/sidebar/ScheduleTour';
+import PropertyGallery from '@/components/property/property-single-style/single-v6/PropertyGallery';
+import React from 'react';
+import MortgageCalculator from '@/components/property/property-single-style/common/MortgageCalculator';
+import WalkScore from '@/components/property/property-single-style/common/WalkScore';
+import MobileBottomBar from '@/components/property/property-single-style/common/MobileBottomBar';
+import { getPropertyById } from '@/utils/services/propertyService';
 
 export const metadata = {
-  title: "Property Single V6 || Homez - Real Estate NextJS Template",
+  title: 'Property Single V6 || Homez - Real Estate NextJS Template',
 };
 
-const SingleV6 = async props => {
+const SingleV6 = async (props) => {
   const params = await props.params;
   const property = await getPropertyById(params.id);
-  
+
   return (
     <>
       {/* Main Header Nav */}
@@ -49,8 +49,8 @@ const SingleV6 = async props => {
       <section className="pt60 pb90 bgc-f7">
         <div className="container">
           <div className="row">
-        <PropertyHeader data={property} />         
-      </div>
+            <PropertyHeader data={property} />
+          </div>
           {/* End .row */}
 
           <div className="row wrap">
@@ -66,7 +66,7 @@ const SingleV6 = async props => {
 
               <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                 <h4 className="title fz17 mb30">Property Description</h4>
-              <ProperytyDescriptions data={property} />
+                <ProperytyDescriptions data={property} />
                 {/* End property description */}
 
                 <h4 className="title fz17 mb30 mt50">Property Details</h4>
@@ -105,7 +105,7 @@ const SingleV6 = async props => {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="accordion-style1 style2">
-                        <FloorPlans floorPlans={property.floor_plans} />
+                      <FloorPlans floorPlans={property.floor_plans} />
                     </div>
                   </div>
                 </div>
@@ -140,9 +140,7 @@ const SingleV6 = async props => {
                 <h4 className="title fz17 mb30">Walkscore</h4>
                 <div className="row">
                   <div className="col-md-12">
-                    <h4 className="fw400 mb20">
-                      10425 Tabor St Los Angeles CA 90034 USA
-                    </h4>
+                    <h4 className="fw400 mb20">10425 Tabor St Los Angeles CA 90034 USA</h4>
                     <WalkScore />
                   </div>
                 </div>
@@ -220,9 +218,7 @@ const SingleV6 = async props => {
             <div className="col-auto">
               <div className="main-title">
                 <h2 className="title">Discover Our Featured Listings</h2>
-                <p className="paragraph">
-                  Aliquam lacinia diam quis lacus euismod
-                </p>
+                <p className="paragraph">Aliquam lacinia diam quis lacus euismod</p>
               </div>
             </div>
             {/* End header */}

@@ -33,9 +33,15 @@ export const metadata = {
 };
 
 const SingleV4 = async (props) => {
-  // const property = []
   const params = await props.params;
+
+  console.log('params.id', params.id);
+
   const property = await getPropertyById(params.id);
+
+  const slug = property?.slug || ''; // ✅ FIXED
+
+  console.warn('property slug----', slug);
 
   return (
     <>
