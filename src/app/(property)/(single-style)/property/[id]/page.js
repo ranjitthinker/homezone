@@ -29,7 +29,7 @@ import PropertyNavBar from '@/components/property/property-single-style/common/P
 import Form from '@/components/pages/contact/Form';
 
 export const metadata = {
-  title: 'Property Single V4 || Homez - Real Estate NextJS Template',
+  title: 'Property Single V4 || Homzzone ',
 };
 
 const SingleV4 = async (props) => {
@@ -40,8 +40,6 @@ const SingleV4 = async (props) => {
   const property = await getPropertyById(params.id);
 
   const slug = property?.slug || ''; // ✅ FIXED
-
-  console.warn('property slug----', slug);
 
   return (
     <>

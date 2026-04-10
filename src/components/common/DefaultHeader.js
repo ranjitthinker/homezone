@@ -280,16 +280,9 @@ const DefaultHeader = () => {
       `}</style>
 
       <header
-        className={`glass-header-pro d-none d-lg-block ${navbar ? 'shadow-sm' : ''}`}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
-          padding: '12px 0',
-          transition: 'padding 0.4s ease',
-        }}
+        className={`glass-header-pro d-none d-lg-block header-nav nav-homepage-style light-header menu-home4 main-menu ${
+          navbar ? 'sticky slideInDown animated' : ''
+        }`}
       >
         <div className="container-fluid px-4">
           {/* ✅ Single flex row — logo | middle | hamburger */}
