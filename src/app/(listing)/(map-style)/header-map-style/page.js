@@ -1,5 +1,3 @@
-'use client';
-
 import DefaultHeader from '@/components/common/DefaultHeader';
 import Footer from '@/components/common/default-footer';
 import MobileMenu from '@/components/common/mobile-menu';
@@ -10,6 +8,7 @@ export const metadata = {
   title: 'Header Map Style || Homez - Real Estate NextJS Template',
 };
 
+// ✅ Only THIS is client-side
 const PropertyFilteringMap = dynamic(
   () => import('@/components/listing/map-style/header-map-style/PropertyFilteringMap'),
   { ssr: false }
@@ -21,7 +20,7 @@ const HeaderMapStyle = () => {
       <DefaultHeader />
       <MobileMenu />
 
-      {/* 🔥 Now safe */}
+      {/* ✅ Safe now */}
       <PropertyFilteringMap />
 
       <section className="footer-style1 pt60 pb-0">
