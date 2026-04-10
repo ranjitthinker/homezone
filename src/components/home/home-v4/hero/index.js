@@ -41,41 +41,32 @@ const Hero = () => {
                     src="/images/about/element-10.png"
                     alt="image"
                   />
-                  <Image
-                    width={160}
-                    height={103}
-                    style={{ objectFit: 'contain' }}
-                    className="img-2 bounce-y d-none d-xl-block"
-                    src="/images/about/element-11.png"
-                    alt="image"
-                  />
+
                   <VideoBox />
                 </div>
-                <HeroContent heroBanner={heroBanner} />
               </div>
+              <HeroContent heroBanner={heroBanner} />
+              {/* End Hero content */}
+
+              {/* <!-- Advance Feature Modal Start --> */}
+              <div className="advance-feature-modal">
+                <div
+                  className="modal fade"
+                  id="advanceSeachModal"
+                  tabIndex={-1}
+                  aria-labelledby="advanceSeachModalLabel"
+                  aria-hidden="true"
+                >
+                  <AdvanceFilterModal />
+                </div>
+              </div>
+              {/* <!-- Advance Feature Modal End --> */}
+              <Category />
+              {/* End .container */}
             </div>
           </div>
         </div>
       </div>
-      {/* End Hero content */}
-
-      {/* <!-- Advance Feature Modal Start --> */}
-      <div className="advance-feature-modal">
-        <div
-          className="modal fade"
-          id="advanceSeachModal"
-          tabIndex={-1}
-          aria-labelledby="advanceSeachModalLabel"
-          aria-hidden="true"
-        >
-          <AdvanceFilterModal />
-        </div>
-      </div>
-      {/* <!-- Advance Feature Modal End --> */}
-
-      <Category />
-
-      {/* End .container */}
     </>
   );
 };

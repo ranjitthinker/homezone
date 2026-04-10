@@ -2,7 +2,7 @@ import MobileMenu from '@/components/common/mobile-menu';
 import CallToActions from '@/components/home/home-v4/CallToActions';
 // import DefaultHeader from '@/components/common/DefaultHeader';
 import PropertiesByCities from '@/components/home/home-v1/PropertiesByCities';
-import Hero from '@/components/home/home-v4/hero';
+import Hero from '@/components/home/home-v1/hero';
 import Features from '@/components/home/home-v4/Features';
 import Link from 'next/link';
 import Funfact from '@/components/home/home-v4/Funfact';
@@ -52,9 +52,8 @@ const Home_V4 = async () => {
       {/* Hero Slide */}
 
       {/* Home Banner Style V1 */}
-      <section className="home-banner-style4 p0 bgc-white">
-        <Hero />
-      </section>
+
+      <Hero />
 
       {/* Explore property-city */}
       <section className="pb40-md pb90">

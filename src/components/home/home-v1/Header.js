@@ -14,7 +14,8 @@ const Header = () => {
   const pathname = usePathname();
   const settings = useSettings();
 
-  const siteLogo = settings?.data?.find((item) => item.key === 'site_logo')?.value || '/images/header-logo2.svg';
+  const siteLogo = settings?.data?.find((item) => item.key === 'logo_light')?.value || '';
+  const siteLogoDark = settings?.data?.find((item) => item.key === 'logo_dark')?.value || '';
 
   // ✅ Sticky navbar on scroll
   useEffect(() => {
@@ -28,11 +29,7 @@ const Header = () => {
 
   return (
     <>
-      <header
-        className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${
-          navbar ? 'sticky slideInDown animated' : ''
-        }`}
-      >
+      <header className={`header-nav nav-homepage-style main-menu ${navbar ? 'sticky slideInDown animated' : ''}`}>
         <nav className="posr">
           <div className="container posr menu_bdrt1">
             <div className="row align-items-center justify-content-between">
@@ -52,7 +49,7 @@ const Header = () => {
                       <Image
                         width={180}
                         height={75}
-                        src={siteLogo}
+                        src={siteLogoDark}
                         alt="Header Logo"
                         style={{ objectFit: 'contain' }}
                       />
