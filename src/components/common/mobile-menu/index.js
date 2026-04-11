@@ -17,7 +17,7 @@ const MobileMenu = () => {
       }, {})
     : {};
 
-  const logo = settings?.site_logo || settings?.logo_light || '/images/header-logo2.svg';
+  const logo = settings?.site_logo || settings?.logo_light;
   const siteName = settings?.site_name || 'Homez';
 
   return (
@@ -50,9 +50,7 @@ const MobileMenu = () => {
                 />
               </Link>
 
-              <Link href="/login">
-                <span className="icon fz18 far fa-user-circle" />
-              </Link>
+              <div></div>
             </div>
           </div>
         </div>
