@@ -9,7 +9,7 @@ import L from "leaflet";
 const FALLBACK = '/images/listings/listing-single-slide1.jpg';
 const DEFAULT_CENTER = [30.3398, 76.3869];
 
-// ✅ Fix Leaflet default icon broken in Next.js
+// ✅ Fix Leaflet icon issue
 const fixLeafletIcon = () => {
   delete L.Icon.Default.prototype._getIconUrl;
   L.Icon.Default.mergeOptions({
@@ -19,27 +19,52 @@ const fixLeafletIcon = () => {
   });
 };
 
-// ✅ Custom price marker icon
-const createPriceIcon = (price) =>
+
+const createPriceIcon = () =>
   L.divIcon({
     className: "",
     html: `
       <div style="
-        background: #EB6753;
-        color: white;
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 700;
-        white-space: nowrap;
-        box-shadow: 0 2px 8px rgba(235,103,83,0.4);
+        background: #cf973c;
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.3);
         border: 2px solid white;
-      ">${price}</div>
+      ">
+        <svg width="18" height="18" fill="black" viewBox="0 0 24 24">
+          <path d="M12 3l9 8h-3v9h-5v-6H11v6H6v-9H3z"/>
+        </svg>
+      </div>
     `,
-    iconAnchor: [40, 16],
+    iconAnchor: [19, 38],
   });
 
-// ✅ Recenter map when properties change
+
+// ✅ Custom price marker
+// const createPriceIcon = (price) =>
+//   L.divIcon({
+//     className: "",
+//     html: `
+//       <div style="
+//         background: #EB6753;
+//         color: white;
+//         padding: 4px 10px;
+//         border-radius: 20px;
+//         font-size: 12px;
+//         font-weight: 700;
+//         white-space: nowrap;
+//         box-shadow: 0 2px 8px rgba(235,103,83,0.4);
+//         border: 2px solid white;
+//       ">${price}</div>
+//     `,
+//     iconAnchor: [40, 16],
+//   });
+
+// ✅ Recenter when data changes
 const RecenterMap = ({ center, zoom }) => {
   const map = useMap();
   useEffect(() => {
@@ -48,9 +73,26 @@ const RecenterMap = ({ center, zoom }) => {
   return null;
 };
 
+// ✅ NEW: Zoom on marker click
+const ZoomToMarker = ({ position }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (position) {
+      map.flyTo(position, 15, {
+        duration: 1.2,
+      });
+    }
+  }, [position, map]);
+
+  return null;
+};
+
 export default function ListingMap1({ properties = [] }) {
+  console.log(properties);
   const [mounted, setMounted] = useState(false);
   const [activeId, setActiveId] = useState(null);
+  const [selectedPosition, setSelectedPosition] = useState(null);
 
   useEffect(() => {
     fixLeafletIcon();
@@ -83,11 +125,20 @@ export default function ListingMap1({ properties = [] }) {
 
   const zoom = markers.length === 1 ? 14 : 6;
 
-  if (!mounted) return (
-    <div style={{ width: '100%', height: '100%', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <p>Loading map...</p>
-    </div>
-  );
+  if (!mounted) {
+    return (
+      <div style={{
+        width: '100%',
+        height: '100%',
+        background: '#f0f0f0',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <p>Loading map...</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -97,19 +148,15 @@ export default function ListingMap1({ properties = [] }) {
           border-radius: 12px !important;
           overflow: hidden;
           box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
-          border: none !important;
         }
         .leaflet-popup-content {
           margin: 0 !important;
           width: 220px !important;
         }
-        .leaflet-popup-tip { background: #fff !important; }
         .leaflet-popup-close-button {
           top: 6px !important;
           right: 8px !important;
           color: #fff !important;
-          font-size: 18px !important;
-          z-index: 10;
         }
       `}</style>
 
@@ -118,13 +165,13 @@ export default function ListingMap1({ properties = [] }) {
         zoom={zoom}
         style={{ width: '100%', height: '100%' }}
         zoomControl={true}
-        scrollWheelZoom={true}>
-
+        scrollWheelZoom={true}
+      >
         <RecenterMap center={center} zoom={zoom} />
+        <ZoomToMarker position={selectedPosition} />
 
-        {/* ✅ OpenStreetMap tiles — free, no API key needed */}
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+          attribution='&copy; OpenStreetMap'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
@@ -133,58 +180,55 @@ export default function ListingMap1({ properties = [] }) {
             key={marker.id}
             position={[marker.lat, marker.lng]}
             icon={createPriceIcon(marker.price)}
-            eventHandlers={{ click: () => setActiveId(marker.id) }}>
-
+            eventHandlers={{
+              click: () => {
+                setActiveId(marker.id);
+                setSelectedPosition([marker.lat, marker.lng]); // 🔥 zoom trigger
+              },
+            }}
+          >
             <Popup onClose={() => setActiveId(null)}>
               <div style={{ width: '220px' }}>
-                {/* Property image */}
                 <div style={{ position: 'relative' }}>
                   <Image
                     width={220}
                     height={130}
                     src={marker.image}
                     alt={marker.title}
-                    style={{ width: '100%', height: '130px', objectFit: 'cover', display: 'block' }}
+                    style={{
+                      width: '100%',
+                      height: '130px',
+                      objectFit: 'cover'
+                    }}
                   />
                   <div style={{
-                    position: 'absolute', bottom: 8, left: 10,
-                    background: '#EB6753', color: '#fff',
-                    padding: '3px 10px', borderRadius: '20px',
-                    fontSize: '12px', fontWeight: 700,
+                    position: 'absolute',
+                    bottom: 8,
+                    left: 10,
+                    background: '#EB6753',
+                    color: '#fff',
+                    padding: '3px 10px',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    fontWeight: 700,
                   }}>
-                    {marker.price} / <span>mo</span>
+                    {marker.price} 
                   </div>
                 </div>
 
-                {/* Content */}
                 <div style={{ padding: '12px' }}>
-                  <h6 style={{ fontSize: '13px', fontWeight: 700, marginBottom: '4px' }}>
-                    <Link href={`/property/${marker.slug}`} style={{ color: '#1a1a1a', textDecoration: 'none' }}>
+                  <h6 style={{ fontSize: '13px', fontWeight: 700 }}>
+                    <Link href={`/property/${marker.slug}`}>
                       {marker.title}
                     </Link>
                   </h6>
-                  <p style={{ fontSize: '11px', color: '#888', marginBottom: '8px' }}>
+
+                  <p style={{ fontSize: '11px', color: '#888' }}>
                     {marker.address}
                   </p>
-                  <div style={{ display: 'flex', gap: '10px', fontSize: '11px', color: '#555' }}>
-                    <span>🛏 {marker.bed} bed</span>
-                    <span>🚿 {marker.bath} bath</span>
-                    <span>📐 {marker.sqft} sqft</span>
-                  </div>
-                  <hr style={{ margin: '8px 0' }} />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{
-                      fontSize: '11px', fontWeight: 600,
-                      color: marker.forRent ? '#28a745' : '#EB6753',
-                    }}>
-                      For {marker.forRent ? 'Rent' : 'Sale'}
-                    </span>
-                    <Link href={`/property/${marker.slug}`} style={{
-                      fontSize: '11px', color: '#EB6753',
-                      fontWeight: 600, textDecoration: 'none',
-                    }}>
-                      View Details →
-                    </Link>
+
+                  <div style={{ fontSize: '11px' }}>
+                    🛏 {marker.bed} | 🚿 {marker.bath} | 📐 {marker.sqft}
                   </div>
                 </div>
               </div>
