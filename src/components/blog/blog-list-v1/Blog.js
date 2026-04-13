@@ -1,22 +1,14 @@
-import { blogData } from "@/data/blogs";
-import Image from "next/image";
-import Link from "next/link";
+import { blogData } from '@/data/blogs';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Blog = () => {
- 
   return (
     <>
       {blogData.map((item, index) => (
         <div className="blog-style1 large-size bgc-white" key={index}>
           <div className="blog-img">
-            <Image
-              width={796}
-              height={465}
-              priority
-              className="w-100 h-100 cover"
-              src={item.image}
-              alt="blog"
-            />
+            <Image width={796} height={465} priority className="w-100 h-100 cover" src={item.image} alt="blog" />
           </div>
           <div className="blog-content pl30 pb20">
             <div className="date">
