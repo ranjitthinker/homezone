@@ -156,10 +156,10 @@ const PropertyNavBar = () => {
         className="property-nav-bar bgc-white bdrb1"
         style={{
           position: isPinned ? "fixed" : "relative",
-          top: isPinned ? "0" : "auto",
+          top: isPinned ? "105px" : "auto",
           left: isPinned ? 0 : "auto",
           right: isPinned ? 0 : "auto",
-          zIndex: 999,
+          zIndex: isPinned ? 999 : 0,
           width: "100%",
           boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
         }}

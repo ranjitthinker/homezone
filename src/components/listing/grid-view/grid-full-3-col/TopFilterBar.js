@@ -165,13 +165,13 @@ const TopFilterBar = ({filterFunctions,setCurrentSortingOption,colstyle,setColst
               <option>Price High</option>
             </select>
           </div>
-          <div className={`pl15 pr15 bdrl1 d-none d-md-block cursor`} onClick={() => router.push('/map-v3')}>
+          <div className={`pl15 pr15 bdrl1 cursor`} onClick={() => router.push('/map-v3')}>
             Map
           </div>
-          <div className={`pl15 pr15 bdrl1 bdrr1 d-none d-md-block  cursor ${!colstyle? 'menuActive':'#' } `}    onClick={()=>setColstyle(false)}>
+          <div className={`pl15 pr15 bdrl1 bdrr1 cursor ${!colstyle? 'menuActive':'#' } `}    onClick={()=>setColstyle(false)}>
             Grid
           </div>
-          <div className={`pl15 d-none d-md-block  cursor ${colstyle? 'menuActive':'#' }`}   onClick={()=>setColstyle(true)}>
+          <div className={`pl15 cursor ${colstyle? 'menuActive':'#' }`}   onClick={()=>setColstyle(true)}>
             List
           </div>
         </div>
