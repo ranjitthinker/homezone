@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:scss": "sass public/scss/main.scss public/scss/main.css --no-source-map",
     "start": "next start",
     "lint": "next lint"
   },

@@ -2,7 +2,7 @@ import { getSettings } from '@/utils/lib/settings';
 import ClientProviders from './ClientProviders';
 import { DM_Sans, Poppins } from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../public/scss/main.scss';
+import '../../public/scss/main.css';
 import ToastProvider from '@/components/ToastProvider';
 import 'rc-slider/assets/index.css';
 import 'remixicon/fonts/remixicon.css';
