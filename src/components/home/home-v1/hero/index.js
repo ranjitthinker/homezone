@@ -23,12 +23,15 @@ const Hero = () => {
   return (
     <>
       <section
+        id="hero-x"
         className="home-banner-style1 p0"
         style={{
           backgroundImage: heroBanner ? `url(${heroBanner})` : 'none',
           backgroundSize: 'cover',
-          backgroundPosition: 'center top',
+          backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
+          minHeight: '70vh',
+          paddingTop: '80px',
         }}
       >
         <div className="home-style1">

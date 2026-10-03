@@ -4,31 +4,31 @@ import Link from "next/link";
 const MenuWidget = () => {
   const menuSections = [
     {
-      title: "Popular Search",
+      title: "Our Services",
       links: [
-        { label: "Properties for Rent", href: "/properties" },
-        { label: "Properties for Sale", href: "/properties" },
-        { label: "Featured Listings", href: "/properties" },
-        { label: "Mortgage Calculator", href: "/calculator" },
+        { label: "Properties for Rent", href: "/properties?listed_in=rent" },
+        { label: "Properties for Sale", href: "/properties?listed_in=sale" },
+        { label: "Commercial Properties", href: "/properties?listed_in=commercial" },
+        { label: "Residential Properties", href: "/properties?listed_in=residential" },
       ],
     },
     {
       title: "Quick Links",
       links: [
+        { label: "Home", href: "/" },
         { label: "About Us", href: "/about" },
         { label: "Contact Us", href: "/contact" },
-        { label: "Pricing Plans", href: "/pricing" },
         { label: "Latest Blogs", href: "/blog" },
-        { label: "Compare Properties", href: "/compare" },
+        { label: "Calculator", href: "/calculator" },
       ],
     },
     {
       title: "Discover",
       links: [
         { label: "All Properties", href: "/properties" },
-        { label: "Explore Cities", href: "/#explore-property" },
-        { label: "Mortgage Calculator", href: "/calculator" },
-        { label: "Contact Us", href: "/contact" },
+        { label: "Featured Listings", href: "/properties?featured=1" },
+        { label: "New Arrivals", href: "/properties?sort=newest" },
+        { label: "Contact Support", href: "/contact" },
       ],
     },
   ];

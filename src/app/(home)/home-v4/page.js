@@ -289,11 +289,7 @@ const Home_V4 = async () => {
         </div>
       </section>
 
-      {/* Our CTA */}
-      <section className="our-cta p-0">
-        <CallToActions />
-      </section>
-      {/* Our CTA */}
+      {/* Our CTA removed */}
 
       {/* Start Our Footer */}
       <section className="footer-style1 pt60 pb-0">
