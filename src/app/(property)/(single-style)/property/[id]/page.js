@@ -29,7 +29,7 @@ import PropertyNavBar from '@/components/property/property-single-style/common/P
 import Form from '@/components/pages/contact/Form';
 
 export const metadata = {
-  title: 'Property Single V4 || Homzzone ',
+  title: 'Property Details || Home Zone Real Estate',
 };
 
 const SingleV4 = async (props) => {

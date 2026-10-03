@@ -1,24 +1,21 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import AdvanceFilterModal from '@/components/common/advance-filter';
 import HeroContent from './HeroContent';
+import SelectDropdown from '@/components/home/home-v2/hero/SelectDropdown';
 import { useSettings } from '@/context/SettingsProvider';
 import Image from 'next/image';
 
 const Hero = () => {
   const settings = useSettings();
 
-  const heroBanner =
-    settings?.data?.find((item) => item.key === 'Hero_banner')?.value || '/images/home/home-1.jpg';
+  const heroBanner = settings?.data?.find((item) => item.key === 'Hero_banner')?.value || '';
 
-  const heroTitle =
-    settings?.data?.find((item) => item.key === 'Hero_banner_title')?.value ||
-    'Find Your Dream Home with Home Zone';
+  const heroTitle = settings?.data?.find((item) => item.key === 'Hero_banner_title')?.value || '';
 
-  const heroSubtitle =
-    settings?.data?.find((item) => item.key === 'Hero_banner_subtitle')?.value ||
-    'Discover a wide range of verified properties tailored to your needs and lifestyle.';
+  const heroText = settings?.data?.find((item) => item.key === 'Hero_banner_subtitle')?.value || '';
 
   return (
     <>
@@ -36,11 +33,11 @@ const Hero = () => {
             <div className="row">
               <div className="col-xl-11 mx-auto">
                 <div className="inner-banner-style1 text-center">
-                  <h6 className="hero-sub-title animate-up-1">Trusted Real Estate Platform</h6>
+                  <h6 className="hero-sub-title animate-up-1">{heroTitle}</h6>
 
-                  <h1 className="hero-title animate-up-2 text-white fz45">{heroTitle}</h1>
+                  <h2 className="hero-title animate-up-2">{heroTitle}</h2>
 
-                  <p className="hero-text fz15 animate-up-3">{heroSubtitle}</p>
+                  <p className="hero-text fz15 animate-up-3">{heroText}</p>
 
                   <HeroContent heroBanner={heroBanner} />
                 </div>

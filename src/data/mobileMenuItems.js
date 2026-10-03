@@ -19,16 +19,4 @@ module.exports = [
     label: "Contact",
     path: "/contact",
   },
-  // {
-  //   label: "Pages",
-  //   subMenu: [
-  //     { path: "/about", label: "About" },
-  //     { path: "/contact", label: "Contact" },
-  //     { path: "/compare", label: "Compate" },
-  //     { path: "/pricing", label: "Pricing" },
-  //     { path: "/login", label: "Login" },
-  //     { path: "/register", label: "Register" },
-  //     { path: "/not-found", label: "404" },
-  //   ],
-  // },
 ];

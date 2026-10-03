@@ -53,7 +53,7 @@ const PropertiesByCities = () => {
                     width={400}
                     height={400}
                     className="w-100 h-100 cover"
-                    src={city.image || '/images/listings/city-listing-1.jpg'}
+                    src={city.image}
                     alt={city.name}
                   />
                 </div>

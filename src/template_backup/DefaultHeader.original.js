@@ -1,5 +1,6 @@
 'use client';
 import SidebarPanel from '@/components/common/sidebar-panel';
+import LoginSignupModal from '@/components/common/login-signup-modal';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState, useRef } from 'react';
@@ -460,6 +461,15 @@ const DefaultHeader = () => {
           </div>
         </div>
       )}
+
+      {/* Signup Modal */}
+      <div className="signup-modal">
+        <div className="modal fade" id="loginSignupModal" tabIndex={-1} aria-hidden="true">
+          <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <LoginSignupModal />
+          </div>
+        </div>
+      </div>
 
       {/* Sidebar Panel */}
       <div className="offcanvas offcanvas-end" tabIndex="-1" id="SidebarPanel" aria-labelledby="SidebarPanelLabel">

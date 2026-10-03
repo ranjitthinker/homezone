@@ -1,21 +1,36 @@
 "use client";
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import apiService from "@/utils/api/apiService";
+import { API_URLS } from "@/utils/api/apiUrls";
 
 const Location = ({ filterFunctions }) => {
   const [showSelect, setShowSelect] = useState(false);
+  const [cities, setCities] = useState([]);
+
   useEffect(() => {
     setShowSelect(true);
+    const fetchCities = async () => {
+      try {
+        const response = await apiService.get(`${API_URLS.PROPERTIES_BY_CITIES}`);
+        if (response.data.success) {
+          const citiesData = response.data.data.map((city) => ({
+            value: city.name,
+            label: city.name,
+            id: city.id,
+          }));
+          setCities(citiesData);
+        }
+      } catch (error) {
+        console.error("Error fetching cities:", error);
+      }
+    };
+    fetchCities();
   }, []);
+
   const locationOptions = [
     { value: "All Cities", label: "All Cities" },
-    { value: "California", label: "California" },
-    { value: "Los Angeles", label: "Los Angeles" },
-    { value: "New Jersey", label: "New Jersey" },
-    { value: "New York", label: "New York" },
-    { value: "San Diego", label: "San Diego" },
-    { value: "San Francisco", label: "San Francisco" },
-    { value: "Texas", label: "Texas" },
+    ...cities,
   ];
 
   const customStyles = {

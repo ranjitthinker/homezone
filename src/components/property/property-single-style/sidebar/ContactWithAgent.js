@@ -11,6 +11,7 @@ const ContactWithAgent = ({ property }) => {
   const builderDescription = builder.description || "Contact for more details";
   const builderLogo = builder.logo || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf1fiSQO7JfDw0uv1Ae_Ye-Bo9nhGNg27dwg&s";
   const builderId = builder.id || 1;
+  const builderPhone = builder.phone || null;
   return (
     <>
       <div className="agent-single d-sm-flex align-items-center pb25">
@@ -25,12 +26,14 @@ const ContactWithAgent = ({ property }) => {
         </div>
         <div className="single-contant ml20 ml0-xs">
           <h6 className="title mb-1">{builderName}</h6>
-          <div className="agent-meta mb10 d-md-flex align-items-center">
-            <a className="text fz15" href="#">
-              <i className="flaticon-call pe-1" />
-              (920) 012-3421
-            </a>
-          </div>
+          {builderPhone && (
+            <div className="agent-meta mb10 d-md-flex align-items-center">
+              <a className="text fz15" href={`tel:${builderPhone}`}>
+                <i className="flaticon-call pe-1" />
+                {builderPhone}
+              </a>
+            </div>
+          )}
           {/* <Link
             href="/agent-single/3"
             className="text-decoration-underline fw600"

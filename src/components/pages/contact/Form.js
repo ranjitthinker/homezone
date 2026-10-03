@@ -42,7 +42,7 @@ const Form = ({ propertyId }) => {
     try {
       await apiService.post(`${API_URLS.PROPERTY_QUERY}`, payload);
       setSuccess(true);
-      setFormData({ name: "", last_name: "", email: "", message: "" });
+      setFormData({ name: "", last_name: "", email: "", phone: "", message: "" });
     } catch (err) {
       
       setError("Something went wrong. Please try again.");

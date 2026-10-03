@@ -11,7 +11,7 @@ import { API_URLS } from '@/utils/api/apiUrls'
 
 export default function ProperteyFiltering() {
   const searchParams = useSearchParams();                         // ✅ read URL params
-  const cityFromUrl  = searchParams.get('city') || '';           // ✅ get ?city=7
+  const cityFromUrl  = searchParams.get('city') || searchParams.get('city_id') || ''; // ✅ get ?city=7 or ?city_id=7
   const searchQuery  = searchParams.get('q') || '';              // ✅ get ?q=Luxury
 
   const [listings, setListings]         = useState([]);

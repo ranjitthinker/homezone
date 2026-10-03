@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 
 const getCurrentYear = () => {
   return new Date().getFullYear();
@@ -8,16 +7,16 @@ const getCurrentYear = () => {
 const Footer = () => {
   const footerMenuItems = [
     {
-      label: "About",
-      link: "/about",
+      label: "Privacy",
+      link: "#",
     },
     {
-      label: "Contact",
-      link: "/contact",
+      label: "Terms",
+      link: "#",
     },
     {
-      label: "Pricing",
-      link: "/pricing",
+      label: "Sitemap",
+      link: "#",
     },
   ];
 
@@ -27,7 +26,7 @@ const Footer = () => {
         <div className="col-sm-6">
           <div className="text-center text-lg-start">
             <p className="copyright-text text-gray ff-heading">
-              © Home Zone {getCurrentYear()}{" "}
+              © Homez {getCurrentYear()}{" "}
               - All rights reserved
             </p>
           </div>
@@ -39,9 +38,9 @@ const Footer = () => {
             <p className="footer-menu ff-heading text-gray">
               {footerMenuItems.map((item, index) => (
                 <React.Fragment key={index}>
-                  <Link className="text-gray" href={item.link}>
+                  <a className="text-gray" href={item.link}>
                     {item.label}
-                  </Link>
+                  </a>
                   {index !== footerMenuItems.length - 1 && " · "}
                 </React.Fragment>
               ))}

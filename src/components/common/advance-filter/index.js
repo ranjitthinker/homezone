@@ -207,7 +207,7 @@ const AdvanceFilterModal = () => {
               data-bs-dismiss="modal"
               type="submit"
               className="ud-btn btn-thm"
-              onClick={() => router.push("/map-v1")}
+              onClick={() => router.push("/properties")}
             >
               <span className="flaticon-search align-text-top pr10" />
               Search

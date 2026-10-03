@@ -6,7 +6,7 @@ import Form from "@/components/pages/contact/Form";
 import Office from "@/components/pages/contact/Office";
 
 export const metadata = {
-  title: "Contact  || Homez - Real Estate NextJS Template",
+  title: "Contact Us || Home Zone Real Estate",
 };
 
 const Contact = () => {
@@ -52,9 +52,7 @@ const Contact = () => {
                 from you.
               </h2>
               <p className="text">
-                We are here to answer any question you may have. As a partner of
-                corporates, realton has more than 9,000 offices of all sizes and
-                all potential of session.
+                We are here to answer any question you may have. Home Zone connects you with verified properties, top builders, and trusted real estate experts across top cities.
               </p>
             </div>
             {/* End .col */}

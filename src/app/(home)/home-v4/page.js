@@ -70,10 +70,10 @@ const Home_V4 = async () => {
 
             <div className="col-lg-3">
               <div className="text-start text-lg-end mb-3">
-                <a className="ud-btn2" href="#">
+                <Link className="ud-btn2" href="/properties">
                   See All Cities
                   <i className="fal fa-arrow-right-long" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -228,7 +228,7 @@ const Home_V4 = async () => {
           <div className="row  justify-content-between align-items-center">
             <div className="col-auto">
               <div className="main-title" data-aos="fade-up" data-aos-delay="300">
-                <h2 className="title">People Love Living with Realton</h2>
+                <h2 className="title">People Love Living with Home Zone</h2>
                 <p className="paragraph">Trusted by thousands of happy homeowners and renters worldwide.</p>
               </div>
             </div>
@@ -278,7 +278,7 @@ const Home_V4 = async () => {
             <div className="col-lg-6 m-auto" data-aos="fade-up">
               <div className="main-title text-start text-md-center">
                 <h2 className="title">From Our Blog</h2>
-                <p className="paragraph">Aliquam lacinia diam quis lacus euismod</p>
+                <p className="paragraph">Stay updated with the latest trends, guides, and real estate news</p>
               </div>
             </div>
           </div>

@@ -2,7 +2,6 @@
 
 import MainMenu from '@/components/common/MainMenu';
 import SidebarPanel from '@/components/common/sidebar-panel';
-import LoginSignupModal from '@/components/common/login-signup-modal';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -14,8 +13,8 @@ const Header = () => {
   const pathname = usePathname();
   const settings = useSettings();
 
-  const siteLogo = settings?.data?.find((item) => item.key === 'logo_light')?.value || '';
-  const siteLogoDark = settings?.data?.find((item) => item.key === 'logo_dark')?.value || '';
+  const siteLogo = settings?.data?.find((item) => item.key === 'logo_light')?.value || '/images/header-logo.svg';
+  const siteLogoDark = settings?.data?.find((item) => item.key === 'logo_dark')?.value || '/images/header-logo2.svg';
 
   // ✅ Sticky navbar on scroll
   useEffect(() => {
@@ -96,22 +95,6 @@ const Header = () => {
         </nav>
       </header>
       {/* End Header */}
-
-      {/* Signup Modal */}
-      <div className="signup-modal">
-        <div
-          className="modal fade"
-          id="loginSignupModal"
-          tabIndex={-1}
-          aria-labelledby="loginSignupModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog  modal-dialog-scrollable modal-dialog-centered">
-            <LoginSignupModal />
-          </div>
-        </div>
-      </div>
-      {/* End Signup Modal */}
 
       {/* DesktopSidebarMenu */}
       <div className="offcanvas offcanvas-end" tabIndex="-1" id="SidebarPanel" aria-labelledby="SidebarPanelLabel">

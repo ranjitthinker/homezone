@@ -1,20 +1,9 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React from 'react';
 
 const HeroContent = () => {
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearch = (e) => {
-    if (e) e.preventDefault();
-    const trimmed = searchQuery.trim();
-    if (trimmed) {
-      router.push(`/properties?q=${encodeURIComponent(trimmed)}`);
-    } else {
-      router.push('/properties');
-    }
-  };
 
   return (
     <div className="advance-search-tab mt40 mt30-md mx-auto animate-up-3">
@@ -31,15 +20,13 @@ const HeroContent = () => {
           {/* Search Input */}
           <div className="col-md-8 col-lg-9">
             <div className="advance-search-field position-relative text-start">
-              <form className="form-search position-relative" onSubmit={handleSearch}>
+              <form className="form-search position-relative">
                 <div className="box-search">
                   <span className="icon flaticon-home-1" />
                   <input
                     className="form-control bgc-f7 bdrs12"
                     type="text"
                     name="search"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Enter an address, neighborhood, city, or ZIP code"
                   />
                 </div>
@@ -61,9 +48,8 @@ const HeroContent = () => {
 
               <button
                 className="advance-search-icon ud-btn btn-thm ms-4"
-                onClick={handleSearch}
+                onClick={() => router.push('/map-v1')}
                 type="button"
-                aria-label="Search properties"
               >
                 <span className="flaticon-search" />
               </button>

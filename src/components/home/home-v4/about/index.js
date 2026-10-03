@@ -69,12 +69,11 @@ const About = () => {
                 Let’s find the right selling option for you
               </h2>
               <p className="text mb55 mb30-md fz14">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do{" "}
-                <br className="d-none d-xl-block" /> eiusmod tempor incididunt.
+                Whether you are buying, selling, or investing, we provide transparent guidance and market-leading expertise every step of the way.
               </p>
               <SellingList />
-              <Link href="#" className="ud-btn btn-dark">
-                See More
+              <Link href="/about" className="ud-btn btn-dark">
+                Learn More
                 <i className="fal fa-arrow-right-long" />
               </Link>
             </div>

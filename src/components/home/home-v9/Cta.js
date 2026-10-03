@@ -16,8 +16,8 @@ const Cta = () => {
               <p className="cta-text mb25">
                 We only work with the best companies around the globe to survey
               </p>
-              <Link href="/register" className="ud-btn btn-thm">
-                Register Now <i className="fal fa-arrow-right-long" />
+              <Link href="/properties" className="ud-btn btn-thm">
+                Explore Properties <i className="fal fa-arrow-right-long" />
               </Link>
             </div>
           </div>

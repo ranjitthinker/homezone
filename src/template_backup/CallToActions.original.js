@@ -25,8 +25,8 @@ const CallToActions = () => {
               <p className="cta-text mb25">
                 Explore thousands of verified properties, compare options, and connect with trusted builders today.
               </p>
-              <Link href="/properties" className="ud-btn btn-dark">
-                Explore Properties <i className="fal fa-arrow-right-long" />
+              <Link href="/register" className="ud-btn btn-dark">
+                Register Now <i className="fal fa-arrow-right-long" />
               </Link>
             </div>
           </div>

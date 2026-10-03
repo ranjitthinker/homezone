@@ -24,6 +24,7 @@ import MortgageCalculator from "@/components/property/property-single-style/comm
 import WalkScore from "@/components/property/property-single-style/common/WalkScore";
 import PropertyHeader from "@/components/property/property-single-style/single-v2/PropertyHeader";
 import ScheduleForm from "@/components/property/property-single-style/single-v2/ScheduleForm";
+import { getPropertyById } from "@/utils/services/propertyService";
 
 export const metadata = {
   title: "Property Single V2 || Homez - Real Estate NextJS Template",
@@ -31,6 +32,7 @@ export const metadata = {
 
 const SingleV2 = async props => {
   const params = await props.params;
+  const property = await getPropertyById(params.id);
   return (
     <>
       {/* Main Header Nav */}
@@ -203,7 +205,7 @@ const SingleV2 = async props => {
               <div className="column">
                 <div className="default-box-shadow1 bdrs12 bdr1 p30 mb30-md bgc-white position-relative">
                   <h6 className="title fz17 mb30">Get More Information</h6>
-                  <ContactWithAgent />
+                  <ContactWithAgent property={property} />
                   <ScheduleForm />
                 </div>
               </div>

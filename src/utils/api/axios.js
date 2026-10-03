@@ -38,7 +38,7 @@ api.interceptors.response.use(
 
     if (error.response?.status === 401 && typeof window !== 'undefined') {
       localStorage.removeItem('authToken'); // ✅ guarded
-      window.location.href = '/login'; // ✅ guarded
+      window.location.href = '/'; // ✅ guarded
     }
 
     return Promise.reject(error);

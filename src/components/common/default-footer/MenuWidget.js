@@ -1,35 +1,34 @@
 import React from "react";
+import Link from "next/link";
 
 const MenuWidget = () => {
   const menuSections = [
     {
       title: "Popular Search",
       links: [
-        { label: "Apartment for Rent", href: "#" },
-        { label: "Apartment Low to Hide", href: "#" },
-        { label: "Offices for Buy", href: "#" },
-        { label: "Offices for Rent", href: "#" },
+        { label: "Properties for Rent", href: "/properties" },
+        { label: "Properties for Sale", href: "/properties" },
+        { label: "Featured Listings", href: "/properties" },
+        { label: "Mortgage Calculator", href: "/calculator" },
       ],
     },
     {
       title: "Quick Links",
       links: [
-        { label: "Terms of Use", href: "#" },
-        { label: "Privacy Policy", href: "#" },
-        { label: "Pricing Plans", href: "#" },
-        { label: "Our Services", href: "#" },
-        { label: "Contact Support", href: "#" },
-        { label: "Careers", href: "#" },
-        { label: "FAQs", href: "#" },
+        { label: "About Us", href: "/about" },
+        { label: "Contact Us", href: "/contact" },
+        { label: "Pricing Plans", href: "/pricing" },
+        { label: "Latest Blogs", href: "/blog" },
+        { label: "Compare Properties", href: "/compare" },
       ],
     },
     {
       title: "Discover",
       links: [
-        { label: "Miami", href: "#" },
-        { label: "Los Angeles", href: "#" },
-        { label: "Chicago", href: "#" },
-        { label: "New York", href: "#" },
+        { label: "All Properties", href: "/properties" },
+        { label: "Explore Cities", href: "/#explore-property" },
+        { label: "Mortgage Calculator", href: "/calculator" },
+        { label: "Contact Us", href: "/contact" },
       ],
     },
   ];
@@ -43,7 +42,7 @@ const MenuWidget = () => {
             <ul className="ps-0">
               {section.links.map((link, linkIndex) => (
                 <li key={linkIndex}>
-                  <a href={link.href}>{link.label}</a>
+                  <Link href={link.href}>{link.label}</Link>
                 </li>
               ))}
             </ul>

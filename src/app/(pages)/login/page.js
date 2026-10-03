@@ -1,11 +1,5 @@
-import LoginForm from "@/components/common/login/LoginForm";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Login  || Homez - Real Estate NextJS Template",
-};
-
-const Login = () => {
-  return <LoginForm />;
-};
-
-export default Login;
+export default function Login() {
+  redirect("/");
+}

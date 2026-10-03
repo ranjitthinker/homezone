@@ -25,6 +25,7 @@ import PropertyGallery from "@/components/property/property-single-style/single-
 import React from "react";
 import MortgageCalculator from "@/components/property/property-single-style/common/MortgageCalculator";
 import WalkScore from "@/components/property/property-single-style/common/WalkScore";
+import { getPropertyById } from "@/utils/services/propertyService";
 
 export const metadata = {
   title: "Property Single V9 || Homez - Real Estate NextJS Template",
@@ -32,6 +33,7 @@ export const metadata = {
 
 const SingleV9 = async props => {
   const params = await props.params;
+  const property = await getPropertyById(params.id);
   return (
     <>
       {/* Main Header Nav */}
@@ -206,7 +208,7 @@ const SingleV9 = async props => {
                 <div className="agen-personal-info position-relative bgc-white default-box-shadow1 bdrs12 p30 mt30">
                   <div className="widget-wrapper mb-0">
                     <h6 className="title fz17 mb30">Get More Information</h6>
-                    <ContactWithAgent />
+                    <ContactWithAgent property={property} />
                   </div>
                 </div>
               </div>

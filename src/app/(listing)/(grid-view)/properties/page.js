@@ -7,7 +7,7 @@ import ProperteyFiltering from "@/components/listing/grid-view/grid-full-3-col/P
 
 import React, { Suspense } from "react";  
 export const metadata = {
-  title: "Gird Full 3 Column || Homez - Real Estate NextJS Template",
+  title: "Properties || Home Zone Real Estate",
 };
 
 const GridFull3Col = () => {
