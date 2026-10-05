@@ -255,19 +255,6 @@ const DefaultHeader = () => {
   cursor: pointer;
 }
 .drop-item:hover { background: #fafafa; }
-.circle-menu-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid #e2e2e2;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-.circle-menu-btn:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 .pill-divider {
   width: 1px;
   height: 28px;
@@ -275,7 +262,37 @@ const DefaultHeader = () => {
   margin: 0 14px;
   flex-shrink: 0;
 }
-        }
+.header-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #eb6753, #e0533d);
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  padding: 12px 24px;
+  border-radius: 60px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 14px rgba(235, 103, 83, 0.35);
+  border: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.header-contact-btn:hover {
+  background: linear-gradient(135deg, #e0533d, #c94430);
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(235, 103, 83, 0.5);
+  transform: translateY(-2px);
+}
+.header-contact-btn .btn-icon {
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
       `}</style>
 
       <header
@@ -430,20 +447,13 @@ const DefaultHeader = () => {
               )}
             </div>
 
-            {/* ✅ Hamburger — always right */}
-            {!isHomePage && (
-              <div className="flex-shrink-0">
-                <a
-                  className="circle-menu-btn"
-                  href="#"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#mobileMenu"
-                  aria-controls="mobileMenu"
-                >
-                  <Image width={20} height={14} src="/images/dark-nav-icon.svg" alt="menu" />
-                </a>
-              </div>
-            )}
+            {/* ✅ Contact Us CTA Button — replaces old hamburger menu */}
+            <div className="flex-shrink-0">
+              <Link href="/contact" className="header-contact-btn">
+                <span className="flaticon-call btn-icon" />
+                <span>Contact Us</span>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
