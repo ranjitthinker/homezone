@@ -27,7 +27,39 @@ const Header = () => {
   }, []);
 
   return (
-    <>
+      <style>{`
+        .header-contact-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          background: linear-gradient(135deg, #eb6753, #e0533d);
+          color: #ffffff !important;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 1;
+          padding: 12px 24px;
+          border-radius: 60px;
+          text-decoration: none;
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          box-shadow: 0 4px 15px rgba(235, 103, 83, 0.4);
+          border: none;
+          white-space: nowrap;
+          cursor: pointer;
+        }
+        .header-contact-btn:hover {
+          background: linear-gradient(135deg, #e0533d, #c94430);
+          color: #ffffff !important;
+          box-shadow: 0 6px 22px rgba(235, 103, 83, 0.6);
+          transform: translateY(-2px);
+        }
+        .header-contact-btn .btn-icon {
+          font-size: 13px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+      `}</style>
       <header className={`header-nav nav-homepage-style main-menu ${navbar ? 'sticky slideInDown animated' : ''}`}>
         <nav className="posr">
           <div className="container posr menu_bdrt1">
@@ -64,28 +96,10 @@ const Header = () => {
 
               <div className="col-auto">
                 <div className="d-flex align-items-center">
-                  <a
-                    className="sidemenu-btn filter-btn-right"
-                    href="#"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#SidebarPanel"
-                    aria-controls="SidebarPanelLabel"
-                  >
-                    <Image
-                      width={25}
-                      height={9}
-                      className="img-1"
-                      src="/images/dark-nav-icon.svg"
-                      alt="humberger menu"
-                    />
-                    <Image
-                      width={25}
-                      height={9}
-                      className="img-2"
-                      src="/images/dark-nav-icon.svg"
-                      alt="humberger menu"
-                    />
-                  </a>
+                  <Link href="/contact" className="header-contact-btn">
+                    <span className="flaticon-call btn-icon" />
+                    <span>Contact Us</span>
+                  </Link>
                 </div>
               </div>
               {/* End .col-auto */}

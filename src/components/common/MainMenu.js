@@ -24,7 +24,7 @@ const MainMenu = () => {
   };
 
   return (
-    <ul className="ace-responsive-menu d-flex justify-content-center" style={{ paddingRight: '185px' }}>
+    <ul className="ace-responsive-menu d-flex justify-content-center">
       {/* Home */}
       <li>
         <Link className={`${handleActive('/')}`} href="/">
