@@ -52,7 +52,17 @@ const SingleV4 = async (props) => {
       {/* End Mobile Nav  */}
 
       {/* Property All Single V4 */}
-      <section className="pt-2 pb90 bgc-white">
+      <style>{`
+        .property-single-section {
+          padding-top: 120px;
+        }
+        @media (max-width: 991.98px) {
+          .property-single-section {
+            padding-top: 85px;
+          }
+        }
+      `}</style>
+      <section className="property-single-section pb90 bgc-white">
         <div className="container">
           <div className="row">
             <PropertyHeader property={property} />
