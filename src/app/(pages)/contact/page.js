@@ -3,7 +3,6 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import Form from "@/components/pages/contact/Form";
-import Office from "@/components/pages/contact/Office";
 
 export const metadata = {
   title: "Contact Us || Home Zone Real Estate",
@@ -60,34 +59,6 @@ const Contact = () => {
         </div>
       </section>
       {/* End Our Contact Form */}
-
-      {/* Visit our Office */}
-      <section className="pt0 pb90 pb10-md">
-        <div className="container">
-          <div className="row">
-            <div
-              className="col-lg-6 m-auto"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <div className="main-title text-center">
-                <h2 className="title">Visit Our Office</h2>
-                <p className="paragraph">
-                  Realton has more than 9,000 offices of all sizes and all
-                  potential of session.
-                </p>
-              </div>
-            </div>
-          </div>
-          {/* End .row */}
-
-          <div className="row" data-aos="fade-up" data-aos-delay="100">
-            <Office />
-          </div>
-          {/* End .row */}
-        </div>
-      </section>
-      {/* End Visit our Office */}
 
       {/* Our CTA */}
       <CallToActions />
