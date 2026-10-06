@@ -8,15 +8,25 @@ const footerLinks = [
   { text: "Sitemap", href: "#" },
 ];
 
+const getSocialUrl = (settings, key, defaultVal = "") => {
+  if (!settings) return defaultVal;
+  if (settings[key]) return settings[key];
+  if (Array.isArray(settings?.data)) {
+    const item = settings.data.find((i) => i.key === key);
+    if (item && item.value) return item.value;
+  }
+  return defaultVal;
+};
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const settings = useSettings(); 
   
   // Extract social media URLs from settings
-  const facebookUrl = settings?.data?.find(item => item.key === 'facebook_url')?.value || '#';
-  const instagramUrl = settings?.data?.find(item => item.key === 'instagram_url')?.value || '#';
-  const youtubeUrl = settings?.data?.find(item => item.key === 'youtube_url')?.value || '#';
-  const siteName = settings?.data?.find(item => item.key === 'site_name')?.value || 'Homez';
+  const facebookUrl = getSocialUrl(settings, 'facebook_url', 'https://www.facebook.com/homezzone/');
+  const instagramUrl = getSocialUrl(settings, 'instagram_url', 'https://www.instagram.com/homezone.reality/');
+  const youtubeUrl = getSocialUrl(settings, 'youtube_url', '');
+  const siteName = getSocialUrl(settings, 'site_name', 'Home Zone');
 
 
   return (
@@ -41,9 +51,11 @@ const Footer = () => {
                 <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="text-muted">
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="text-muted">
-                  <i className="fab fa-youtube"></i>
-                </a>
+                {youtubeUrl && (
+                  <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="text-muted">
+                    <i className="fab fa-youtube"></i>
+                  </a>
+                )}
               </div>
               <p>
                 {footerLinks.map((link, index) => (

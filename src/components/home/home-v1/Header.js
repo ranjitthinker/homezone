@@ -27,6 +27,7 @@ const Header = () => {
   }, []);
 
   return (
+    <>
       <style>{`
         .header-contact-btn {
           display: inline-flex;

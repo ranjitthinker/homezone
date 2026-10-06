@@ -2,27 +2,39 @@
 import React from "react";
 import { useSettings } from "@/context/SettingsProvider";
 
-const Social = () => {
-  const settings = useSettings();
-  
-  // Extract social media URLs from settings
-  const facebookUrl = settings?.data?.find(item => item.key === 'facebook_url')?.value || '#';
-  const instagramUrl = settings?.data?.find(item => item.key === 'instagram_url')?.value || '#';
-  const youtubeUrl = settings?.data?.find(item => item.key === 'youtube_url')?.value || '#';
-  const twitterUrl = settings?.data?.find(item => item.key === 'twitter_url')?.value || '#';
-  
+const getSocialUrl = (settings, key, defaultVal = "") => {
+  if (!settings) return defaultVal;
+  if (settings[key]) return settings[key];
+  if (Array.isArray(settings?.data)) {
+    const item = settings.data.find((i) => i.key === key);
+    if (item && item.value) return item.value;
+  }
+  return defaultVal;
+};
+
+const Social = ({ settings: propSettings }) => {
+  const contextSettings = useSettings();
+  const settings = propSettings || contextSettings;
+
+  const facebookUrl = getSocialUrl(settings, "facebook_url", "https://www.facebook.com/homezzone/");
+  const instagramUrl = getSocialUrl(settings, "instagram_url", "https://www.instagram.com/homezone.reality/");
+  const youtubeUrl = getSocialUrl(settings, "youtube_url", "");
+  const twitterUrl = getSocialUrl(settings, "twitter_url", "");
+  const linkedinUrl = getSocialUrl(settings, "linkedin_url", "");
+
   const socialLinks = [
     { icon: "fab fa-facebook-f", url: facebookUrl },
-    { icon: "fab fa-twitter", url: twitterUrl },
     { icon: "fab fa-instagram", url: instagramUrl },
-    { icon: "fab fa-youtube", url: youtubeUrl },
-  ];
+    twitterUrl ? { icon: "fab fa-twitter", url: twitterUrl } : null,
+    youtubeUrl ? { icon: "fab fa-youtube", url: youtubeUrl } : null,
+    linkedinUrl ? { icon: "fab fa-linkedin-in", url: linkedinUrl } : null,
+  ].filter(Boolean);
 
   return (
     <div className="social-style1 light-style">
-      <a className="me-2 fw600 fz15" href="#">
+      <span className="me-2 fw600 fz15 text-white">
         Follow us
-      </a>
+      </span>
       {socialLinks.map((social, index) => (
         <a key={index} href={social.url} target="_blank" rel="noopener noreferrer">
           <i className={social.icon + " list-inline-item"} />
