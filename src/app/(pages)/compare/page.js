@@ -3,6 +3,7 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import ComapareTable from "@/components/pages/compare/ComapareTable";
+import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 import Link from "next/link";
 
 export const metadata = {
@@ -20,27 +21,18 @@ const Compare = () => {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Sections */}
-      <section className="breadcumb-section3 p-0">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="breadcumb-style1">
-                <h2 className="title text-white">Compare Properties</h2>
-                <div className="breadcumb-list">
-                  <Link className="text-white" href="/">
-                    Home
-                  </Link>
-                  <Link className="text-white" href="/compare">
-                    Compare
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End Breadcrumb Sections */}
+      {/* Breadcrumb Banner */}
+      <BreadcrumbBanner
+        pageKey="compare"
+        title="Compare Properties"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Compare" },
+        ]}
+        defaultBg="/images/background/compare-bg.jpg"
+        textTheme="light"
+      />
+      {/* End Breadcrumb Banner */}
 
       {/* Our Compare Area */}
       <section className="our-compare">

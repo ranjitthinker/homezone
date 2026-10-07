@@ -2,6 +2,7 @@ import BlogFilterContainer from "@/components/blog/blog-list-v3/BlogFilterContai
 import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
+import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 import Link from "next/link";
 
 export const metadata = {
@@ -19,23 +20,16 @@ const BlogV3 = () => {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Start */}
-      <section className="breadcumb-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="breadcumb-style1">
-                <h2 className="title">Blog & Market Insights</h2>
-                <div className="breadcumb-list">
-                  <Link href="/">Home</Link>
-                  <span className="ms-2">/ Blog</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End Breadcrumb Start */}
+      {/* Breadcrumb Banner */}
+      <BreadcrumbBanner
+        pageKey="blog"
+        title="Blog & Market Insights"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Blog" },
+        ]}
+      />
+      {/* End Breadcrumb Banner */}
 
       {/* Blog Section Area */}
       <BlogFilterContainer/>

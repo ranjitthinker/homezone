@@ -3,6 +3,7 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import CallToActions from "@/components/common/CallToActions";
+import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 import Link from "next/link";
 
 export const metadata = {
@@ -20,23 +21,16 @@ export default function Calculator() {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Sections */}
-      <section className="breadcumb-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="breadcumb-style1">
-                <h2 className="title">Mortgage & EMI Calculator</h2>
-                <div className="breadcumb-list">
-                  <Link href="/">Home</Link>
-                  <Link href="/calculator">Calculator</Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End Breadcrumb Sections */}
+      {/* Breadcrumb Banner */}
+      <BreadcrumbBanner
+        pageKey="calculator"
+        title="Mortgage & EMI Calculator"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Calculator" },
+        ]}
+      />
+      {/* End Breadcrumb Banner */}
 
       {/* Calculator Section Area */}
       <section className="pb90 pt-0">

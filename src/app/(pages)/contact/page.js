@@ -3,6 +3,7 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import Form from "@/components/pages/contact/Form";
+import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 
 export const metadata = {
   title: "Contact Us || Home Zone Real Estate",
@@ -18,6 +19,17 @@ const Contact = () => {
       {/* Mobile Nav  */}
       <MobileMenu />
       {/* End Mobile Nav  */}
+
+      {/* Breadcrumb Banner */}
+      <BreadcrumbBanner
+        pageKey="contact"
+        title="Contact Us"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Contact" },
+        ]}
+      />
+      {/* End Breadcrumb Banner */}
 
       {/* Our Contact With Map */}
       <section className="p-0">

@@ -4,10 +4,11 @@ import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import Faq1 from "@/components/pages/faq/Faq1";
 import Faq2 from "@/components/pages/faq/Faq2";
+import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Faq  || Homez - Real Estate NextJS Template",
+  title: "Faq || Home Zone Real Estate",
 };
 
 const Faq = () => {
@@ -21,23 +22,16 @@ const Faq = () => {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Sections */}
-      <section className="breadcumb-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="breadcumb-style1">
-                <h2 className="title">Frequently Asked Questions</h2>
-                <div className="breadcumb-list">
-                  <Link href="/">Home</Link>
-                  <Link href="/faq">FAQ</Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End Breadcrumb Sections */}
+      {/* Breadcrumb Banner */}
+      <BreadcrumbBanner
+        pageKey="faq"
+        title="Frequently Asked Questions"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "FAQ" },
+        ]}
+      />
+      {/* End Breadcrumb Banner */}
 
       {/* FAQ Section Area */}
       <section className="our-faq pb90 pt-0">

@@ -3,6 +3,7 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import Pricing from "@/components/pages/pricing/Pricing";
+import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 import Link from "next/link";
 
 export const metadata = {
@@ -20,23 +21,16 @@ const PricingPlan = () => {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Sections */}
-      <section className="breadcumb-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="breadcumb-style1">
-                <h2 className="title">Membership Plans</h2>
-                <div className="breadcumb-list">
-                  <Link href="/">Home</Link>
-                  <Link href="/pricing">Plans</Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End Breadcrumb Sections */}
+      {/* Breadcrumb Banner */}
+      <BreadcrumbBanner
+        pageKey="pricing"
+        title="Membership Plans"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Plans" },
+        ]}
+      />
+      {/* End Breadcrumb Banner */}
 
       {/* Pricing Section Area */}
       <section className="our-pricing pb90 pt-0">

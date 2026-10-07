@@ -2,11 +2,11 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import FilteringAgent from "@/components/property/FilteringAgent";
-
+import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 import React from "react";
 
 export const metadata = {
-  title: "Agents || Homez - Real Estate NextJS Template",
+  title: "Agents || Home Zone Real Estate",
 };
 
 const Agents = () => {
@@ -20,23 +20,16 @@ const Agents = () => {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Breadcumb Sections */}
-      <section className="breadcumb-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="breadcumb-style1">
-                <h2 className="title">Agents</h2>
-                <div className="breadcumb-list">
-                  <a href="#">Home</a>
-                  <a href="#">For Rent</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End Breadcumb Sections */}
+      {/* Breadcrumb Banner */}
+      <BreadcrumbBanner
+        pageKey="agents"
+        title="Real Estate Agents"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Agents" },
+        ]}
+      />
+      {/* End Breadcrumb Banner */}
 
       {/* Agent Section Area */}
       <FilteringAgent/>
