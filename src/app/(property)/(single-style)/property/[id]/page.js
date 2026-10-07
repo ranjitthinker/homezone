@@ -54,11 +54,11 @@ const SingleV4 = async (props) => {
       {/* Property All Single V4 */}
       <style>{`
         .property-single-section {
-          padding-top: 120px;
+          padding-top: 30px;
         }
         @media (max-width: 991.98px) {
           .property-single-section {
-            padding-top: 85px;
+            padding-top: 25px;
           }
         }
       `}</style>

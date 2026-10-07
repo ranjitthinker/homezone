@@ -458,8 +458,8 @@ const DefaultHeader = () => {
         </div>
       </header>
 
-      {/* Spacer to prevent content from being hidden behind fixed header */}
-      {/* <div style={{ height: '69px' }} className="d-none d-lg-block" /> */}
+      {/* ✅ Spacer for non-home pages so content is not hidden behind fixed header on desktop */}
+      {!isHomePage && <div style={{ height: '94px' }} className="d-none d-lg-block" />}
 
       {/* ✅ Advance filter modal — only on client, only on non-home pages */}
       {mounted && !isHomePage && (
