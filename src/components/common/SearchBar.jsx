@@ -9,8 +9,10 @@
       type="button"
       className="btn-detect ms-2"
       onClick={handleAutoDetectLocation}
+      title="Detect my location"
+      aria-label="Detect my location"
     >
-      <span className="fa fa-map-marker-alt" />
+      <span className="fa fa-map-marker-alt location-icon" />
     </button>
 
     <div className="pill-divider" />

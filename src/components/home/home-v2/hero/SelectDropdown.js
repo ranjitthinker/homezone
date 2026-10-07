@@ -3,26 +3,42 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import apiService from "@/utils/api/apiService";
 import { API_URLS } from "@/utils/api/apiUrls";
-const ALL_OPTION = { value: "", label: "All Cities" }; // ✅ default "All" option
 
-const SelectDropdown = ({ onChange }) => {
+const ALL_OPTION = { value: "", label: "All Cities" };
+
+const SelectDropdown = ({ onChange, value, onCitiesLoaded }) => {
   const [cityOptions, setCityOptions] = useState([ALL_OPTION]);
 
   useEffect(() => {
+    let isMounted = true;
     const fetchCities = async () => {
       try {
         const res = await apiService.get(`${API_URLS.PROPERTIES_BY_CITIES}`);
-        const options = res.data?.data?.map((city) => ({
-          value: city.id,
-          label: city.name,
-        })) ?? [];
-        setCityOptions([ALL_OPTION, ...options]); 
+        const options =
+          res.data?.data?.map((city) => ({
+            value: city.id,
+            label: city.name,
+          })) ?? [];
+        const fullOptions = [ALL_OPTION, ...options];
+        if (isMounted) {
+          setCityOptions(fullOptions);
+          if (typeof onCitiesLoaded === "function") {
+            onCitiesLoaded(fullOptions);
+          }
+        }
       } catch (err) {
-        // Handle error silently or log if needed
+        // Handle error silently
       }
     };
     fetchCities();
+    return () => {
+      isMounted = false;
+    };
   }, []);
+
+  const selectedValue =
+    cityOptions.find((opt) => String(opt.value) === String(value)) ||
+    (value ? { value, label: value } : ALL_OPTION);
 
   const customStyles = {
     option: (styles, { isFocused, isSelected }) => ({
@@ -32,12 +48,13 @@ const SelectDropdown = ({ onChange }) => {
         : isFocused
         ? "#eb675312"
         : undefined,
+      color: isSelected ? "#ffffff" : "#222222",
     }),
   };
 
   return (
     <Select
-      defaultValue={ALL_OPTION}   // ✅ "All Cities" selected by default
+      value={selectedValue}
       name="city"
       options={cityOptions}
       styles={customStyles}

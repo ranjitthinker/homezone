@@ -113,32 +113,95 @@ const DefaultHeader = () => {
     router.push(`/properties?${query.toString()}`);
   };
 
+  const [cityOptions, setCityOptions] = useState([]);
+
   // ✅ Auto-detect location via browser geolocation
   const handleAutoDetectLocation = () => {
+    if (typeof window === 'undefined') return;
+
     if (!('geolocation' in navigator)) {
       alert('Geolocation is not supported by your browser.');
       return;
     }
+
     setIsDetectingLocation(true);
+
+    const geoOptions = {
+      enableHighAccuracy: true,
+      timeout: 10000, // 10s max timeout to prevent infinite stuck state
+      maximumAge: 60000,
+    };
+
     navigator.geolocation.getCurrentPosition(
       async (position) => {
-        const { latitude, longitude } = position.coords;
         try {
-          // TODO: Call your reverse-geocode API to get city_id from lat/lng
-          // const response = await apiService.post('/detect-city', { lat: latitude, lng: longitude });
-          // setCityId(String(response.data.city_id));
-          console.log('Detected coordinates:', latitude, longitude);
+          const { latitude, longitude } = position.coords;
+
+          let detectedCityName = '';
+
+          // 1. Primary: Fast client-side reverse geocoding via BigDataCloud
+          try {
+            const res = await fetch(
+              `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+            );
+            if (res.ok) {
+              const data = await res.json();
+              detectedCityName = data.city || data.locality || data.principalSubdivision || '';
+            }
+          } catch (e) {
+            console.warn('BigDataCloud geocode lookup error:', e);
+          }
+
+          // 2. Fallback: OpenStreetMap Nominatim
+          if (!detectedCityName) {
+            try {
+              const res = await fetch(
+                `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+              );
+              if (res.ok) {
+                const data = await res.json();
+                detectedCityName =
+                  data.address?.city ||
+                  data.address?.town ||
+                  data.address?.state_district ||
+                  data.address?.county ||
+                  '';
+              }
+            } catch (e) {
+              console.warn('Nominatim reverse geocode error:', e);
+            }
+          }
+
+          if (detectedCityName) {
+            const clean = detectedCityName.trim().toLowerCase();
+            const matched = cityOptions.find(
+              (c) =>
+                c.value &&
+                (c.label.toLowerCase().includes(clean) || clean.includes(c.label.toLowerCase()))
+            );
+
+            if (matched) {
+              setCityId(matched.value);
+            }
+          }
         } catch (error) {
-          console.error('Failed to match location to a city', error);
+          console.error('Failed to detect city from coordinates', error);
         } finally {
           setIsDetectingLocation(false);
         }
       },
       (error) => {
-        console.error('Geolocation error:', error);
+        console.warn('Geolocation error:', error);
         setIsDetectingLocation(false);
-        alert('Could not detect location. Please select your city manually.');
-      }
+        if (error.code === 1) {
+          alert('Location permission was denied. Please allow location access or choose your city manually.');
+        } else if (error.code === 2) {
+          alert('Location unavailable. Please choose your city manually.');
+        } else if (error.code === 3) {
+          alert('Location request timed out. Please try again or select manually.');
+        }
+      },
+      geoOptions
     );
   };
 
@@ -188,20 +251,76 @@ const DefaultHeader = () => {
 }
 .invisible-input::placeholder { color: #888; font-weight: 400; }
 .btn-detect {
-  background: #f5f5f5;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #666;
-  transition: all 0.2s;
-  cursor: pointer;
-  flex-shrink: 0;
+  background: #f7f7f8 !important;
+  border: 1px solid #e5e7eb !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #6b7280 !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  line-height: 1 !important;
+  overflow: hidden !important;
 }
-.btn-detect:hover { background: #cf933b; color: white; }
+.btn-detect:hover {
+  background: #eb6753 !important;
+  border-color: #eb6753 !important;
+  color: #ffffff !important;
+  transform: scale(1.06);
+  box-shadow: 0 4px 12px rgba(235, 103, 83, 0.35);
+}
+.btn-detect:hover .location-icon {
+  color: #ffffff !important;
+}
+.btn-detect.is-detecting,
+.btn-detect:disabled {
+  background: #fff5f3 !important;
+  border-color: #ffdcd6 !important;
+  color: #eb6753 !important;
+  cursor: wait !important;
+  pointer-events: none;
+}
+.live-location-spinner {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+  border: 2px solid rgba(235, 103, 83, 0.22) !important;
+  border-top-color: #eb6753 !important;
+  border-right-color: #eb6753 !important;
+  border-radius: 50% !important;
+  animation: liveLocationSpin 0.75s linear infinite !important;
+  box-sizing: border-box !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  aspect-ratio: 1 / 1 !important;
+}
+@keyframes liveLocationSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.location-icon {
+  font-size: 13px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  color: inherit !important;
+}
 .btn-text-only {
   font-size: 14px;
   font-weight: 500;
@@ -320,22 +439,26 @@ const DefaultHeader = () => {
                   <div className={`search-island-pill ${isFocused ? 'is-focused' : ''}`}>
                     {/* City dropdown */}
                     <div style={{ minWidth: '120px', flexShrink: 0 }}>
-                      <SelectDropdown onChange={(selected) => setCityId(selected?.value || '')} />
+                      <SelectDropdown
+                        value={cityId}
+                        onCitiesLoaded={setCityOptions}
+                        onChange={(selected) => setCityId(selected?.value || '')}
+                      />
                     </div>
 
                     {/* Auto-detect location button */}
                     <button
                       type="button"
-                      className="btn-detect ms-2"
+                      className={`btn-detect ms-2 ${isDetectingLocation ? 'is-detecting' : ''}`}
                       onClick={handleAutoDetectLocation}
-                      title="Detect my location"
+                      disabled={isDetectingLocation}
+                      title={isDetectingLocation ? 'Detecting your city...' : 'Detect my location'}
+                      aria-label="Detect my location"
                     >
                       {isDetectingLocation ? (
-                        <div className="spinner-border" role="status">
-                          <span className="visually-hidden">Loading...</span>
-                        </div>
+                        <span className="live-location-spinner" role="status" aria-hidden="true" />
                       ) : (
-                        <span className="fa fa-map-marker-alt" style={{ fontSize: '14px' }} />
+                        <span className="fa fa-map-marker-alt location-icon" />
                       )}
                     </button>
 

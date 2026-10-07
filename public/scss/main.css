@@ -12222,3 +12222,94 @@ body .menuActive {
 .rc-slider .rc-slider-tracks {
   background-color: var(--headings-color);
 }
+
+/* ========================================================
+   LIVE LOCATION DETECT BUTTON & SMOOTH CIRCULAR LOADER
+   ======================================================== */
+.btn-detect {
+  background: #f7f7f8 !important;
+  border: 1px solid #e5e7eb !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #6b7280 !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  line-height: 1 !important;
+  overflow: hidden !important;
+}
+
+.btn-detect:hover {
+  background: #eb6753 !important;
+  border-color: #eb6753 !important;
+  color: #ffffff !important;
+  transform: scale(1.06);
+  box-shadow: 0 4px 12px rgba(235, 103, 83, 0.35);
+}
+
+.btn-detect:hover .location-icon {
+  color: #ffffff !important;
+}
+
+.btn-detect.is-detecting,
+.btn-detect:disabled {
+  background: #fff5f3 !important;
+  border-color: #ffdcd6 !important;
+  color: #eb6753 !important;
+  cursor: wait !important;
+  pointer-events: none;
+}
+
+/* Perfectly circular smooth live location loader */
+.live-location-spinner {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+  border: 2px solid rgba(235, 103, 83, 0.22) !important;
+  border-top-color: #eb6753 !important;
+  border-right-color: #eb6753 !important;
+  border-radius: 50% !important;
+  animation: liveLocationSpin 0.75s linear infinite !important;
+  box-sizing: border-box !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  aspect-ratio: 1 / 1 !important;
+}
+
+@keyframes liveLocationSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.location-icon {
+  font-size: 13px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  color: inherit !important;
+  transition: transform 0.2s ease;
+}
+
+.btn-detect:active .location-icon {
+  transform: scale(0.9);
+}

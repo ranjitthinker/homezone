@@ -36,20 +36,92 @@ const Hero = () => {
     fetchProperties();
   }, []);
 
+  const [cityOptions, setCityOptions] = useState([]);
+
   const handleAutoDetectLocation = () => {
+    if (typeof window === 'undefined') return;
+
+    if (!('geolocation' in navigator)) {
+      alert('Geolocation is not supported by your browser.');
+      return;
+    }
+
     setIsDetectingLocation(true);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        () => {
-          setIsDetectingLocation(false);
-        },
-        () => {
+
+    const geoOptions = {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 60000,
+    };
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          let detectedCityName = '';
+
+          try {
+            const res = await fetch(
+              `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+            );
+            if (res.ok) {
+              const data = await res.json();
+              detectedCityName = data.city || data.locality || data.principalSubdivision || '';
+            }
+          } catch (e) {
+            console.warn('BigDataCloud error:', e);
+          }
+
+          if (!detectedCityName) {
+            try {
+              const res = await fetch(
+                `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+              );
+              if (res.ok) {
+                const data = await res.json();
+                detectedCityName =
+                  data.address?.city ||
+                  data.address?.town ||
+                  data.address?.state_district ||
+                  data.address?.county ||
+                  '';
+              }
+            } catch (e) {
+              console.warn('Nominatim error:', e);
+            }
+          }
+
+          if (detectedCityName) {
+            const clean = detectedCityName.trim().toLowerCase();
+            const matched = cityOptions.find(
+              (c) =>
+                c.value &&
+                (c.label.toLowerCase().includes(clean) || clean.includes(c.label.toLowerCase()))
+            );
+
+            if (matched) {
+              setCityId(matched.value);
+            }
+          }
+        } catch (error) {
+          console.error('Failed to match location to a city', error);
+        } finally {
           setIsDetectingLocation(false);
         }
-      );
-    } else {
-      setIsDetectingLocation(false);
-    }
+      },
+      (error) => {
+        console.warn('Geolocation error:', error);
+        setIsDetectingLocation(false);
+        if (error.code === 1) {
+          alert('Location permission was denied. Please allow location access or choose your city manually.');
+        } else if (error.code === 2) {
+          alert('Location unavailable. Please choose your city manually.');
+        } else if (error.code === 3) {
+          alert('Location request timed out. Please try again or select manually.');
+        }
+      },
+      geoOptions
+    );
   };
 
   const handleSearchSubmit = () => {
@@ -86,22 +158,26 @@ const Hero = () => {
                   <div className={`search-island-pill ${isFocused ? 'is-focused' : ''}`}>
                     {/* City dropdown */}
                     <div style={{ minWidth: '120px', flexShrink: 0 }}>
-                      <SelectDropdown onChange={(selected) => setCityId(selected?.value || '')} />
+                      <SelectDropdown
+                        value={cityId}
+                        onCitiesLoaded={setCityOptions}
+                        onChange={(selected) => setCityId(selected?.value || '')}
+                      />
                     </div>
 
                     {/* Auto-detect location button */}
                     <button
                       type="button"
-                      className="btn-detect ms-2"
+                      className={`btn-detect ms-2 ${isDetectingLocation ? 'is-detecting' : ''}`}
                       onClick={handleAutoDetectLocation}
-                      title="Detect my location"
+                      disabled={isDetectingLocation}
+                      title={isDetectingLocation ? 'Detecting your city...' : 'Detect my location'}
+                      aria-label="Detect my location"
                     >
                       {isDetectingLocation ? (
-                        <div className="spinner-border" role="status">
-                          <span className="visually-hidden">Loading...</span>
-                        </div>
+                        <span className="live-location-spinner" role="status" aria-hidden="true" />
                       ) : (
-                        <span className="fa fa-map-marker-alt" style={{ fontSize: '14px' }} />
+                        <span className="fa fa-map-marker-alt location-icon" />
                       )}
                     </button>
 
