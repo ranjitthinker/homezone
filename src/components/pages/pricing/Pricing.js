@@ -1,50 +1,57 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const Pricing = () => {
   const pricingPackages = [
     {
-      packageTitle: "Basic",
+      packageTitle: "Basic (Individual)",
       price: "Free",
+      priceYearly: "Free",
       pricePerMonth: "per month",
-      priceIcon: "images/icon/pricing-icon-2.svg",
+      priceIcon: "/images/icon/pricing-icon-2.svg",
+      planKey: "basic",
       features: [
-        "Standard listing submission, active for 30 days",
-        "All Operating Supported",
-        "Great Interface",
-        "Allows encryption",
-        "Face recognized system",
-        "24/7 Full support",
+        "1 Free Verified Property Listing",
+        "Active for 30 Days",
+        "Standard Visibility in Search",
+        "Direct Buyer Inquiries via WhatsApp & Email",
+        "Basic Analytics & Views Tracker",
+        "Email Support",
       ],
     },
     {
-      packageTitle: "Professional",
-      price: "$199.95",
+      packageTitle: "Professional (Agent)",
+      price: "₹1,999",
+      priceYearly: "₹18,999",
       pricePerMonth: "per month",
-      priceIcon: "images/icon/pricing-icon-1.svg",
-      uniqueClass: "unique-class", // Add a unique class for Professional package
+      priceIcon: "/images/icon/pricing-icon-1.svg",
+      uniqueClass: "unique-class",
+      planKey: "professional",
       features: [
-        "Standard listing submission, active for 30 days",
-        "All Operating Supported",
-        "Great Interface",
-        "Allows encryption",
-        "Face recognized system",
-        "24/7 Full support",
+        "Up to 15 Verified Property Listings",
+        "Featured Badge on Homepage & Search",
+        "Active for 90 Days with Auto-Refresh",
+        "Verified Agent Profile & Direct WhatsApp Leads",
+        "Detailed Performance Analytics & Lead Insights",
+        "Priority Customer Support (Call & Chat)",
       ],
     },
     {
-      packageTitle: "Business",
-      price: "$399.95",
+      packageTitle: "Business (Builder / Agency)",
+      price: "₹4,999",
+      priceYearly: "₹47,999",
       pricePerMonth: "per month",
-      priceIcon: "images/icon/pricing-icon-3.svg",
+      priceIcon: "/images/icon/pricing-icon-3.svg",
+      planKey: "business",
       features: [
-        "Standard listing submission, active for 30 days",
-        "All Operating Supported",
-        "Great Interface",
-        "Allows encryption",
-        "Face recognized system",
-        "24/7 Full support",
+        "Unlimited Property Listings & Projects Showcase",
+        "Top Placement in Featured & Hot Properties",
+        "Dedicated Builder/Agency Profile Page",
+        "Social Media & Newsletter Promotion",
+        "Full CRM Integration & Instant Buyer Leads",
+        "Dedicated Relationship Manager & 24/7 Support",
       ],
     },
   ];
@@ -88,15 +95,11 @@ const Pricing = () => {
                   {item.packageTitle}
                 </h4>
                 <h1 className="text2">
-                  {isYearlyBilling
-                    ? index === 0
-                      ? "Free" // First object shows "Free"
-                      : index === 1
-                      ? "$599.99" // Second object shows "$599.95"
-                      : "$999.99" // Third object shows "$999.95"
-                    : item.price}
+                  {isYearlyBilling ? item.priceYearly : item.price}
                 </h1>
-                <p className="text">{item.pricePerMonth}</p>
+                <p className="text">
+                  {isYearlyBilling ? "per year" : item.pricePerMonth}
+                </p>
                 <Image
                   width={70}
                   height={70}
@@ -107,7 +110,7 @@ const Pricing = () => {
               </div>
               <div className="details">
                 <p className="text mb35">
-                  {item.features[0]} {/* Display the first feature */}
+                  {item.features[0]}
                 </p>
                 <div className="list-style1 mb40">
                   <ul>
@@ -120,10 +123,13 @@ const Pricing = () => {
                   </ul>
                 </div>
                 <div className="d-grid">
-                  <a href="#" className="ud-btn btn-thm-border text-thm">
-                    Join
+                  <Link
+                    href={`/contact?plan=${item.planKey}&billing=${isYearlyBilling ? "yearly" : "monthly"}`}
+                    className="ud-btn btn-thm-border text-thm"
+                  >
+                    Choose Plan
                     <i className="fal fa-arrow-right-long" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

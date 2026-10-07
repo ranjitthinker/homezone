@@ -24,9 +24,9 @@ const Contact = () => {
         <iframe
           className="home8-map contact-page"
           loading="lazy"
-          src="https://maps.google.com/maps?q=London%20Eye%2C%20London%2C%20United%20Kingdom&t=m&z=14&output=embed&iwloc=near"
-          title="London Eye, London, United Kingdom"
-          aria-label="London Eye, London, United Kingdom"
+          src="https://maps.google.com/maps?q=Bandra%20Kurla%20Complex%2C%20Mumbai%2C%20Maharashtra%2C%20India&t=m&z=14&output=embed&iwloc=near"
+          title="Home Zone Real Estate, Bandra Kurla Complex, Mumbai"
+          aria-label="Home Zone Real Estate, Bandra Kurla Complex, Mumbai"
         />
       </section>
       {/* End Our Contact With Map */}

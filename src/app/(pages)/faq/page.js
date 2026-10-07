@@ -4,6 +4,7 @@ import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import Faq1 from "@/components/pages/faq/Faq1";
 import Faq2 from "@/components/pages/faq/Faq2";
+import Link from "next/link";
 
 export const metadata = {
   title: "Faq  || Homez - Real Estate NextJS Template",
@@ -28,8 +29,8 @@ const Faq = () => {
               <div className="breadcumb-style1">
                 <h2 className="title">Frequently Asked Questions</h2>
                 <div className="breadcumb-list">
-                  <a href="#">Home</a>
-                  <a href="#">For Rent</a>
+                  <Link href="/">Home</Link>
+                  <Link href="/faq">FAQ</Link>
                 </div>
               </div>
             </div>

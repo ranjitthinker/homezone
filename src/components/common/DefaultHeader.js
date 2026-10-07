@@ -464,7 +464,7 @@ const DefaultHeader = () => {
       {/* ✅ Advance filter modal — only on client, only on non-home pages */}
       {mounted && !isHomePage && (
         <div className="advance-feature-modal">
-          <div className="modal fade" id="advanceSeachModal" tabIndex={-1} aria-hidden="true">
+          <div className="modal fade" id="advanceSeachModalTwo" tabIndex={-1} aria-hidden="true">
             <AdvanceFilterModal />
           </div>
         </div>

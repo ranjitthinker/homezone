@@ -4,6 +4,7 @@ import BlogFilterContainer from "@/components/blog/blog-list-v3/BlogFilterContai
 import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
+import Link from "next/link";
 
 export const metadata = {
   title: "Blog || Home Zone Real Estate",
@@ -26,10 +27,10 @@ const BlogV3 = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="breadcumb-style1">
-                <h2 className="title">Blog</h2>
+                <h2 className="title">Blog & Market Insights</h2>
                 <div className="breadcumb-list">
-                  <a href="#">Home</a>
-                  <a href="#">Blog</a>
+                  <Link href="/">Home</Link>
+                  <span className="ms-2">/ Blog</span>
                 </div>
               </div>
             </div>

@@ -51,13 +51,13 @@ export default function BlogDetails() {
       <div className="mx-auto maxw1600 mt60">
         <div className="row">
           <div className="col-lg-12">
-            <div className="large-thumb">
+            <div className="large-thumb position-relative" style={{ minHeight: "350px", background: "#f5f5f5" }}>
               <Image
                 width={1200}
                 height={600}
                 priority
                 className="w-100 h-100 cover"
-                src={`${blog.featured_image}`}
+                src={blog.featured_image || "/images/blog/blog-1.jpg"}
                 alt={blog.title || 'blog'}
               />
             </div>
@@ -68,7 +68,14 @@ export default function BlogDetails() {
       <div className="container mt40">
         <div className="row">
           <div className="col-lg-12">
-            <p>{blog.content}</p>
+            {typeof blog.content === "string" && blog.content.includes("<") ? (
+              <div
+                className="blog-content-body ui-content"
+                dangerouslySetInnerHTML={{ __html: blog.content }}
+              />
+            ) : (
+              <p className="ff-heading fz15">{blog.content}</p>
+            )}
           </div>
         </div>
       </div>

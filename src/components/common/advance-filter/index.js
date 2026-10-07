@@ -6,31 +6,41 @@ import Bathroom from "./Bathroom";
 import Amenities from "./Amenities";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const AdvanceFilterModal = () => {
   const [showSelect, setShowSelect] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [propertyId, setPropertyId] = useState("");
+  const [minSize, setMinSize] = useState("");
+  const [maxSize, setMaxSize] = useState("");
+
+  const router = useRouter();
+
   useEffect(() => {
     setShowSelect(true);
   }, []);
-  const router = useRouter();
+
   const catOptions = [
-    { value: "Banking", label: "Apartments" },
-    { value: "Bungalow", label: "Bungalow" },
-    { value: "Houses", label: "Houses" },
-    { value: "Loft", label: "Loft" },
-    { value: "Office", label: "Office" },
-    { value: "Townhome", label: "Townhome" },
-    { value: "Villa", label: "Villa" },
+    { value: "luxury-apartments", label: "Luxury Apartments" },
+    { value: "villas-bungalows", label: "Villas & Bungalows" },
+    { value: "commercial-spaces", label: "Commercial Spaces" },
+    { value: "penthouses", label: "Penthouses" },
+    { value: "gated-communities", label: "Gated Communities" },
+    { value: "studio-apartments", label: "Studio Apartments" },
   ];
+
   const locationOptions = [
-    { value: "All Cities", label: "All Cities" },
-    { value: "California", label: "California" },
-    { value: "Los Angeles", label: "Los Angeles" },
-    { value: "New Jersey", label: "New Jersey" },
-    { value: "New York", label: "New York" },
-    { value: "San Diego", label: "San Diego" },
-    { value: "San Francisco", label: "San Francisco" },
-    { value: "Texas", label: "Texas" },
+    { value: "", label: "All Cities" },
+    { value: "Mumbai", label: "Mumbai" },
+    { value: "Bengaluru", label: "Bengaluru" },
+    { value: "Gurugram", label: "Gurugram" },
+    { value: "Hyderabad", label: "Hyderabad" },
+    { value: "Pune", label: "Pune" },
+    { value: "New Delhi", label: "New Delhi" },
+    { value: "Ahmedabad", label: "Ahmedabad" },
+    { value: "Dubai", label: "Dubai" },
   ];
 
   const customStyles = {
@@ -48,12 +58,34 @@ const AdvanceFilterModal = () => {
     },
   };
 
+  const handleReset = (e) => {
+    e.preventDefault();
+    setSelectedCategory(null);
+    setSelectedLocation(null);
+    setPropertyId("");
+    setMinSize("");
+    setMaxSize("");
+    toast.success("Filters reset successfully");
+  };
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (selectedCategory?.value) params.set("category", selectedCategory.value);
+    if (selectedLocation?.value) params.set("city", selectedLocation.value);
+    if (propertyId.trim()) params.set("q", propertyId.trim());
+    if (minSize) params.set("min_size", minSize);
+    if (maxSize) params.set("max_size", maxSize);
+
+    const queryString = params.toString();
+    router.push(queryString ? `/properties?${queryString}` : "/properties");
+  };
+
   return (
     <div className="modal-dialog modal-dialog-centered modal-lg">
       <div className="modal-content">
         <div className="modal-header pl30 pr30">
           <h5 className="modal-title" id="exampleModalLabel">
-            More Filter
+            Advanced Property Filters
           </h5>
           <button
             type="button"
@@ -62,7 +94,6 @@ const AdvanceFilterModal = () => {
             aria-label="Close"
           />
         </div>
-        {/* End modal-header */}
 
         <div className="modal-body pb-0">
           <div className="row">
@@ -75,44 +106,43 @@ const AdvanceFilterModal = () => {
               </div>
             </div>
           </div>
-          {/* End .row */}
 
           <div className="row">
             <div className="col-sm-6">
               <div className="widget-wrapper">
-                <h6 className="list-title">Type</h6>
+                <h6 className="list-title">Property Category</h6>
                 <div className="form-style2 input-group">
                   {showSelect && (
                     <Select
-                      defaultValue={[catOptions[1]]}
-                      name="colors"
+                      value={selectedCategory}
+                      onChange={setSelectedCategory}
+                      name="categories"
                       options={catOptions}
                       styles={customStyles}
                       className="select-custom"
                       classNamePrefix="select"
-                      required
+                      placeholder="Select Category"
                     />
                   )}
                 </div>
               </div>
             </div>
-            {/* End .col-6 */}
 
             <div className="col-sm-6">
               <div className="widget-wrapper">
-                <h6 className="list-title">Property ID</h6>
+                <h6 className="list-title">Keyword or ID</h6>
                 <div className="form-style2">
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="RT04949213"
+                    placeholder="e.g. Worli, HZ-101"
+                    value={propertyId}
+                    onChange={(e) => setPropertyId(e.target.value)}
                   />
                 </div>
               </div>
             </div>
-            {/* End .col-6 */}
           </div>
-          {/* End .row */}
 
           <div className="row">
             <div className="col-sm-6">
@@ -123,7 +153,6 @@ const AdvanceFilterModal = () => {
                 </div>
               </div>
             </div>
-            {/* End .col-md-6 */}
 
             <div className="col-sm-6">
               <div className="widget-wrapper">
@@ -133,30 +162,28 @@ const AdvanceFilterModal = () => {
                 </div>
               </div>
             </div>
-            {/* End .col-md-6 */}
           </div>
-          {/* End .row */}
 
           <div className="row">
             <div className="col-sm-6">
               <div className="widget-wrapper">
-                <h6 className="list-title">Location</h6>
+                <h6 className="list-title">City / Location</h6>
                 <div className="form-style2 input-group">
                   {showSelect && (
                     <Select
-                      defaultValue={[locationOptions[0]]}
-                      name="colors"
+                      value={selectedLocation}
+                      onChange={setSelectedLocation}
+                      name="location"
                       styles={customStyles}
                       options={locationOptions}
                       className="select-custom"
                       classNamePrefix="select"
-                      required
+                      placeholder="Select City"
                     />
                   )}
                 </div>
               </div>
             </div>
-            {/* End .col-md-6 */}
 
             <div className="col-sm-6">
               <div className="widget-wrapper">
@@ -165,26 +192,28 @@ const AdvanceFilterModal = () => {
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="form-style1">
                       <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         placeholder="Min."
+                        value={minSize}
+                        onChange={(e) => setMinSize(e.target.value)}
                       />
                     </div>
-                    <span className="dark-color">-</span>
+                    <span className="dark-color px-2">-</span>
                     <div className="form-style1">
                       <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         placeholder="Max"
+                        value={maxSize}
+                        onChange={(e) => setMaxSize(e.target.value)}
                       />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            {/* End .col-md-6 */}
           </div>
-          {/* End .row */}
 
           <div className="row">
             <div className="col-lg-12">
@@ -195,26 +224,28 @@ const AdvanceFilterModal = () => {
             <Amenities />
           </div>
         </div>
-        {/* End modal body */}
 
         <div className="modal-footer justify-content-between">
-          <button className="reset-button">
-            <span className="flaticon-turn-back" />
+          <button
+            type="button"
+            className="reset-button border-0 bg-transparent"
+            onClick={handleReset}
+          >
+            <span className="flaticon-turn-back me-1" />
             <u>Reset all filters</u>
           </button>
           <div className="btn-area">
             <button
               data-bs-dismiss="modal"
-              type="submit"
+              type="button"
               className="ud-btn btn-thm"
-              onClick={() => router.push("/properties")}
+              onClick={handleSearch}
             >
               <span className="flaticon-search align-text-top pr10" />
-              Search
+              Search Properties
             </button>
           </div>
         </div>
-        {/* End modal-footer */}
       </div>
     </div>
   );

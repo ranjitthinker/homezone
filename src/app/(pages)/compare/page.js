@@ -3,9 +3,10 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import ComapareTable from "@/components/pages/compare/ComapareTable";
+import Link from "next/link";
 
 export const metadata = {
-  title: "Compare  || Homez - Real Estate NextJS Template",
+  title: "Compare Properties || Home Zone Real Estate",
 };
 
 const Compare = () => {
@@ -27,12 +28,12 @@ const Compare = () => {
               <div className="breadcumb-style1">
                 <h2 className="title text-white">Compare Properties</h2>
                 <div className="breadcumb-list">
-                  <a className="text-white" href="#">
+                  <Link className="text-white" href="/">
                     Home
-                  </a>
-                  <a className="text-white" href="#">
+                  </Link>
+                  <Link className="text-white" href="/compare">
                     Compare
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

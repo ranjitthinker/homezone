@@ -6,9 +6,9 @@ const ComapareTable = () => {
       <thead className="t-head">
         <tr>
           <th scope="col" />
-          <th scope="col">Home in Metric Way</th>
-          <th scope="col">Villa on Hollywood Boulevard</th>
-          <th scope="col">Explore Old Barcelona</th>
+          <th scope="col">Lodha Bellissimo, Worli</th>
+          <th scope="col">Godrej Woodsman, Bengaluru</th>
+          <th scope="col">DLF The Camellias, Gurugram</th>
         </tr>
       </thead>
       {/* End thead */}
@@ -26,10 +26,10 @@ const ComapareTable = () => {
                   height={245}
                   className="img-fluid mb-3 w100"
                   src="/images/listings/compare-1.jpg"
-                  alt="compare-1"
+                  alt="Lodha Bellissimo"
                 />
-                <div className="h6 price mt-1">$14,000 / mo</div>
-                <p className="address mb-0">California City, CA, USA</p>
+                <div className="h6 price mt-1">₹4.50 Cr</div>
+                <p className="address mb-0">Worli, Mumbai, Maharashtra</p>
               </div>
             </div>
           </th>
@@ -43,10 +43,10 @@ const ComapareTable = () => {
                   height={245}
                   className="img-fluid mb-3 w100"
                   src="/images/listings/compare-1.jpg"
-                  alt="compare-1"
+                  alt="Godrej Woodsman"
                 />
-                <div className="h6 price mt-1">$14,000 / mo</div>
-                <p className="address mb-0">California City, CA, USA</p>
+                <div className="h6 price mt-1">₹2.80 Cr</div>
+                <p className="address mb-0">Hebbal, Bengaluru, Karnataka</p>
               </div>
             </div>
           </th>
@@ -60,10 +60,10 @@ const ComapareTable = () => {
                   height={245}
                   className="img-fluid mb-3 w100"
                   src="/images/listings/compare-1.jpg"
-                  alt="compare-1"
+                  alt="DLF The Camellias"
                 />
-                <div className="h6 price mt-1">$14,000 / mo</div>
-                <p className="address mb-0">California City, CA, USA</p>
+                <div className="h6 price mt-1">₹8.90 Cr</div>
+                <p className="address mb-0">Golf Course Rd, Gurugram, Haryana</p>
               </div>
             </div>
           </th>
@@ -77,9 +77,9 @@ const ComapareTable = () => {
           <th className="text-end" scope="row">
             Property Type
           </th>
-          <td>Apartment</td>
-          <td>Studio</td>
-          <td>Villa</td>
+          <td>Luxury Apartment</td>
+          <td>Premium Flat</td>
+          <td>Ultra Luxury Suite</td>
         </tr>
         {/* End tr */}
 
@@ -87,9 +87,9 @@ const ComapareTable = () => {
           <th className="text-end" scope="row">
             Address
           </th>
-          <td>Quincy St</td>
-          <td>8100 S Ashland Ave</td>
-          <td>194 Mercer Street</td>
+          <td>Dr E Moses Rd, Worli</td>
+          <td>Bellary Rd, Hebbal</td>
+          <td>Golf Course Road, Sector 42</td>
         </tr>
         {/* End tr */}
 
@@ -97,9 +97,9 @@ const ComapareTable = () => {
           <th className="text-end" scope="row">
             City
           </th>
-          <td>New York</td>
-          <td>Chicago</td>
-          <td>New York</td>
+          <td>Mumbai</td>
+          <td>Bengaluru</td>
+          <td>Gurugram</td>
         </tr>
         {/* End tr */}
 
@@ -107,9 +107,9 @@ const ComapareTable = () => {
           <th className="text-end" scope="row">
             State/county
           </th>
-          <td>New York</td>
-          <td>New York</td>
-          <td>New York</td>
+          <td>Maharashtra</td>
+          <td>Karnataka</td>
+          <td>Haryana</td>
         </tr>
         {/* End tr */}
 
@@ -117,9 +117,9 @@ const ComapareTable = () => {
           <th className="text-end" scope="row">
             Zip/Postal Code
           </th>
-          <td>10013</td>
-          <td>10013</td>
-          <td>10013</td>
+          <td>400018</td>
+          <td>560024</td>
+          <td>122002</td>
         </tr>
         {/* End tr */}
 
@@ -127,9 +127,9 @@ const ComapareTable = () => {
           <th className="text-end" scope="row">
             Country
           </th>
-          <td>United States</td>
-          <td>United States</td>
-          <td>United States</td>
+          <td>India</td>
+          <td>India</td>
+          <td>India</td>
         </tr>
         {/* End tr */}
 
@@ -137,9 +137,9 @@ const ComapareTable = () => {
           <th className="text-end" scope="row">
             Property Size
           </th>
-          <td>2560 Sq Ft</td>
-          <td>2560 Sq Ft</td>
-          <td>2560 Sq Ft</td>
+          <td>2,450 Sq Ft</td>
+          <td>1,980 Sq Ft</td>
+          <td>4,200 Sq Ft</td>
         </tr>
         {/* End tr */}
 
@@ -147,9 +147,9 @@ const ComapareTable = () => {
           <th className="text-end" scope="row">
             Property ID
           </th>
-          <td>R43</td>
-          <td>R43</td>
-          <td>R43</td>
+          <td>HZ-1082</td>
+          <td>HZ-1045</td>
+          <td>HZ-2090</td>
         </tr>
         {/* End tr */}
 
@@ -157,19 +157,19 @@ const ComapareTable = () => {
           <th className="text-end" scope="row">
             Bedrooms
           </th>
-          <td>3</td>
-          <td>2</td>
-          <td>5</td>
+          <td>3 BHK</td>
+          <td>3 BHK</td>
+          <td>4 BHK</td>
         </tr>
         {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
-            Bathrooms{" "}
+            Bathrooms
           </th>
-          <td>1</td>
-          <td>4</td>
           <td>3</td>
+          <td>3</td>
+          <td>5</td>
         </tr>
         {/* End tr */}
 
@@ -177,9 +177,9 @@ const ComapareTable = () => {
           <th className="text-end" scope="row">
             Garage
           </th>
-          <td>1</td>
-          <td>4</td>
-          <td>3</td>
+          <td>2 Covered</td>
+          <td>2 Covered</td>
+          <td>3 Covered</td>
         </tr>
         {/* End tr */}
 
@@ -188,19 +188,19 @@ const ComapareTable = () => {
             Air Conditioning
           </th>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
         </tr>
         {/* End tr */}
@@ -210,19 +210,19 @@ const ComapareTable = () => {
             Barbeque
           </th>
           <td>
-            <a className="check_circle_close" href="#">
+            <span className="check_circle_close">
               <span className="fas fa-xmark" />
-            </a>
+            </span>
           </td>
           <td>
-            <a className="check_circle_close" href="#">
-              <span className="fas fa-xmark" />
-            </a>
+            <span className="check_circle">
+              <span className="fas fa-check" />
+            </span>
           </td>
           <td>
-            <a className="check_circle_close" href="#">
-              <span className="fas fa-xmark" />
-            </a>
+            <span className="check_circle">
+              <span className="fas fa-check" />
+            </span>
           </td>
         </tr>
         {/* End tr */}
@@ -232,19 +232,19 @@ const ComapareTable = () => {
             Gym
           </th>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
         </tr>
         {/* End tr */}
@@ -254,46 +254,45 @@ const ComapareTable = () => {
             Swimming Pool
           </th>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
         </tr>
         {/* End tr */}
 
         <tr>
           <th className="text-end" scope="row">
-            TV Cable
+            Power Backup
           </th>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
           <td>
-            <a className="check_circle" href="#">
+            <span className="check_circle">
               <span className="fas fa-check" />
-            </a>
+            </span>
           </td>
         </tr>
         {/* End tr */}
       </tbody>
-      {/* End tbody */}
     </table>
   );
 };

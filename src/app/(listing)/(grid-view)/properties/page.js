@@ -1,11 +1,10 @@
 import DefaultHeader from "@/components/common/DefaultHeader";
-
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
-
 import ProperteyFiltering from "@/components/listing/grid-view/grid-full-3-col/ProperteyFiltering";
-
+import Link from "next/link";
 import React, { Suspense } from "react";  
+
 export const metadata = {
   title: "Properties || Home Zone Real Estate",
 };
@@ -27,10 +26,10 @@ const GridFull3Col = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="breadcumb-style1">
-                <h2 className="title">Homes for Sale</h2>
+                <h2 className="title">Explore Properties</h2>
                 <div className="breadcumb-list">
-                  <a href="#">Home</a>
-                  <a href="#">For Rent</a>
+                  <Link href="/">Home</Link>
+                  <span className="ms-2">/ Properties</span>
                 </div>
                 <a
                   className="filter-btn-left mobile-filter-btn d-block d-lg-none"

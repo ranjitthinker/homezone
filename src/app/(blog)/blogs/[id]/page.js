@@ -107,7 +107,7 @@ const BlogSingle = async (props) => {
             <div className="col-lg-6 m-auto" data-aos="fade-up" data-aos-delay="0">
               <div className="main-title text-start text-md-center">
                 <h2 className="title">Related Posts</h2>
-                <p className="paragraph">Aliquam lacinia diam quis lacus euismod</p>
+                <p className="paragraph">Explore more real estate trends and market updates</p>
               </div>
             </div>
           </div>
@@ -121,9 +121,9 @@ const BlogSingle = async (props) => {
       {/* end Related Blog Post */}
 
       {/* Start Our Footer */}
-      {/* <section className="footer-style1 pt60 pb-0">
+      <section className="footer-style1 pt60 pb-0">
         <Footer />
-      </section> */}
+      </section>
       {/* End Our Footer */}
     </>
   );

@@ -81,14 +81,14 @@ const MortgageCalculator = () => {
           <div className="row">
             <div className="col-md-6">
               <div className="mb-4">
-                <label className="fw600 ff-heading mb-2">Total Amount</label>
+                <label className="fw600 ff-heading mb-2">Total Amount (₹)</label>
                 <input
                   type="number"
                   name="totalAmount"
                   className="form-control"
                   value={formData.totalAmount}
                   onChange={handleChange}
-                  placeholder="$250000"
+                  placeholder="₹2500000"
                   required
                 />
               </div>
@@ -96,14 +96,14 @@ const MortgageCalculator = () => {
 
             <div className="col-md-6">
               <div className="mb-4">
-                <label className="fw600 ff-heading mb-2">Down Payment</label>
+                <label className="fw600 ff-heading mb-2">Down Payment (₹)</label>
                 <input
                   type="number"
                   name="downPayment"
                   className="form-control"
                   value={formData.downPayment}
                   onChange={handleChange}
-                  placeholder="$50000"
+                  placeholder="₹500000"
                   required
                 />
               </div>
@@ -118,7 +118,7 @@ const MortgageCalculator = () => {
                   className="form-control"
                   value={formData.interestRate}
                   onChange={handleChange}
-                  placeholder="3.5"
+                  placeholder="8.5"
                   step="0.1"
                   required
                 />
@@ -134,7 +134,7 @@ const MortgageCalculator = () => {
                   className="form-control"
                   value={formData.loanTerm}
                   onChange={handleChange}
-                  placeholder="30"
+                  placeholder="20"
                   required
                 />
               </div>
@@ -142,14 +142,14 @@ const MortgageCalculator = () => {
 
             <div className="col-md-6">
               <div className="mb-4">
-                <label className="fw600 ff-heading mb-2">Property Tax (yearly)</label>
+                <label className="fw600 ff-heading mb-2">Property Tax (yearly ₹)</label>
                 <input
                   type="number"
                   name="propertyTax"
                   className="form-control"
                   value={formData.propertyTax}
                   onChange={handleChange}
-                  placeholder="$1000"
+                  placeholder="₹12000"
                   required
                 />
               </div>
@@ -157,22 +157,22 @@ const MortgageCalculator = () => {
 
             <div className="col-md-6">
               <div className="mb-4">
-                <label className="fw600 ff-heading mb-2">Home Insurance (yearly)</label>
+                <label className="fw600 ff-heading mb-2">Home Insurance (yearly ₹)</label>
                 <input
                   type="number"
                   name="homeInsurance"
                   className="form-control"
                   value={formData.homeInsurance}
                   onChange={handleChange}
-                  placeholder="$1000"
+                  placeholder="₹6000"
                   required
                 />
               </div>
             </div>
 
             <div className="col-md-12">
-              <button type="submit" className="ud-btn btn-white2">
-                Calculate
+              <button type="submit" className="ud-btn btn-thm">
+                Calculate Monthly EMI
                 <i className="fal fa-arrow-right-long" />
               </button>
             </div>

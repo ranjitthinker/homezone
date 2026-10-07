@@ -3,6 +3,7 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import Pricing from "@/components/pages/pricing/Pricing";
+import Link from "next/link";
 
 export const metadata = {
   title: "Pricing Plans || Home Zone Real Estate",
@@ -27,8 +28,8 @@ const PricingPlan = () => {
               <div className="breadcumb-style1">
                 <h2 className="title">Membership Plans</h2>
                 <div className="breadcumb-list">
-                  <a href="#">Home</a>
-                  <a href="#">Plans</a>
+                  <Link href="/">Home</Link>
+                  <Link href="/pricing">Plans</Link>
                 </div>
               </div>
             </div>

@@ -1,18 +1,25 @@
+"use client";
 import React from "react";
+import { useSettings } from "@/context/SettingsProvider";
 
 const ContactInfo = () => {
+  const settings = useSettings();
+
+  const phone = settings?.contact_phone || "+(0) 123 050 945 02";
+  const email = settings?.contact_email || "hi@HomeZone.com";
+
   const contactInfo = [
     {
       id: 1,
-      title: "Total Free Customer Care",
-      phone: "+(0) 123 050 945 02",
-      phoneHref: "tel:+012305094502", // Updated phoneHref to use "tel" URI
+      title: "Customer Support",
+      phone: phone,
+      phoneHref: `tel:${phone.replace(/\s/g, "")}`,
     },
     {
       id: 2,
       title: "Need Live Support?",
-      email: "hi@HomeZone.com",
-      emailHref: "mailto:hi@HomeZone.com", // Updated emailHref to use "mailto" URI
+      email: email,
+      emailHref: `mailto:${email}`,
     },
   ];
 

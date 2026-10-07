@@ -252,18 +252,23 @@ const AdvanceFilterModal = ({ filterFunctions }) => {
 
         <div className="modal-footer justify-content-between">
           <button
-            className="reset-button"
+            type="button"
+            className="reset-button border-0 bg-transparent"
             onClick={() => filterFunctions?.resetFilter()}
           >
-            <span className="flaticon-turn-back" />
+            <span className="flaticon-turn-back me-1" />
             <u>Reset all filters</u>
           </button>
-          {/* <div className="btn-area">
-            <button type="submit" className="ud-btn btn-thm">
+          <div className="btn-area">
+            <button
+              type="button"
+              className="ud-btn btn-thm"
+              data-bs-dismiss="modal"
+            >
               <span className="flaticon-search align-text-top pr10" />
-              Search
+              Apply Filters
             </button>
-          </div> */}
+          </div>
         </div>
         {/* End modal-footer */}
       </div>

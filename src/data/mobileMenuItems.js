@@ -4,8 +4,16 @@ module.exports = [
     path: "/",
   },
   {
-    label: "Listings",
+    label: "Properties",
     path: "/properties",
+  },
+  {
+    label: "Calculator",
+    path: "/calculator",
+  },
+  {
+    label: "Pricing Plans",
+    path: "/pricing",
   },
   {
     label: "Blog",
