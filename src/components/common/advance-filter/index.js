@@ -68,7 +68,27 @@ const AdvanceFilterModal = () => {
     toast.success("Filters reset successfully");
   };
 
+  const closeModal = () => {
+    if (typeof window !== "undefined") {
+      try {
+        const modals = document.querySelectorAll(".modal.show, #headerAdvanceSearchModal, #advanceSeachModalTwo, #advanceSeachModal");
+        modals.forEach((m) => {
+          m.classList.remove("show");
+          m.style.display = "none";
+          m.setAttribute("aria-hidden", "true");
+          m.removeAttribute("aria-modal");
+        });
+        const backdrops = document.querySelectorAll(".modal-backdrop");
+        backdrops.forEach((b) => b.remove());
+        document.body.classList.remove("modal-open");
+        document.body.style.removeProperty("overflow");
+        document.body.style.removeProperty("padding-right");
+      } catch (e) {}
+    }
+  };
+
   const handleSearch = () => {
+    closeModal();
     const params = new URLSearchParams();
     if (selectedCategory?.value) params.set("category", selectedCategory.value);
     if (selectedLocation?.value) params.set("city", selectedLocation.value);
@@ -92,6 +112,7 @@ const AdvanceFilterModal = () => {
             className="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            onClick={closeModal}
           />
         </div>
 

@@ -32,7 +32,7 @@
       <button
         className="btn-text-only"
         data-bs-toggle="modal"
-        data-bs-target="#advanceSeachModalTwo"
+        data-bs-target="#headerAdvanceSearchModal"
       >
         Advanced
       </button>

@@ -124,6 +124,36 @@ const Hero = () => {
     );
   };
 
+  const handleOpenAdvanceModal = async (e) => {
+    if (e) e.preventDefault();
+    if (typeof window === 'undefined') return;
+
+    const modalId = 'headerAdvanceSearchModal';
+    const modalEl = document.getElementById(modalId) || document.getElementById('advanceSeachModalTwo');
+    if (!modalEl) return;
+
+    try {
+      const bootstrap = await import('bootstrap');
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modalInstance.show();
+      return;
+    } catch (err) {
+      console.warn('Bootstrap modal show error:', err);
+    }
+
+    modalEl.classList.add('show');
+    modalEl.style.display = 'block';
+    modalEl.removeAttribute('aria-hidden');
+    modalEl.setAttribute('aria-modal', 'true');
+    let backdrop = document.querySelector('.modal-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'modal-backdrop fade show';
+      document.body.appendChild(backdrop);
+    }
+    document.body.classList.add('modal-open');
+  };
+
   const handleSearchSubmit = () => {
     setShowSuggestions(false);
   };
@@ -213,7 +243,9 @@ const Hero = () => {
                         className="btn-text-only"
                         type="button"
                         data-bs-toggle="modal"
-                        data-bs-target="#advanceSeachModalTwo"
+                        data-bs-target="#headerAdvanceSearchModal"
+                        onClick={handleOpenAdvanceModal}
+                        title="Advanced Filters"
                       >
                         <span className="flaticon-settings" /> Advanced
                       </button>

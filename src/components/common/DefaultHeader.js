@@ -205,6 +205,37 @@ const DefaultHeader = () => {
     );
   };
 
+  // ✅ Open Advanced Filter Modal reliably on all pages
+  const handleOpenAdvanceModal = async (e) => {
+    if (e) e.preventDefault();
+    if (typeof window === 'undefined') return;
+
+    const modalId = 'headerAdvanceSearchModal';
+    const modalEl = document.getElementById(modalId);
+    if (!modalEl) return;
+
+    try {
+      const bootstrap = await import('bootstrap');
+      const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modalInstance.show();
+      return;
+    } catch (err) {
+      console.warn('Bootstrap modal show fallback:', err);
+    }
+
+    modalEl.classList.add('show');
+    modalEl.style.display = 'block';
+    modalEl.removeAttribute('aria-hidden');
+    modalEl.setAttribute('aria-modal', 'true');
+    let backdrop = document.querySelector('.modal-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'modal-backdrop fade show';
+      document.body.appendChild(backdrop);
+    }
+    document.body.classList.add('modal-open');
+  };
+
   return (
     <>
       <style>{`
@@ -494,7 +525,9 @@ const DefaultHeader = () => {
                         className="btn-text-only"
                         type="button"
                         data-bs-toggle="modal"
-                        data-bs-target="#advanceSeachModalTwo"
+                        data-bs-target="#headerAdvanceSearchModal"
+                        onClick={handleOpenAdvanceModal}
+                        title="Advanced Filters"
                       >
                         <span className="flaticon-settings" /> Advanced
                       </button>
@@ -584,10 +617,10 @@ const DefaultHeader = () => {
       {/* ✅ Spacer for non-home pages so content is not hidden behind fixed header on desktop */}
       {!isHomePage && <div style={{ height: '94px' }} className="d-none d-lg-block" />}
 
-      {/* ✅ Advance filter modal — only on client, only on non-home pages */}
-      {mounted && !isHomePage && (
+      {/* ✅ Advance filter modal — rendered on all pages once mounted */}
+      {mounted && (
         <div className="advance-feature-modal">
-          <div className="modal fade" id="advanceSeachModalTwo" tabIndex={-1} aria-hidden="true">
+          <div className="modal fade" id="headerAdvanceSearchModal" tabIndex={-1} aria-hidden="true">
             <AdvanceFilterModal />
           </div>
         </div>
