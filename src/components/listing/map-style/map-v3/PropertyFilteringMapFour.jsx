@@ -145,20 +145,31 @@ export default function PropertyFilteringMapFour() {
                 </div>
 
                 <div className="row">
-                  {apiLoading
-                    ? <div className="text-center py-5">Loading...</div>
-                    : <FeaturedListings colstyle={colstyle} data={listings} />
-                  }
+                  {apiLoading ? (
+                    <div className="text-center py-5">Loading...</div>
+                  ) : listings.length === 0 ? (
+                    <div className="col-12 text-center py-5">
+                      <div className="p-4 bg-white bdrs12 default-box-shadow1">
+                        <i className="flaticon-search text-thm fz30 mb-2 d-block" style={{ color: '#eb6753' }} />
+                        <h5 className="mb-2">No Properties Found</h5>
+                        <p className="text-muted fz14 mb-0">Try adjusting your filters or search terms.</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <FeaturedListings colstyle={colstyle} data={listings} />
+                  )}
                 </div>
 
-                <div className="row text-center">
-                  <PaginationTwo
-                    pageCapacity={4}
-                    data={totalItems}      // ✅ pass total count
-                    pageNumber={pageNumber}
-                    setPageNumber={setPageNumber}
-                  />
-                </div>
+                {totalItems > 0 && listings.length > 0 && (
+                  <div className="row text-center">
+                    <PaginationTwo
+                      pageCapacity={4}
+                      data={totalItems}
+                      pageNumber={pageNumber}
+                      setPageNumber={setPageNumber}
+                    />
+                  </div>
+                )}
               </div>
             </div>
 

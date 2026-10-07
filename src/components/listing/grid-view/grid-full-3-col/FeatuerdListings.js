@@ -34,6 +34,10 @@ const FeaturedListings = ({ data, colstyle }) => {
     } catch (_) {}
   };
 
+  if (!data || !Array.isArray(data) || data.length === 0) {
+    return null;
+  }
+
   return (
     <>
       {data.map((listing) => (

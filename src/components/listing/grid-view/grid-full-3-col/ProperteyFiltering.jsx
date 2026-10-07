@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect, useCallback } from 'react'
-import { useSearchParams } from 'next/navigation'  // ✅ add this
+import { useSearchParams, useRouter } from 'next/navigation';
 import ListingSidebar from '../../sidebar'
 import AdvanceFilterModal from '@/components/common/advance-filter-two'
 import TopFilterBar from './TopFilterBar'
@@ -10,6 +10,7 @@ import apiService from '@/utils/api/apiService'
 import { API_URLS } from '@/utils/api/apiUrls'
 
 export default function ProperteyFiltering() {
+  const router       = useRouter();
   const searchParams = useSearchParams();                         // ✅ read URL params
   const cityFromUrl  = searchParams.get('city') || searchParams.get('city_id') || ''; // ✅ get ?city=7 or ?city_id=7
   const searchQuery  = searchParams.get('q') || '';              // ✅ get ?q=Luxury
@@ -94,6 +95,7 @@ export default function ProperteyFiltering() {
     setCategories([]);
     setCurrentSortingOption('');
     setPageNumber(1);
+    router.replace('/properties');
   };
 
   const filterFunctions = {
@@ -161,22 +163,90 @@ export default function ProperteyFiltering() {
         </div>
 
         <div className="row">
-          {apiLoading
-            ? <div className="text-center py-5">Loading properties...</div>
-            : apiError
-            ? <div className="text-center py-5 text-danger">{apiError}</div>
-            : <FeaturedListings colstyle={colstyle} data={listings} />
-          }
+          {apiLoading ? (
+            <div className="col-12 text-center py-5">
+              <div className="spinner-border" role="status" style={{ color: '#eb6753' }}>
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <div className="mt-2 text-muted fz14">Loading properties...</div>
+            </div>
+          ) : apiError ? (
+            <div className="col-12 text-center py-5">
+              <div className="text-danger mb-3 fz16">{apiError}</div>
+              <button type="button" onClick={resetFilter} className="ud-btn btn-thm">
+                Reset Filters
+              </button>
+            </div>
+          ) : listings.length === 0 ? (
+            <div className="col-12 text-center py-5">
+              <div
+                style={{
+                  maxWidth: '560px',
+                  margin: '0 auto',
+                  padding: '48px 24px',
+                  background: '#ffffff',
+                  borderRadius: '16px',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+                  border: '1px solid #ebebeb',
+                }}
+              >
+                <div
+                  style={{
+                    width: '80px',
+                    height: '80px',
+                    margin: '0 auto 20px',
+                    borderRadius: '50%',
+                    background: '#fff3ee',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#eb6753',
+                    fontSize: '32px',
+                  }}
+                >
+                  <i className="flaticon-search" />
+                </div>
+                <h3 style={{ fontSize: '22px', fontWeight: '700', color: '#181a20', marginBottom: '10px' }}>
+                  No Properties Found
+                </h3>
+                <p style={{ color: '#717171', fontSize: '15px', lineHeight: '1.6', marginBottom: '24px' }}>
+                  {keyword
+                    ? `We couldn't find any properties matching "${keyword}".`
+                    : "We couldn't find any properties matching your current filter criteria."}
+                  <br />
+                  Try adjusting your search terms or clearing your filters to see all available properties.
+                </p>
+                <button
+                  type="button"
+                  onClick={resetFilter}
+                  className="ud-btn btn-thm"
+                  style={{
+                    padding: '12px 30px',
+                    borderRadius: '30px',
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    boxShadow: '0 4px 15px rgba(235, 103, 83, 0.35)',
+                  }}
+                >
+                  Clear All Filters <i className="fal fa-arrow-right-long ms-2" />
+                </button>
+              </div>
+            </div>
+          ) : (
+            <FeaturedListings colstyle={colstyle} data={listings} />
+          )}
         </div>
 
-        <div className="row">
-          <PaginationTwo
-            pageCapacity={9}
-            data={{ total: totalItems }}
-            pageNumber={pageNumber}
-            setPageNumber={setPageNumber}
-          />
-        </div>
+        {totalItems > 0 && listings.length > 0 && (
+          <div className="row">
+            <PaginationTwo
+              pageCapacity={9}
+              data={{ total: totalItems }}
+              pageNumber={pageNumber}
+              setPageNumber={setPageNumber}
+            />
+          </div>
+        )}
 
       </div>
     </section>

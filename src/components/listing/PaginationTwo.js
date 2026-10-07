@@ -1,128 +1,99 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
-const PaginationTwo = (
-    {
-        pageNumber,
-        setPageNumber,
-        data,
-        pageCapacity,
-      }
-) => {
-    const handlePrevious = () => {
-        if (pageNumber == 1) {
-        } else {
-          setPageNumber((pre) => pre - 1);
-        }
-      };
-      const handleNext = () => {
-    if (Math.ceil(data / pageCapacity) > pageNumber) {  // ✅ data is now a number
-      setPageNumber(pre => pre + 1);
+const PaginationTwo = ({
+  pageNumber = 1,
+  setPageNumber,
+  data,
+  pageCapacity = 9,
+}) => {
+  const capacity = Number(pageCapacity) || 9;
+  const total =
+    typeof data === 'number'
+      ? data
+      : (typeof data?.total === 'number'
+          ? data.total
+          : (Array.isArray(data) ? data.length : 0));
+
+  if (!total || total <= 0) {
+    return null;
+  }
+
+  const totalPages = Math.ceil(total / capacity);
+
+  const handlePrevious = () => {
+    if (pageNumber > 1 && setPageNumber) {
+      setPageNumber((pre) => pre - 1);
     }
+  };
+
+  const handleNext = () => {
+    if (pageNumber < totalPages && setPageNumber) {
+      setPageNumber((pre) => pre + 1);
+    }
+  };
+
+  const startItem = (pageNumber - 1) * capacity + 1;
+  const endItem = Math.min(pageNumber * capacity, total);
+
+  const getPageNumbers = () => {
+    if (totalPages <= 5) {
+      const pages = [];
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+      return pages;
+    }
+    if (pageNumber <= 3) {
+      return [1, 2, 3, '...', totalPages];
+    }
+    if (pageNumber >= totalPages - 2) {
+      return [1, '...', totalPages - 2, totalPages - 1, totalPages];
+    }
+    return [1, '...', pageNumber, '...', totalPages];
   };
 
   return (
     <div className="mbp_pagination text-center">
-      <ul className="page_navigation">
-        <li className="page-item">
-          <span
-            className="page-link pointer"
-            href="#"
-            onClick={handlePrevious}
-          >
-            <span className="fas fa-angle-left" />
-          </span>
-        </li>
-
-        <li
-          onClick={() => setPageNumber(1)}
-          className={pageNumber == 1 ? "active page-item" : "page-item"}
-          href="#"
-        >
+      {totalPages > 1 && (
+        <ul className="page_navigation">
+          <li className={`page-item pointer ${pageNumber <= 1 ? 'disabled' : ''}`}>
             <span
-        className="page-link pointer">1</span>
-          
-        </li>
-        {data.length > pageCapacity ? (
-          <li
-            onClick={() => setPageNumber(2)}
-            className={pageNumber == 2 ? "active page-item" : "page-item"}
-            href="#"
-          >
-            <span
-        className="page-link pointer">2</span>
-            
+              className="page-link"
+              onClick={handlePrevious}
+              style={{ cursor: pageNumber <= 1 ? 'not-allowed' : 'pointer' }}
+            >
+              <span className="fas fa-angle-left" />
+            </span>
           </li>
-        ) : (
-          ""
-        )}
-        {data.length > pageCapacity * 2 ? (
-          <li
-            onClick={() => setPageNumber(3)}
-            className={pageNumber == 3 ? "active page-item" : "page-item"}
-            href="#"
-          >
+
+          {getPageNumbers().map((p, idx) =>
+            p === '...' ? (
+              <li key={`ellipsis-${idx}`} className="page-item disabled">
+                <span className="page-link">...</span>
+              </li>
+            ) : (
+              <li
+                key={`page-${p}`}
+                onClick={() => setPageNumber && setPageNumber(p)}
+                className={pageNumber === p ? "active page-item pointer" : "page-item pointer"}
+              >
+                <span className="page-link">{p}</span>
+              </li>
+            )
+          )}
+
+          <li className={`page-item pointer ${pageNumber >= totalPages ? 'disabled' : ''}`}>
             <span
-        className="page-link pointer">3</span>
-            
+              className="page-link"
+              onClick={handleNext}
+              style={{ cursor: pageNumber >= totalPages ? 'not-allowed' : 'pointer' }}
+            >
+              <span className="fas fa-angle-right" />
+            </span>
           </li>
-        ) : (
-          ""
-        )}
-
-        {data.length > pageCapacity * 4 && pageNumber != 4 && <span>...</span>}
-        {pageNumber >  3 && (Math.ceil(data.length / pageCapacity)) != pageNumber ? (
-          <li
-            className={
-             
-               "active page-item"
-               
-            }
-            onClick={() => setPageNumber(Math.ceil(data.length / pageCapacity))}
-          >
-            <span
-        className="page-link pointer">
-            {pageNumber}</span>
-          </li>
-        ) : (
-          ""
-        )}
-        {data.length >  pageCapacity * 4 ? (
-          <li
-            className={
-              pageNumber == Math.ceil(data.length / pageCapacity)
-                ? "active page-item"
-                : "page-item"
-            }
-            onClick={() => setPageNumber(Math.ceil(data.length / pageCapacity))}
-          >
-            <span
-        className="page-link pointer">
-            {Math.ceil(data.length / pageCapacity)}</span>
-          </li>
-        ) : (
-          ""
-        )}
-
-
-
-     
-
-
-
-        <li className="page-item pointer">
-          <span
-            className="page-link"
-            href="#"
-            onClick={handleNext}
-          >
-            <span className="fas fa-angle-right" />
-          </span>
-        </li>
-      </ul>
+        </ul>
+      )}
       <p className="mt10 pagination_page_count text-center">
-
-        {((pageNumber - 1) * 8) + 1}-{(pageNumber * 8) >data.length ? data.length :(pageNumber * 8) } of {data.length}+ property available
+        Showing {startItem}-{endItem} of {total} {total === 1 ? 'property' : 'properties'} available
       </p>
     </div>
   );
