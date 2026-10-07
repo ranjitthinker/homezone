@@ -1,23 +1,26 @@
 import Details from '@/components/blog/blog-single/Details';
-import Features from '@/components/blog/blog-single/Features';
-import Pagination from '@/components/blog/blog-single/Pagination';
-import ReviewBoxForm from '@/components/blog/blog-single/ReviewBoxForm';
-import Social from '@/components/blog/blog-single/Social';
-import Tags from '@/components/blog/blog-single/Tags';
-import TopComments from '@/components/blog/blog-single/TopComments';
-import AllReviews from '@/components/blog/blog-single/reviews';
 import Blog from '@/components/common/Blog';
 import DefaultHeader from '@/components/common/DefaultHeader';
 import Footer from '@/components/common/default-footer';
 import MobileMenu from '@/components/common/mobile-menu';
-import Image from 'next/image';
+import { allblogs } from '@/data/blogs';
 
-export const metadata = {
-  title: 'Blog || Home Zone Real Estate',
-};
+export async function generateMetadata(props) {
+  const params = await props.params;
+  const slug = params?.id ? decodeURIComponent(params.id.toString()) : '';
+  const blog = allblogs.find(
+    (b) => b.id.toString() === slug || b.slug === slug || b.slug === slug.toLowerCase()
+  );
+
+  return {
+    title: blog ? `${blog.title} || Home Zone Real Estate` : 'Blog || Home Zone Real Estate',
+    description: blog?.excerpt || 'Read the latest real estate news, investment guides, and architectural design insights on Home Zone.',
+  };
+}
 
 const BlogSingle = async (props) => {
   const params = await props.params;
+
   return (
     <>
       {/* Main Header Nav */}
@@ -29,96 +32,30 @@ const BlogSingle = async (props) => {
       {/* End Mobile Nav  */}
 
       {/* Blog Section Area */}
-      <section className="our-blog pt50">
+      <section className="our-blog pt60 pb60">
         <Details id={params.id} />
-
-        {/* <div className="container">
-          <div className="roww" data-aos="fade-up" data-aos-delay="500">
-            <div className="col-xl-8 offset-xl-2">
-              <div className="ui-content mt40 mb60">
-                <h4 className="mb10">1. Reduce the clutter</h4>
-                <p className="mb25 ff-heading">
-                  It doesn’t matter how organized you are — a surplus of toys will always ensure your house is a mess
-                  waiting to happen. Fortunately, getting kids on board with the idea of ditching their stuff is a lot
-                  easier than it sounds.
-                </p>
-                <p className="ff-heading">
-                  The trick is to make it an opportunity for them to define themselves and their interests. Encourage
-                  kids to make a pile of ”baby toys” to donate, and have them set aside any toys that no longer interest
-                  them, such as action figures from a forgotten TV show. Separating these toys will help them appreciate
-                  how much they’ve grown and rediscover the toys they love.
-                </p>
-              </div>
-
-              <div className="blockquote-style1 mb60">
-                <blockquote className="blockquote">
-                  <p className="fst-italic fz15 fw500 ff-heading">
-                    Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Quisque bibendum orci ac nibh
-                    facilisis, at malesuada orci congue.
-                  </p>
-                  <h6 className="quote-title">Luis Pickford</h6>
-                </blockquote>
-              </div>
-              {/* End  blockquote*/}
-
-        {/* <div className="col-12 ui-content">
-                <h4 className="title">2. Choose toys wisely</h4>
-              </div>
-
-              <div className="row">
-                <Features />
-              </div> */}
-        {/* End .row */}
-
-        {/* End .col-12 */}
-
-        <div className="bdrt1 bdrb1 d-block d-sm-flex justify-content-between pt50 pt30-sm pb50 pb30-sm">
-          <div className="blog_post_share d-flex align-items-center mb10-sm">
-            <span className="mr30">Share this post</span>
-            <Social />
-          </div>
-          <div className="bsp_tags d-flex">
-            <Tags />
-          </div>
-        </div>
-        {/* End share social and tags */}
-
-        {/* <TopComments /> */}
-        {/* End TopComments */}
-
-        {/* <Pagination /> */}
-        {/* End Blog Single pagination */}
-
-        {/* <AllReviews /> */}
-        {/* End  AllReviews */}
-
-        {/* <div className="bsp_reveiw_wrt">
-                <h6 className="fz17">Leave A Review</h6>
-                <ReviewBoxForm />
-              </div> */}
-        {/* End ReviewBoxForm */}
       </section>
       {/* End Blog Details */}
 
-      {/* Related Blog Post */}
-      <section className="pb90 pb20-md pt-0">
+      {/* Related Blog Posts */}
+      <section className="pb90 pb40-md pt60 bgc-f7">
         <div className="container">
           <div className="row">
             <div className="col-lg-6 m-auto" data-aos="fade-up" data-aos-delay="0">
-              <div className="main-title text-start text-md-center">
-                <h2 className="title">Related Posts</h2>
+              <div className="main-title text-center mb40">
+                <h2 className="title">Related Articles</h2>
                 <p className="paragraph">Explore more real estate trends and market updates</p>
               </div>
             </div>
           </div>
           {/* End .row */}
 
-          <div className="row" data-aos="fade-up" data-aos-delay="300">
+          <div className="row" data-aos="fade-up" data-aos-delay="200">
             <Blog />
           </div>
         </div>
       </section>
-      {/* end Related Blog Post */}
+      {/* End Related Blog Posts */}
 
       {/* Start Our Footer */}
       <section className="footer-style1 pt60 pb-0">

@@ -1,5 +1,3 @@
-import Pagination from "@/components/blog/Pagination";
-import BlogFilter from "@/components/blog/blog-list-v3/BlogFilter";
 import BlogFilterContainer from "@/components/blog/blog-list-v3/BlogFilterContainer";
 import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";

@@ -1,291 +1,533 @@
-export const blogs = [
+export const blogsThree = [
   {
     id: 1,
-    image: "/images/blog/blog-1.jpg",
-    date: {
-      month: "July",
-      day: "28",
-    },
+    slug: "top-emerging-real-estate-investment-corridors-2026",
+    category: "Buying a Home",
     tag: "Market Trends",
     title: "Top Emerging Real Estate Investment Corridors for 2026",
+    image: "/images/blog/blog-1.jpg",
+    date: {
+      month: "October",
+      day: "04",
+      year: 2026,
+    },
+    readTime: "6 min read",
+    author: {
+      name: "Vikram Malhotra",
+      role: "Principal Real Estate Consultant",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "Discover the highest-growth micro-markets and infrastructure-backed real estate investment corridors offering superior capital appreciation and rental yield in 2026.",
+    intro: "The real estate landscape is undergoing a monumental shift driven by rapid infrastructure expansion, high-speed transit corridors, and decentralized commercial hubs. Savvy investors and homebuyers are increasingly looking beyond saturated prime metropolitan centers towards well-connected emerging corridors that offer superior capital appreciation potential.",
+    sections: [
+      {
+        heading: "1. Infrastructure Catalysts Driving Micro-Market Growth",
+        content: "Proximity to upcoming expressway expansions, metro lines, and international airport corridors remains the single strongest indicator of long-term property value acceleration. Properties situated within a 15-to-20 minute transit radius of new multimodal transport hubs consistently outperform broader city averages by 14% to 22% in annualized capital growth.",
+        bullets: [
+          "Transit-Oriented Development (TOD) nodes command a 15-25% rental premium.",
+          "Decentralized business districts reduce daily commute times and attract high-income tenant profiles.",
+          "Early-stage entry in master-planned townships yields superior risk-adjusted ROI.",
+        ],
+      },
+      {
+        heading: "2. Key Due Diligence Parameters for Emerging Corridors",
+        content: "Before allocating capital to upcoming micro-markets, verify civic infrastructure readiness including water supply, power redundancy, and road widening plans. Reviewing RERA registration credentials and builder delivery track records prevents project delays and protects your invested principal.",
+        bullets: [
+          "Confirm title deeds, land conversion clearances, and RERA registration numbers.",
+          "Assess planned social infrastructure including premium schools, hospitals, and retail avenues.",
+          "Evaluate five-year historical price trajectories and upcoming supply pipeline.",
+        ],
+      },
+    ],
+    quote: "Strategic location selection combined with institutional-grade developer reputation forms the cornerstone of high-yield real estate wealth creation.",
+    proTip: "Target projects by Tier-1 developers offering construction-linked payment plans during pre-launch or early structural phases to lock in maximum pricing arbitrage.",
+    tags: ["Market Trends", "Property Investment", "Infrastructure", "Luxury Living"],
   },
   {
     id: 2,
+    slug: "smart-home-automation-designing-modern-living-spaces",
+    category: "Home Improvement",
+    tag: "Smart Home",
+    title: "Smart Home Automation: Designing Modern Luxury Living Spaces",
     image: "/images/blog/blog-2.jpg",
     date: {
-      month: "August",
-      day: "15",
+      month: "October",
+      day: "02",
+      year: 2026,
     },
-    tag: "Buyer's Guide",
-    title: "Essential Checklist for First-Time Luxury Homebuyers",
+    readTime: "5 min read",
+    author: {
+      name: "Rhea Sen",
+      role: "Interior Architecture Specialist",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "Explore how integrated IoT automation, intelligent mood lighting, and biometric security systems are revolutionizing modern luxury residential design.",
+    intro: "Modern luxury living is no longer defined merely by square footage or marble finishes; it is defined by intuitive, automated comfort that adapts effortlessly to your lifestyle. Today's high-end homes integrate smart ecosystem technology seamlessly into the interior architecture.",
+    sections: [
+      {
+        heading: "1. Centralized Ecosystems & Ambient Climate Control",
+        content: "Unified home automation platforms allow homeowners to coordinate HVAC climate zones, motorized solar blinds, and circadian rhythm lighting with a single voice command or smartphone tap. Intelligent thermostats optimize energy efficiency by up to 28% without sacrificing ambient comfort.",
+        bullets: [
+          "Circadian lighting automatically mirrors daylight color temperatures to enhance wellness.",
+          "Smart multi-zone thermostats learn family schedules to reduce power consumption.",
+          "Acoustic automation ensures crystal-clear audio throughout living, patio, and bedroom zones.",
+        ],
+      },
+      {
+        heading: "2. Next-Generation Biometric Security & Access",
+        content: "Keyless entry utilizing facial recognition, encrypted smartphone digital keys, and AI-powered perimeter monitoring provides unmatched peace of mind. Automated flood and gas leak sensors proactively shut off main valves to avert domestic emergencies.",
+        bullets: [
+          "Video doorbells with AI package and visitor detection integrate directly into smart screens.",
+          "Concealed motorized deadbolts eliminate the hassle of physical keys.",
+          "Automated leak detectors protect expensive Italian marble and hardwood flooring.",
+        ],
+      },
+    ],
+    quote: "True luxury is effortless functionality. When technology blends invisibly with natural aesthetics, a home truly comes alive.",
+    proTip: "When upgrading an existing apartment, choose Matter-compatible wireless smart switches to eliminate the need for expensive wall chiseling and rewiring.",
+    tags: ["Home Improvement", "Smart Home", "Interior Design", "Luxury Tech"],
   },
   {
     id: 3,
+    slug: "essential-checklist-for-first-time-luxury-homebuyers",
+    category: "Buying a Home",
+    tag: "Buyer's Guide",
+    title: "Essential Checklist for First-Time Luxury Homebuyers in 2026",
     image: "/images/blog/blog-3.jpg",
     date: {
       month: "September",
-      day: "04",
+      day: "28",
+      year: 2026,
     },
-    tag: "Legal & RERA",
-    title: "How RERA Safeguards Property Buyers and Prevents Delays",
+    readTime: "7 min read",
+    author: {
+      name: "Vikram Malhotra",
+      role: "Principal Real Estate Consultant",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "A comprehensive roadmap covering title deed verification, RERA certifications, developer reputation, and hidden closing costs for premium homebuyers.",
+    intro: "Purchasing a high-end luxury property is both a deeply personal milestone and a substantial financial commitment. Navigating the luxury segment requires an eagle-eyed review of legal safeguards, architectural benchmarks, and maintenance long-term structures.",
+    sections: [
+      {
+        heading: "1. Legal Diligence & Title Verification",
+        content: "Never proceed on earnest money without a clean title search conducted by an experienced real estate advocate for a minimum period of 30 years. Ensure the project possesses clear occupancy certificates (OC), encumbrance-free approvals, and strict RERA compliance with designated escrow accounts.",
+        bullets: [
+          "Verify the Commencement Certificate (CC) and approved building sanction plans.",
+          "Inspect the Encumbrance Certificate (EC) to confirm zero outstanding bank mortgages.",
+          "Review the exact RERA carpet area breakdown versus the advertised saleable area.",
+        ],
+      },
+      {
+        heading: "2. Assessing Maintenance Corpus & Society By-Laws",
+        content: "Luxury condominiums with private elevators, infinity pools, and concierges incur significant ongoing common area maintenance (CAM). Thoroughly review the proposed monthly maintenance estimates and sinking fund contributions prior to signing.",
+        bullets: [
+          "Understand the monthly CAM charges and clubhouse maintenance levies.",
+          "Check reserved car parking allotments (stilt vs basement bays).",
+          "Review pet policies, rental restrictions, and interior alteration guidelines.",
+        ],
+      },
+    ],
+    quote: "A luxury home is not just a prestigious address; it is a legacy asset that must be safeguarded with meticulous legal verification.",
+    proTip: "Engage an independent structural auditor to conduct a pre-possession snagging inspection before taking keys and releasing the final installment.",
+    tags: ["Buying a Home", "Luxury Homes", "Legal & RERA", "Checklist"],
   },
-];
-
-export const blogData = [
   {
     id: 4,
-    image: "/images/blog/blog-16.jpg",
-    date: {
-      month: "July",
-      day: "28",
-    },
-    tag: "Market Analysis",
-    title: "Understanding Capital Appreciation Trends Across Metro Hubs",
-    text: "An analysis of how infrastructure megaprojects like expressway links and metro expansions are driving property values in high-growth corridors.",
-  },
-  {
-    id: 5,
-    image: "/images/blog/blog-17.jpg",
-    date: {
-      month: "August",
-      day: "12",
-    },
-    tag: "Buyer's Guide",
-    title: "9 Essential Steps Before Signing Your Property Purchase Agreement",
-    text: "From verifying land titles and encumbrance certificates to reviewing builder-buyer agreements, here is everything you need to review beforehand.",
-  },
-  {
-    id: 6,
-    image: "/images/blog/blog-18.jpg",
-    date: {
-      month: "August",
-      day: "25",
-    },
-    tag: "Home Financing",
-    title: "Navigating Home Loans: Fixed vs Floating Rates Explained",
-    text: "Understanding the financial nuances of modern home loans, tax benefits under Indian tax law, and strategies to pay off your mortgage faster.",
-  },
-  {
-    id: 7,
-    image: "/images/blog/blog-19.jpg",
-    date: {
-      month: "September",
-      day: "10",
-    },
-    tag: "Interior Design",
-    title: "Smart Home Automation: Designing Modern Living Spaces",
-    text: "Explore how automated lighting, smart climate control, and biophilic architectural principles are elevating contemporary luxury residences.",
-  },
-];
-
-export const blogDataTwo = [
-  {
-    id: 8,
-    image: "/images/blog/blog-10.jpg",
-    date: {
-      month: "July",
-      day: "28",
-    },
-    tag: "Market Trends",
-    title: "Top Emerging Real Estate Investment Corridors for 2026",
-    text: "A comprehensive look at key micro-markets offering superior rental yields and steady capital appreciation.",
-  },
-  {
-    id: 9,
-    image: "/images/blog/blog-11.jpg",
-    date: {
-      month: "August",
-      day: "05",
-    },
-    tag: "Buyer's Guide",
-    title: "Key Differences Between Carpet Area, Built-Up, and Super Built-Up",
-    text: "Demystifying standard real estate measurement metrics to calculate what you are paying for.",
-  },
-  {
-    id: 10,
-    image: "/images/blog/blog-12.jpg",
-    date: {
-      month: "August",
-      day: "18",
-    },
-    tag: "Legal & RERA",
-    title: "Understanding Title Deeds, Encumbrance, and Occupancy Certificates",
-    text: "Crucial legal paperwork every buyer must confirm before taking possession of an apartment or villa.",
-  },
-  {
-    id: 11,
-    image: "/images/blog/blog-13.jpg",
-    date: {
-      month: "September",
-      day: "02",
-    },
-    tag: "Lifestyle",
-    title: "Why Gated Communities are the Preferred Choice for Modern Families",
-    text: "World-class clubhouse amenities, 24/7 security, and dedicated children play zones make integrated townships attractive.",
-  },
-  {
-    id: 12,
-    image: "/images/blog/blog-14.jpg",
-    date: {
-      month: "September",
-      day: "14",
-    },
-    tag: "Investment",
-    title: "Commercial vs Residential Real Estate: Which Yields Better Returns?",
-    text: "Evaluating risk profiles, lease tenures, and return on investment across commercial office spaces and luxury residential flats.",
-  },
-  {
-    id: 13,
-    image: "/images/blog/blog-15.jpg",
-    date: {
-      month: "September",
-      day: "22",
-    },
-    tag: "Architecture",
-    title: "Sustainable Green Building Standards in Contemporary High-Rises",
-    text: "How rainwater harvesting, solar power grids, and thermal insulation are reducing carbon footprints and monthly maintenance bills.",
-  },
-];
-
-export const blogsThree = [
-  {
-    id: 14,
-    category: ["Market Trends", ""],
-    image: "/images/blog/blog-1.jpg",
-    date: {
-      month: "July",
-      day: "28",
-    },
-    tag: "Market Trends",
-    title: "Top Emerging Real Estate Investment Corridors for 2026",
-  },
-  {
-    id: 15,
-    category: "Buyer's Guide",
-    image: "/images/blog/blog-2.jpg",
-    date: {
-      month: "August",
-      day: "15",
-    },
-    tag: "Buyer's Guide",
-    title: "Essential Checklist for First-Time Luxury Homebuyers",
-  },
-  {
-    id: 16,
-    category: "Legal & RERA",
-    image: "/images/blog/blog-3.jpg",
-    date: {
-      month: "September",
-      day: "04",
-    },
-    tag: "Legal & RERA",
-    title: "How RERA Safeguards Property Buyers and Prevents Delays",
-  },
-  {
-    id: 17,
-    category: "Architecture",
+    slug: "7-ways-to-modernize-your-kitchen-and-living-areas",
+    category: "Home Improvement",
+    tag: "Renovation",
+    title: "7 Ways to Modernize Your Kitchen & Living Areas to Maximize Resale Value",
     image: "/images/blog/blog-4.jpg",
     date: {
       month: "September",
-      day: "10",
+      day: "25",
+      year: 2026,
     },
-    tag: "Interior Design",
-    title: "Smart Home Automation: Designing Modern Living Spaces",
+    readTime: "5 min read",
+    author: "Rhea Sen",
+    excerpt: "High-ROI upgrades including open-concept layouts, quartz waterfall islands, and energy-efficient lighting that captivate buyers and raise valuations.",
+    intro: "Kitchens and living rooms are the emotional anchors of any residence. When prospective buyers step inside, their first impression of the open-concept living area and gourmet kitchen directly determines their perceived valuation of the entire property.",
+    sections: [
+      {
+        heading: "1. Open-Plan Seamless Transitions",
+        content: "Removing non-load-bearing partition walls between the kitchen, dining, and living zones creates an expansive, airy ambiance filled with natural light. Modern buyers consistently favor open entertaining spaces over compartmentalized floor plans.",
+        bullets: [
+          "Incorporate continuous large-format vitrified tiles to visually expand floor area.",
+          "Install a multi-functional kitchen island with seamless waterfall quartz edges.",
+          "Utilize hidden flush-to-wall cabinetry for a clean, clutter-free silhouette.",
+        ],
+      },
+      {
+        heading: "2. Layered Lighting & High-Efficiency Fixtures",
+        content: "Elevate room atmosphere with three-tier lighting: ambient recessed ceiling spots, under-cabinet task illumination, and decorative warm pendant chandeliers over dining surfaces. Warm 3000K LED illumination delivers warmth and architectural depth.",
+        bullets: [
+          "Replace outdated fluorescent bars with 90+ CRI LED strip channels.",
+          "Install matte black or brushed brass hardware for instant sophistication.",
+          "Equip cabinetry with soft-close Blum hinges and pull-out pantry organizers.",
+        ],
+      },
+    ],
+    quote: "Renovating with timeless materials like quartz, oak, and warm brass consistently yields the highest financial return upon property resale.",
+    proTip: "Repainting walls with crisp, warm neutral tones like off-white or greige instantly modernizes interiors at a fraction of the cost of full remodeling.",
+    tags: ["Home Improvement", "Renovation", "Interior Design", "Resale Value"],
   },
   {
-    id: 18,
-    category: "Investment",
+    id: 5,
+    slug: "commercial-vs-residential-real-estate-returns-2026",
+    category: "Finance",
+    tag: "Investment",
+    title: "Commercial vs Residential Real Estate: Which Yields Better Long-Term Returns?",
     image: "/images/blog/blog-5.jpg",
     date: {
       month: "September",
-      day: "14",
+      day: "20",
+      year: 2026,
     },
-    tag: "Investment",
-    title: "Commercial vs Residential Real Estate: Which Yields Better Returns?",
+    readTime: "6 min read",
+    author: {
+      name: "Karan Singhal",
+      role: "Capital Markets Analyst",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "An empirical comparison of rental yields, lease lock-ins, tax deductions, and liquidity across commercial office floors versus luxury residential flats.",
+    intro: "Choosing between commercial and residential real estate is a quintessential investor dilemma. While residential real estate offers emotional security and easier financing, commercial assets provide attractive yields with multi-year institutional lock-ins.",
+    sections: [
+      {
+        heading: "1. Rental Yield Differentials",
+        content: "Residential properties across Indian metro hubs typically offer rental yields between 2.5% and 3.8% annually. In contrast, Grade-A commercial office suites and retail showrooms deliver rental yields between 7.5% and 9.5%, almost triple the cash flow generation.",
+        bullets: [
+          "Commercial leases typically span 3-to-9 years with built-in 15% escalation every 3 years.",
+          "Residential leases generally operate on 11-month agreements with higher tenant turnover.",
+          "Triple-net (NNN) commercial leases require tenants to cover property maintenance and taxes.",
+        ],
+      },
+      {
+        heading: "2. Capital Appreciation & Barrier to Entry",
+        content: "Residential properties enjoy simpler mortgage access with up to 80% loan-to-value (LTV) and lower interest rates. Commercial purchases necessitate higher equity capital (typically 40-50% down payment) and stringent tenant credit risk evaluation.",
+        bullets: [
+          "Fractional ownership and REITs now allow retail investors to access prime commercial assets with lower capital.",
+          "Residential assets provide superior liquidity when liquidating during market downturns.",
+          "Commercial spaces require thorough due diligence regarding corporate vacancy rates.",
+        ],
+      },
+    ],
+    quote: "Balancing high-yield commercial assets for regular cash flow with residential holdings for capital safety creates a resilient property portfolio.",
+    proTip: "If investing in commercial spaces, target pre-leased assets with established blue-chip corporate tenants and a minimum remaining lease lock-in of 3 years.",
+    tags: ["Finance", "Commercial", "Rental Yield", "Portfolio Strategy"],
   },
   {
-    id: 19,
+    id: 6,
+    slug: "navigating-home-loans-fixed-vs-floating-rates-2026",
     category: "Finance",
+    tag: "Home Financing",
+    title: "Navigating Home Loans: Fixed vs Floating Interest Rates in 2026",
     image: "/images/blog/blog-6.jpg",
     date: {
-      month: "August",
-      day: "25",
+      month: "September",
+      day: "16",
+      year: 2026,
     },
-    tag: "Home Financing",
-    title: "Navigating Home Loans: Fixed vs Floating Rates Explained",
+    readTime: "5 min read",
+    author: {
+      name: "Karan Singhal",
+      role: "Capital Markets Analyst",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "Understand how central bank repo rates influence EMIs, when to opt for fixed interest periods, and how prepayment strategies can save millions in interest.",
+    intro: "Securing the right home loan structure can save you substantial amounts over the tenure of your property mortgage. Understanding the macroeconomic forces governing interest rates is essential before finalizing your bank sanction letter.",
+    sections: [
+      {
+        heading: "1. Floating Rates & External Benchmark Lending",
+        content: "Most banks link floating home loans directly to the RBI Repo Rate via EBLR (External Benchmark Lending Rate). When policy rates decline, borrowers automatically receive lower EMI obligations or shortened repayment tenures without administrative penalties.",
+        bullets: [
+          "Zero prepayment or foreclosure penalty applies to floating rate loans for individual borrowers.",
+          "Immediate transmission of interest rate cuts directly benefits the borrower.",
+          "Floating rates are typically 1.5% to 2.5% lower than comparable fixed-rate loans at origination.",
+        ],
+      },
+      {
+        heading: "2. The Power of Accelerated Prepayments",
+        content: "Making an additional principal prepayment of just 1 extra EMI per calendar year can reduce a 20-year home loan by over 4 years, dramatically curtailing total cumulative interest payable to the lending institution.",
+        bullets: [
+          "Channel annual workplace bonuses towards reducing loan principal balance.",
+          "Request the lender to reduce overall loan tenure rather than simply reducing EMI amounts.",
+          "Leverage Home Loan Overdraft accounts to park surplus savings and offset daily interest accrual.",
+        ],
+      },
+    ],
+    quote: "Disciplined prepayment of principal in the first 5 years of a loan creates the single biggest financial leverage in homeownership.",
+    proTip: "Check your CIBIL score beforehand; borrowers with credit scores above 775 qualify for the lowest risk spreads and processing fee waivers.",
+    tags: ["Finance", "Home Loans", "Mortgage Tips", "EMI Planning"],
   },
   {
-    id: 20,
+    id: 7,
+    slug: "how-to-stage-and-market-your-property-for-maximum-value",
     category: "Selling a Home",
+    tag: "Home Staging",
+    title: "How to Stage and Market Your Property for Maximum Resale Value",
     image: "/images/blog/blog-7.jpg",
     date: {
       month: "September",
-      day: "18",
+      day: "12",
+      year: 2026,
     },
-    tag: "Seller's Guide",
-    title: "How to Stage and Market Your Property for Maximum Value",
+    readTime: "5 min read",
+    author: {
+      name: "Vikram Malhotra",
+      role: "Principal Real Estate Consultant",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "Professional staging techniques, decluttering formulas, and high-impact digital marketing strategies that attract serious premium buyers faster.",
+    intro: "In today's competitive real estate marketplace, presenting a property online and in person with impeccable aesthetic flair is the difference between lingering on the market for months versus closing with multiple competing bids.",
+    sections: [
+      {
+        heading: "1. The Psychology of Decluttering & Depersonalization",
+        content: "Buyers need to envision their own future within your property. Removing personal family portraits, idiosyncratic trinkets, and excess furniture immediately makes spaces feel 20% larger and infinitely more inviting.",
+        bullets: [
+          "Clear kitchen countertops, leaving only one tasteful luxury appliance or vase.",
+          "Ensure all wardrobes and pantries are half-empty to signal abundant storage capacity.",
+          "Deep-clean grouting, polish hardwood floors, and rectify all squeaky doors and hardware.",
+        ],
+      },
+      {
+        heading: "2. Professional Photography & Virtual Cinematic Tours",
+        content: "Over 90% of modern home buyers discover their prospective homes on digital platforms. Investing in professional twilight architectural photography and stabilized 4K walkthrough video draws 4x more qualified inquiries.",
+        bullets: [
+          "Capture hero exterior and living room shots during golden hour for warm natural lighting.",
+          "Provide detailed 2D architectural floor plans alongside photograph listings.",
+          "Stage balcony areas with chic bistro chairs and potted plants to showcase outdoor living.",
+        ],
+      },
+    ],
+    quote: "Staging isn't about masking flaws; it is about highlighting the architectural lifestyle possibilities that buyers are eager to invest in.",
+    proTip: "Prior to physical buyer viewings, ensure optimal indoor climate control and introduce subtle natural scents like lemongrass or fresh coffee.",
+    tags: ["Selling a Home", "Home Staging", "Resale Strategy", "Marketing"],
   },
   {
-    id: 21,
+    id: 8,
+    slug: "tenant-agreements-and-security-deposits-best-practices",
     category: "Renting a Home",
-    image: "/images/blog/blog-8.jpg",
-    date: {
-      month: "September",
-      day: "20",
-    },
     tag: "Rental Market",
-    title: "Tenant Agreements & Security Deposits: Best Practices",
-  },
-  {
-    id: 22,
-    category: "Buying a Home",
-    image: "/images/blog/blog-9.jpg",
-    date: {
-      month: "September",
-      day: "25",
-    },
-    tag: "Buyer's Guide",
-    title: "Key Differences Between Carpet Area, Built-Up, and Super Built-Up",
-  },
-];
-
-export const posts = [
-  {
-    id: 23,
-    image: "/images/blog/blog-s-3.jpg",
-    content: "8 Key Tips for Maximizing Space in Modern Urban Apartments",
-    date: {
-      month: "July",
-      day: "28",
-      year: 2026,
-    },
-  },
-  {
-    id: 24,
-    image: "/images/blog/blog-s-4.jpg",
-    content: "A Step-by-Step Guide to Property Verification Before Registry",
-    date: {
-      month: "August",
-      day: "14",
-      year: 2026,
-    },
-  },
-  {
-    id: 25,
-    image: "/images/blog/blog-s-5.jpg",
-    content: "How Biophilic Architecture Enhances Luxury Residential Living",
+    title: "Tenant Agreements & Security Deposits: Best Legal Practices Explained",
+    image: "/images/blog/blog-8.jpg",
     date: {
       month: "September",
       day: "08",
       year: 2026,
     },
+    readTime: "6 min read",
+    author: {
+      name: "Ananya Sharma",
+      role: "Real Estate Legal Counsel",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "A complete guide for landlords and tenants on drafting airtight lease deeds, managing security deposits under Model Tenancy laws, and preventing disputes.",
+    intro: "A harmonious landlord-tenant relationship starts with a transparent, legally enforceable agreement. Ambiguities regarding maintenance responsibilities, lock-in periods, or deposit deductions are the primary causes of landlord-tenant friction.",
+    sections: [
+      {
+        heading: "1. Structuring the Lease Agreement under Tenancy Norms",
+        content: "Ensure your rental agreement specifies exact definitions of tenant obligations, periodic rent escalations, notice periods, and permitted residential usage. Registering the agreement officially with stamp duty verification provides binding legal protection.",
+        bullets: [
+          "Clearly demarcate minor repairs (tenant's responsibility) versus structural repairs (landlord's obligation).",
+          "Specify the exact lock-in period and mutual notice terms (typically 1 to 2 months).",
+          "Include a detailed move-in inventory annexure with photographic verification of fittings and appliances.",
+        ],
+      },
+      {
+        heading: "2. Security Deposit Protocols & Deductions",
+        content: "Under modern tenancy frameworks, security deposit caps and refund timelines are clearly structured. Landlords must inspect the property upon handover and refund remaining balances within the agreed statutory period.",
+        bullets: [
+          "Establish fair wear-and-tear exceptions versus actual physical damage.",
+          "Document electric meter and utility bill clearances before refunding deposits.",
+          "Maintain transparent bank transfer trails for all rental and deposit transactions.",
+        ],
+      },
+    ],
+    quote: "Clarity at the beginning of a tenancy is the best insurance policy against litigation and dispute at the end of it.",
+    proTip: "Always conduct formal digital verification of employment and KYC documentation before handing over property keys.",
+    tags: ["Renting a Home", "Tenant Guide", "Legal Best Practices", "Property Management"],
+  },
+  {
+    id: 9,
+    slug: "carpet-area-vs-built-up-vs-super-built-up-guide",
+    category: "Buying a Home",
+    tag: "RERA Guidelines",
+    title: "Carpet Area vs Built-Up vs Super Built-Up: What You Are Really Paying For",
+    image: "/images/blog/blog-9.jpg",
+    date: {
+      month: "September",
+      day: "04",
+      year: 2026,
+    },
+    readTime: "5 min read",
+    author: {
+      name: "Vikram Malhotra",
+      role: "Principal Real Estate Consultant",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "Demystifying real estate measurement metrics, RERA carpet area mandates, and the loading factor formula to evaluate true square footage costs.",
+    intro: "One of the most persistent sources of confusion for prospective homebuyers is the discrepancy between advertised square footage and the actual usable floor area inside the apartment walls. Understanding measurement standards protects you from paying inflated rates.",
+    sections: [
+      {
+        heading: "1. Deciphering the Measurement Types",
+        content: "The Real Estate (Regulation and Development) Act (RERA) made it mandatory for developers to price and sell properties strictly on 'RERA Carpet Area'. Here is the clear distinction between all three metrics:",
+        bullets: [
+          "Carpet Area: The actual usable net floor area enclosed within the apartment walls, including internal partitions.",
+          "Built-Up Area: Carpet area PLUS the thickness of exterior walls and private balcony/utility spaces.",
+          "Super Built-Up Area: Built-up area PLUS a proportionate share of common amenities like lobbies, staircases, and lifts.",
+        ],
+      },
+      {
+        heading: "2. The Loading Factor Formula",
+        content: "The ratio between super built-up area and carpet area is known as the 'Loading Factor'. In high-rise condominiums with grand double-height lobbies and multiple clubhouses, loading typically ranges from 25% to 35%. Anything above 38% warrants scrutiny.",
+        bullets: [
+          "Loading Percentage = [(Super Built-Up Area - Carpet Area) / Carpet Area] * 100.",
+          "Always calculate your effective price per square foot on RERA carpet area, not saleable super built-up area.",
+          "Check whether balcony area is charged at full rates or discounted square footage tariffs.",
+        ],
+      },
+    ],
+    quote: "RERA carpet area is the only honest metric of living space. It is what you walk on, furnish, and enjoy every single day.",
+    proTip: "Ask the developer for the architectural floor plan sheet showing dimension-by-dimension room measurements to verify carpet calculations.",
+    tags: ["Buying a Home", "RERA Guidelines", "Carpet Area", "Price Evaluation"],
+  },
+  {
+    id: 10,
+    slug: "biophilic-architecture-integrating-nature-in-luxury-homes",
+    category: "Life & Style",
+    tag: "Architecture",
+    title: "Biophilic Architecture: Integrating Natural Light & Greenery in Modern Homes",
+    image: "/images/blog/blog-10.jpg",
+    date: {
+      month: "August",
+      day: "30",
+      year: 2026,
+    },
+    readTime: "5 min read",
+    author: {
+      name: "Rhea Sen",
+      role: "Interior Architecture Specialist",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "How floor-to-ceiling glass facades, vertical green courtyards, and natural stone textures reduce stress and enrich urban lifestyle wellness.",
+    intro: "As urban high-density living intensifies, homeowners increasingly yearn for a tangible connection to the natural world. Biophilic architecture transcends simple houseplants—it weaves living flora, natural daylight cycles, and organic textures into the structural DNA of residential spaces.",
+    sections: [
+      {
+        heading: "1. Maximizing Natural Light & Cross-Ventilation",
+        content: "Floor-to-ceiling Low-E glass glazing paired with deep overhang balconies brings expansive skyline panoramas and daylight inside while shielding rooms from thermal heat gain. Strategically positioned cross-ventilation breezes decrease dependence on artificial air conditioning.",
+        bullets: [
+          "Triple-glazed acoustic acoustic glass keeps urban noise out while inviting natural sunbeams in.",
+          "Internal light-wells and skylights illuminate core corridors and private staircases.",
+          "Automated louvers track sun angles to minimize glare without sacrificing brightness.",
+        ],
+      },
+      {
+        heading: "2. Vertical Gardens & Living Water Elements",
+        content: "Incorporating indoor vertical greenery walls with integrated micro-drip irrigation purifies interior air, stabilizes humidity, and absorbs acoustic echo. The subtle sound of running water from patio cascades fosters a restorative sanctuary.",
+        bullets: [
+          "Vertical green walls featuring air-purifying ferns and philodendrons enhance cognitive calm.",
+          "Natural slate, reclaimed teakwood, and travertine bring grounding tactile warmth.",
+          "Private terrace gardens bridge interior living with skyward botanical tranquility.",
+        ],
+      },
+    ],
+    quote: "A home designed in harmony with natural rhythms restores human wellness faster than any retreat can ever promise.",
+    proTip: "Use drought-tolerant native plants on balcony gardens to ensure lush, thriving foliage with minimal water consumption.",
+    tags: ["Life & Style", "Biophilic Design", "Wellness Architecture", "Luxury Living"],
+  },
+  {
+    id: 11,
+    slug: "the-rise-of-master-planned-gated-communities-2026",
+    category: "Life & Style",
+    tag: "Community Living",
+    title: "The Rise of Master-Planned Gated Communities with Private Clubhouses",
+    image: "/images/blog/blog-11.jpg",
+    date: {
+      month: "August",
+      day: "22",
+      year: 2026,
+    },
+    readTime: "6 min read",
+    author: {
+      name: "Vikram Malhotra",
+      role: "Principal Real Estate Consultant",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "Why modern families prefer self-sustaining integrated luxury enclaves with Olympic pools, co-working suites, and 24/7 security over standalone homes.",
+    intro: "The definition of premium living has shifted from isolated standalone mansions towards expansive, self-contained master-planned communities. Today's luxury gated enclaves offer a cohesive ecosystem encompassing health, leisure, social networking, and state-of-the-art security.",
+    sections: [
+      {
+        heading: "1. Resort-Style Social Infrastructure at Your Doorstep",
+        content: "Contemporary gated developments feature 40,000+ square foot clubhouses equipped with Olympic-length heated swimming pools, padel tennis courts, squash arenas, spa wellness pavilions, and private banquet ballrooms. Residents enjoy luxury resort amenities every day of the week.",
+        bullets: [
+          "Integrated business lounges and private soundproof meeting pods support remote work lifestyles.",
+          "Vehicle-free surface zones and dedicated cycling tracks provide safe outdoor play for children.",
+          "On-site convenience retail, organic marts, and artisan cafes streamline daily errands.",
+        ],
+      },
+      {
+        heading: "2. 24/7 Multi-Tiered Security & Community Well-Being",
+        content: "Advanced perimeter infrared tripwires, automated license plate recognition (ANPR), and vetted security personnel ensure an uncompromising safety shield. Community events, pet parks, and hobby clubs cultivate enduring friendships among like-minded neighbors.",
+        bullets: [
+          "Zero-vehicular movement on the ground level maximizes pedestrian safety and tranquil walkways.",
+          "Integrated app-based visitor approvals provide seamless guest access.",
+          "High density of open green parks fosters an active, vibrant social fabric.",
+        ],
+      },
+    ],
+    quote: "A gated community does not just offer a roof; it delivers an elevated lifestyle culture and an invaluable peer ecosystem for your family.",
+    proTip: "Examine the ratio of residential units to clubhouse capacity to ensure amenities never feel overcrowded during peak weekend hours.",
+    tags: ["Life & Style", "Gated Enclaves", "Clubhouse Amenities", "Community Living"],
+  },
+  {
+    id: 12,
+    slug: "avoiding-critical-pitfalls-when-negotiating-property-offers",
+    category: "Selling a Home",
+    tag: "Negotiation",
+    title: "Avoiding Critical Pitfalls When Negotiating Offers with Property Buyers",
+    image: "/images/blog/blog-12.jpg",
+    date: {
+      month: "August",
+      day: "15",
+      year: 2026,
+    },
+    readTime: "5 min read",
+    author: {
+      name: "Ananya Sharma",
+      role: "Real Estate Legal Counsel",
+      avatar: "/images/blog/author-1.png",
+    },
+    excerpt: "Tactical advice for property sellers on counter-offers, payment schedules, earnest deposits, and closing contingencies to secure maximum net proceeds.",
+    intro: "Receiving an offer on your property is thrilling, but the negotiation phase is where deals are either won or lost. Emotional decision-making, rigid stances, or vague contract terms can easily derail transactions or leave substantial money on the table.",
+    sections: [
+      {
+        heading: "1. The Dangers of Inflexible Price Anchoring",
+        content: "Instead of outright rejecting an offer slightly below your asking price, examine the non-price terms of the proposal. A buyer willing to offer a larger non-refundable earnest deposit with a swift 30-day closing schedule is often worth more than a higher offer burdened with slow bank loan contingencies.",
+        bullets: [
+          "Prioritize buyer financial pre-approvals over verbal promises of payment.",
+          "Counter with creative concessions like including bespoke furniture or paying registry fees rather than slashing headline price.",
+          "Never negotiate against yourself; always request a formal revised written counter-offer.",
+        ],
+      },
+      {
+        heading: "2. Setting Firm Timelines & Token Forfeiture Clauses",
+        content: "Unprepared buyers often drag settlement dates out for months while attempting to arrange financing. Clearly specify strict payment milestone dates and explicit earnest deposit forfeiture clauses in the initial Memorandum of Understanding (MoU).",
+        bullets: [
+          "Insist on a minimum 10% token deposit upon executing the preliminary agreement to sell.",
+          "Cap bank loan contingency windows to a maximum of 15 to 21 business days.",
+          "Clearly specify penalty clauses for delayed installment payments.",
+        ],
+      },
+    ],
+    quote: "Successful negotiation is not about defeating the buyer; it is about crafting mutually respectful terms that guarantee a swift, airtight closing.",
+    proTip: "Always keep your listing active with secondary backup buyer tours until the formal agreement to sell is signed and earnest money is cleared.",
+    tags: ["Selling a Home", "Negotiation", "Closing Deals", "Seller Strategies"],
   },
 ];
 
-export const allblogs = [
-  ...blogs,
-  ...blogData,
-  ...blogDataTwo,
-  ...blogsThree,
-  ...posts,
-];
+export const allblogs = [...blogsThree];
+
+export const blogs = blogsThree.slice(0, 3);
+export const blogData = blogsThree.slice(3, 8);
+export const blogDataTwo = blogsThree.slice(8, 12);
+export const posts = blogsThree.slice(0, 3);

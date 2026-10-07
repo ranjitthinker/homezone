@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 
 const Pagination = () => {
-  const totalPages = 6; // Total number of pages
-  const [currentPage, setCurrentPage] = useState(2); // Current active page
+  const totalPages = 2; // Total number of pages
+  const [currentPage, setCurrentPage] = useState(1); // Current active page
 
   const handlePrevious = () => {
     setCurrentPage((prevPage) => prevPage - 1);
