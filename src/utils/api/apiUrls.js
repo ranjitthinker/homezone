@@ -7,4 +7,5 @@ export const API_URLS = {
   BLOG: '/blogs',
   AMENITIES: '/amenities',
   PROPERTY_CATEGORIES: '/property-categories',
+  NEWSLETTER_SUBSCRIBE: '/newsletter/subscribe',
 };
