@@ -14,6 +14,21 @@ const AboutCompany = () => {
     : rawSettings || {};
 
   const siteName = settings?.site_name || "Home Zone";
+  const aboutBadge = settings?.about_badge || "ABOUT OUR COMPANY";
+  const aboutHeading =
+    settings?.about_heading ||
+    `Welcome to ${siteName} - Your Trusted Real Estate Partner`;
+  const aboutImage = settings?.about_image || "/images/about/about-2.png";
+  const aboutDesc1 =
+    settings?.about_description_1 ||
+    `At ${siteName}, we are dedicated to transforming how people discover, buy, sell, and rent properties. Whether you are looking for your dream family home, a high-yield investment, a modern apartment, or commercial spaces, we provide transparent guidance and market-leading expertise every step of the way.`;
+  const aboutDesc2 =
+    settings?.about_description_2 ||
+    `Our mission is to simplify real estate transactions with complete honesty, legal verification, and client-centric solutions. With an in-depth understanding of local markets and emerging developments, we connect buyers with properties that match their vision and budget.`;
+
+  const point1 = settings?.about_point_1 || "100% Verified Legal Documentation";
+  const point2 = settings?.about_point_2 || "Prime Residential & Commercial Locations";
+  const point3 = settings?.about_point_3 || "Zero Hidden Fees & Transparent Deals";
 
   return (
     <section className="our-about pt60 pb90">
@@ -39,7 +54,7 @@ const AboutCompany = () => {
                     objectFit: "cover",
                     display: "block",
                   }}
-                  src="/images/about/about-2.png"
+                  src={aboutImage}
                   alt={`${siteName} - About Our Company`}
                   priority
                 />
@@ -88,16 +103,16 @@ const AboutCompany = () => {
                   letterSpacing: "0.5px",
                 }}
               >
-                ABOUT OUR COMPANY
+                {aboutBadge}
               </span>
               <h2 className="title mb20 fw-bold">
-                Welcome to {siteName} - Your Trusted Real Estate Partner
+                {aboutHeading}
               </h2>
-              <p className="text mb20 fz15 text-muted">
-                At <strong>{siteName}</strong>, we are dedicated to transforming how people discover, buy, sell, and rent properties. Whether you are looking for your dream family home, a high-yield investment, a modern apartment, or commercial spaces, we provide transparent guidance and market-leading expertise every step of the way.
+              <p className="text mb20 fz15 text-muted" style={{ lineHeight: "1.7" }}>
+                {aboutDesc1}
               </p>
-              <p className="text mb30 fz15 text-muted">
-                Our mission is to simplify real estate transactions with complete honesty, legal verification, and client-centric solutions. With an in-depth understanding of local markets and emerging developments, we connect buyers with properties that match their vision and budget.
+              <p className="text mb30 fz15 text-muted" style={{ lineHeight: "1.7" }}>
+                {aboutDesc2}
               </p>
 
               {/* Key Highlights */}
@@ -106,7 +121,7 @@ const AboutCompany = () => {
                   <div className="d-flex align-items-start gap-2">
                     <i className="fas fa-check-circle text-danger mt-1 fs-5" />
                     <div>
-                      <h6 className="mb-1 fw-bold">100% Verified Listings</h6>
+                      <h6 className="mb-1 fw-bold">{point1}</h6>
                       <p className="text mb-0 fz13 text-muted">Authentic legal documentation</p>
                     </div>
                   </div>
@@ -116,8 +131,8 @@ const AboutCompany = () => {
                   <div className="d-flex align-items-start gap-2">
                     <i className="fas fa-check-circle text-danger mt-1 fs-5" />
                     <div>
-                      <h6 className="mb-1 fw-bold">Transparent Deals</h6>
-                      <p className="text mb-0 fz13 text-muted">Clear pricing with zero hidden costs</p>
+                      <h6 className="mb-1 fw-bold">{point2}</h6>
+                      <p className="text mb-0 fz13 text-muted">Prime real estate hubs</p>
                     </div>
                   </div>
                 </div>
@@ -126,8 +141,8 @@ const AboutCompany = () => {
                   <div className="d-flex align-items-start gap-2">
                     <i className="fas fa-check-circle text-danger mt-1 fs-5" />
                     <div>
-                      <h6 className="mb-1 fw-bold">Prime Locations</h6>
-                      <p className="text mb-0 fz13 text-muted">High-growth investment hotspots</p>
+                      <h6 className="mb-1 fw-bold">{point3}</h6>
+                      <p className="text mb-0 fz13 text-muted">Clear pricing with zero hidden costs</p>
                     </div>
                   </div>
                 </div>
@@ -149,7 +164,7 @@ const AboutCompany = () => {
                   Contact Us
                   <i className="fal fa-arrow-right-long ms-2" />
                 </Link>
-                <Link href="/grid-full-4-col" className="ud-btn btn-white border">
+                <Link href="/properties" className="ud-btn btn-white border">
                   Explore Properties
                 </Link>
               </div>
