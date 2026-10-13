@@ -7,6 +7,9 @@ import ProjectSlideGallery from "@/components/pages/about/ProjectSlideGallery";
 import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "About Us || Home Zone Real Estate",
 };
