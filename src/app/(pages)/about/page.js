@@ -3,7 +3,6 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import AboutCompany from "@/components/pages/about/AboutCompany";
-import ProjectSlideGallery from "@/components/pages/about/ProjectSlideGallery";
 import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 import Link from "next/link";
 
@@ -39,9 +38,6 @@ const About = () => {
 
       {/* About Section: Left Side Image & Right Side Content about Company */}
       <AboutCompany />
-
-      {/* Project Slider & Gallery Section (Left: Slide, Right: Gallery) */}
-      <ProjectSlideGallery />
 
       {/* Our CTA */}
       <CallToActions />
