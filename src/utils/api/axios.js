@@ -1,12 +1,20 @@
 // ✅ axios.js — clean version
 import axios from 'axios';
 
+const getBaseUrl = () => {
+  const envUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admin.homzzone.com/api/v1';
+  let cleaned = envUrl.trim().replace(/\/+$/, '');
+  if (!cleaned.endsWith('/v1') && cleaned.includes('/api')) {
+    cleaned = `${cleaned}/v1`;
+  }
+  return cleaned;
+};
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001/api',
+  baseURL: getBaseUrl(),
   timeout: 10000,
   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 });
-// should print your IP
 
 api.interceptors.request.use(
   (config) => {

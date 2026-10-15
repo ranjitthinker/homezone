@@ -5,24 +5,47 @@ import Image from 'next/image';
 import Link from 'next/link';
 import apiService from '@/utils/api/apiService';
 import { API_URLS } from '@/utils/api/apiUrls';
-import { blogsThree } from '@/data/blogs';
 
-const Blog = () => {
-  const [blogs, setBlogs] = useState(blogsThree.slice(0, 3));
-  const [loading, setLoading] = useState(false);
+const Blog = ({ excludeId = null, limit = 3 }) => {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
     const fetchBlogs = async () => {
       try {
-        const res = await apiService.get(`${API_URLS.BLOG}`);
-        if (res?.status && Array.isArray(res.data?.data) && res.data.data.length > 0) {
-          if (isMounted) {
-            setBlogs(res.data.data.slice(0, 3));
-          }
+        setLoading(true);
+        const res = await apiService.get(`${API_URLS.BLOG}`, {
+          headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+          },
+        });
+        
+        let blogItems = [];
+        if (res?.data && Array.isArray(res.data.data)) {
+          blogItems = res.data.data;
+        } else if (Array.isArray(res?.data)) {
+          blogItems = res.data;
+        }
+
+        const realBlogs = blogItems.filter(
+          (b) =>
+            b.status === 'published' &&
+            b.id !== 1 &&
+            b.slug !== 'quis-maiores-eiusmod' &&
+            (!excludeId || (b.id !== excludeId && b.slug !== excludeId))
+        );
+
+        if (isMounted) {
+          setBlogs(realBlogs.slice(0, limit));
         }
       } catch (error) {
-        // Fallback to local high quality blogs
+        console.error('Failed to load real estate blogs:', error);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
@@ -30,7 +53,15 @@ const Blog = () => {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [excludeId, limit]);
+
+  if (loading) {
+    return null;
+  }
+
+  if (blogs.length === 0) {
+    return null;
+  }
 
   return (
     <>
@@ -62,6 +93,7 @@ const Blog = () => {
                   <Image
                     width={386}
                     height={271}
+                    unoptimized={Boolean(blogImage?.startsWith('http'))}
                     className="w-100 h-100 cover"
                     src={blogImage}
                     alt={blogTitle}

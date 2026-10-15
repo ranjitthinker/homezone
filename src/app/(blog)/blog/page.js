@@ -5,6 +5,9 @@ import MobileMenu from "@/components/common/mobile-menu";
 import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Blog || Home Zone Real Estate",
 };

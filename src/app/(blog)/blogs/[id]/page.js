@@ -3,18 +3,38 @@ import Blog from '@/components/common/Blog';
 import DefaultHeader from '@/components/common/DefaultHeader';
 import Footer from '@/components/common/default-footer';
 import MobileMenu from '@/components/common/mobile-menu';
-import { allblogs } from '@/data/blogs';
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata(props) {
   const params = await props.params;
   const slug = params?.id ? decodeURIComponent(params.id.toString()) : '';
-  const blog = allblogs.find(
-    (b) => b.id.toString() === slug || b.slug === slug || b.slug === slug.toLowerCase()
-  );
+  
+  try {
+    const rawBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admin.homzzone.com/api/v1';
+    let cleaned = rawBaseUrl.trim().replace(/\/+$/, '');
+    if (!cleaned.endsWith('/v1') && cleaned.includes('/api')) {
+      cleaned = `${cleaned}/v1`;
+    }
+    const res = await fetch(`${cleaned}/blogs/${slug}`, {
+      cache: 'no-store',
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data?.blog) {
+        return {
+          title: `${data.blog.meta_title || data.blog.title} || Home Zone Real Estate`,
+          description: data.blog.meta_description || data.blog.excerpt || 'Read the latest real estate news and property guides on Home Zone.',
+        };
+      }
+    }
+  } catch (e) {
+    // Fallback
+  }
 
   return {
-    title: blog ? `${blog.title} || Home Zone Real Estate` : 'Blog || Home Zone Real Estate',
-    description: blog?.excerpt || 'Read the latest real estate news, investment guides, and architectural design insights on Home Zone.',
+    title: 'Real Estate Article || Home Zone Real Estate',
+    description: 'Read the latest real estate news, investment guides, and property insights on Home Zone.',
   };
 }
 
@@ -51,7 +71,7 @@ const BlogSingle = async (props) => {
           {/* End .row */}
 
           <div className="row" data-aos="fade-up" data-aos-delay="200">
-            <Blog />
+            <Blog excludeId={params.id} />
           </div>
         </div>
       </section>
