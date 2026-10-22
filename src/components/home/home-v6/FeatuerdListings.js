@@ -50,7 +50,7 @@ const FeaturedListings = () => {
     } catch (_) {}
   };
 
-  if (loading) return <div className="text-center py-5">Loading...</div>;
+  if (loading) return <div className="text-center py-5">Loading properties...</div>;
 
   return (
     <>
@@ -74,93 +74,137 @@ const FeaturedListings = () => {
           1200: { slidesPerView: 3 },
         }}
       >
-        {listings.slice(0, 8).map((listing) => (
-          <SwiperSlide key={listing.id}>
-            <div className="item">
-              <div className="listing-style1">
-                <div className="list-thumb">
-                  <Image
-                    width={382}
-                    height={248}
-                    style={{ aspectRatio: '1170/600' }}
-                    className="w-100 h-100 cover"
-                    src={listing.image || '/images/listings/listing-single-slide1.jpg'}
-                    alt={listing.title}
-                  />
-                  <div className="sale-sticker-wrap">
-                    {listing.listed_in !== 'rent' && (
+        {listings.slice(0, 8).map((listing) => {
+          const catName = listing.category?.name?.toLowerCase() || '';
+          const catSlug = listing.category?.slug?.toLowerCase() || '';
+          const isCommercial = catName.includes('commercial') || catSlug.includes('commercial');
+          const hasBeds = Number(listing.bedrooms || 0) > 0;
+          const hasBaths = Number(listing.bathrooms || 0) > 0;
+          const hasSqft = Number(listing.size_ft || 0) > 0;
+          const priceValue = listing.price ? Number(listing.price) : null;
+
+          return (
+            <SwiperSlide key={listing.id}>
+              <div className="item">
+                <div className="listing-style1">
+                  <div className="list-thumb">
+                    <Image
+                      width={382}
+                      height={248}
+                      style={{ aspectRatio: '1170/600', objectFit: 'cover' }}
+                      className="w-100 h-100 cover"
+                      unoptimized={Boolean(listing.image?.startsWith('http'))}
+                      src={listing.image || '/images/listings/listing-single-slide1.jpg'}
+                      alt={listing.title}
+                    />
+                    <div className="sale-sticker-wrap">
                       <div className="list-tag rounded-0 fz12">
                         <span className="flaticon-electricity" />
-                        FEATURED
+                        {isCommercial ? 'COMMERCIAL' : 'FEATURED'}
+                      </div>
+                    </div>
+                    {priceValue && priceValue > 0 ? (
+                      <div className="list-price">
+                        ₹{Math.round(priceValue).toLocaleString('en-IN')}{' '}
+                        {listing.listed_in === 'rent' && <span>/ mo</span>}
+                      </div>
+                    ) : (
+                      <div className="list-price">
+                        Price on Request
                       </div>
                     )}
                   </div>
-                  <div className="list-price">
-                    ₹{Math.round(Number(listing.price || 0)).toLocaleString('en-IN')}{' '}
-                    {listing.listed_in === 'rent' && <span>/ mo</span>}
-                  </div>
-                </div>
 
-                <div className="list-content">
-                  <h6 className="list-title">
-                    <Link href={`/property/${listing.slug}`}>{listing.title}</Link>
-                  </h6>
-                  <p className="list-text">{listing.location?.address || 'N/A'}</p>
-                  <div className="list-meta d-flex align-items-center">
-                    <span className="me-3">
-                      <span className="flaticon-bed" /> {listing.bedrooms ?? 0} bed
-                    </span>
-                    <span className="me-3">
-                      <span className="flaticon-shower" /> {listing.bathrooms ?? 0} bath
-                    </span>
-                    <span>
-                      <span className="flaticon-expand" /> {listing.size_ft ?? 0} sqft
-                    </span>
-                  </div>
-                  <hr className="mt-2 mb-2" />
-                  <div className="list-meta2 d-flex justify-content-between align-items-center">
-                    <span className="for-what">
-                      For {listing.listed_in === 'rent' ? 'Rent' : 'Sale'}
-                    </span>
-                    <div className="icons d-flex align-items-center gap-2">
-                      <Link
-                        href={`/property/${listing.slug}`}
-                        title="View Property"
-                        className="text-dark"
-                      >
-                        <span className="flaticon-fullscreen" />
-                      </Link>
-                      <Link
-                        href={`/property/${listing.slug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Open in new tab"
-                        className="text-dark"
-                      >
-                        <span className="flaticon-new-tab" />
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={(e) => toggleFavorite(e, listing)}
-                        title={favorites[listing.id] ? "Remove from favorites" : "Save to favorites"}
-                        style={{
-                          background: 'none',
-                          border: 'none',
-                          padding: 0,
-                          cursor: 'pointer',
-                          color: favorites[listing.id] ? '#e53935' : 'inherit',
-                          lineHeight: 1,
-                        }}
-                      >
-                        <span className="flaticon-like" />
-                      </button>
+                  <div className="list-content">
+                    <h6 className="list-title">
+                      <Link href={`/property/${listing.slug}`}>{listing.title}</Link>
+                    </h6>
+                    <p className="list-text">{listing.location?.address || 'Patiala, Punjab'}</p>
+
+                    {/* Meta Section - Custom for Commercial vs Residential */}
+                    <div className="list-meta d-flex align-items-center flex-wrap" style={{ minHeight: '26px' }}>
+                      {isCommercial ? (
+                        <>
+                          <span className="badge bg-light text-dark border px-2 py-1 me-2 fz12">
+                            <span className="flaticon-home me-1" /> Commercial Space
+                          </span>
+                          {hasSqft && (
+                            <span>
+                              <span className="flaticon-expand" /> {listing.size_ft} sqft
+                            </span>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {hasBeds && (
+                            <span className="me-3">
+                              <span className="flaticon-bed" /> {listing.bedrooms} bed
+                            </span>
+                          )}
+                          {hasBaths && (
+                            <span className="me-3">
+                              <span className="flaticon-shower" /> {listing.bathrooms} bath
+                            </span>
+                          )}
+                          {hasSqft && (
+                            <span>
+                              <span className="flaticon-expand" /> {listing.size_ft} sqft
+                            </span>
+                          )}
+                          {!hasBeds && !hasBaths && !hasSqft && (
+                            <span className="badge bg-light text-dark border px-2 py-1 fz12">
+                              {listing.category?.name || 'Residential'}
+                            </span>
+                          )}
+                        </>
+                      )}
+                    </div>
+
+                    <hr className="mt-2 mb-2" />
+                    <div className="list-meta2 d-flex justify-content-between align-items-center">
+                      <span className="for-what">
+                        {isCommercial ? 'Commercial' : `For ${listing.listed_in === 'rent' ? 'Rent' : 'Sale'}`}
+                      </span>
+                      <div className="icons d-flex align-items-center gap-2">
+                        <Link
+                          href={`/property/${listing.slug}`}
+                          title="View Property"
+                          className="text-dark"
+                        >
+                          <span className="flaticon-fullscreen" />
+                        </Link>
+                        <Link
+                          href={`/property/${listing.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Open in new tab"
+                          className="text-dark"
+                        >
+                          <span className="flaticon-new-tab" />
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={(e) => toggleFavorite(e, listing)}
+                          title={favorites[listing.id] ? "Remove from favorites" : "Save to favorites"}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            padding: 0,
+                            cursor: 'pointer',
+                            color: favorites[listing.id] ? '#e53935' : 'inherit',
+                            lineHeight: 1,
+                          }}
+                        >
+                          <span className="flaticon-like" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </>
   );

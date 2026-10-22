@@ -21,21 +21,8 @@ const Compare = () => {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Banner */}
-      <BreadcrumbBanner
-        pageKey="compare"
-        title="Compare Properties"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Compare" },
-        ]}
-        defaultBg="/images/background/compare-bg.jpg"
-        textTheme="light"
-      />
-      {/* End Breadcrumb Banner */}
-
       {/* Our Compare Area */}
-      <section className="our-compare">
+      <section className="our-compare pb90" style={{ paddingTop: '100px' }}>
         <div className="container">
           <div className="row wow fadeInUp" data-wow-delay="300ms">
             <div className="col-lg-12">

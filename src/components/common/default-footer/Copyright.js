@@ -16,8 +16,8 @@ const Footer = () => {
       link: "/contact",
     },
     {
-      label: "Pricing",
-      link: "/pricing",
+      label: "EMI Calculator",
+      link: "/calculator",
     },
   ];
 

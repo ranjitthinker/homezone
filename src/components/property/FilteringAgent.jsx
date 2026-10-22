@@ -105,7 +105,7 @@ export default function FilteringAgent() {
     
     
   return (
-    <section className="our-agents pt-0">
+    <section className="our-agents pb90" style={{ paddingTop: '100px' }}>
         <div className="container">
           <div className="row align-items-center mb20">
             <TopFilter  filterFunctions={filterFunctions} />

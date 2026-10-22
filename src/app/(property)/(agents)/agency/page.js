@@ -2,7 +2,6 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import FilteringAgency from "@/components/property/FilteringAgency";
-import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
 import React from "react";
 
 export const metadata = {
@@ -19,17 +18,6 @@ const Agency = () => {
       {/* Mobile Nav  */}
       <MobileMenu />
       {/* End Mobile Nav  */}
-
-      {/* Breadcrumb Banner */}
-      <BreadcrumbBanner
-        pageKey="agency"
-        title="Real Estate Agencies"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Agencies" },
-        ]}
-      />
-      {/* End Breadcrumb Banner */}
 
       {/* Agent Section Area */}
       <FilteringAgency/>

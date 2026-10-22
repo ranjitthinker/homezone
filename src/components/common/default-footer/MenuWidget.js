@@ -4,12 +4,11 @@ import Link from "next/link";
 const MenuWidget = () => {
   const menuSections = [
     {
-      title: "Our Services",
+      title: "Property Categories",
       links: [
-        { label: "Properties for Rent", href: "/properties?listed_in=rent" },
-        { label: "Properties for Sale", href: "/properties?listed_in=sale" },
-        { label: "Commercial Properties", href: "/properties?listed_in=commercial" },
-        { label: "Residential Properties", href: "/properties?listed_in=residential" },
+        { label: "Residential Properties", href: "/properties?category=residential" },
+        { label: "Commercial Properties", href: "/properties?category=commercial" },
+        { label: "All Properties", href: "/properties" },
       ],
     },
     {
@@ -17,18 +16,19 @@ const MenuWidget = () => {
       links: [
         { label: "Home", href: "/" },
         { label: "About Us", href: "/about" },
+        { label: "Residential", href: "/properties?category=residential" },
+        { label: "Commercial", href: "/properties?category=commercial" },
+        { label: "Blog & Insights", href: "/blog" },
+        { label: "EMI Calculator", href: "/calculator" },
         { label: "Contact Us", href: "/contact" },
-        { label: "Latest Blogs", href: "/blog" },
-        { label: "Calculator", href: "/calculator" },
       ],
     },
     {
-      title: "Discover",
+      title: "Discover & Support",
       links: [
-        { label: "All Properties", href: "/properties" },
-        { label: "Featured Listings", href: "/properties?featured=1" },
-        { label: "New Arrivals", href: "/properties?sort=newest" },
-        { label: "Contact Support", href: "/contact" },
+        { label: "Browse Properties", href: "/properties" },
+        { label: "Head Office & Support", href: "/contact" },
+        { label: "Get Directions", href: "/contact" },
       ],
     },
   ];

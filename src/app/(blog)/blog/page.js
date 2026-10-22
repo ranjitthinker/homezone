@@ -2,8 +2,6 @@ import BlogFilterContainer from "@/components/blog/blog-list-v3/BlogFilterContai
 import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
-import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -22,17 +20,6 @@ const BlogV3 = () => {
       {/* Mobile Nav  */}
       <MobileMenu />
       {/* End Mobile Nav  */}
-
-      {/* Breadcrumb Banner */}
-      <BreadcrumbBanner
-        pageKey="blog"
-        title="Blog & Market Insights"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Blog" },
-        ]}
-      />
-      {/* End Breadcrumb Banner */}
 
       {/* Blog Section Area */}
       <BlogFilterContainer/>

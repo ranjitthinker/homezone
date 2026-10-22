@@ -72,7 +72,7 @@ const AboutCompany = () => {
   const point4 = settings?.about_point_4 || "End-to-End Client Support";
 
   return (
-    <section className="our-about pt60 pb90">
+    <section className="our-about pb90" style={{ paddingTop: '100px' }}>
       <div className="container">
         <div className="row align-items-center">
           {/* Left Side: Image */}

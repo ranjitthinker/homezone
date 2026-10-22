@@ -1,79 +1,97 @@
-import { homeItems, blogItems, listingItems, propertyItems, pageItems } from '@/data/navItems';
+'use client';
+
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
-const MainMenu = () => {
+function MainMenuContent() {
   const pathname = usePathname();
-  const [topMenu, setTopMenu] = useState('');
+  const searchParams = useSearchParams();
+  const currentCategory = (searchParams.get('category') || searchParams.get('listed_in') || '').toLowerCase();
 
-  useEffect(() => {
-    homeItems.forEach((elm) => {
-      if (elm.href.split('/')[1] == pathname.split('/')[1]) setTopMenu('home');
-    });
-    blogItems.forEach((elm) => {
-      if (elm.href.split('/')[1] == pathname.split('/')[1]) setTopMenu('blog');
-    });
-    pageItems.forEach((elm) => {
-      if (elm.href.split('/')[1] == pathname.split('/')[1]) setTopMenu('pages');
-    });
-  }, [pathname]);
-
-  const handleActive = (link) => {
-    if (link.split('/')[1] == pathname.split('/')[1]) return 'menuActive';
-  };
+  const isHomeActive = pathname === '/';
+  const isAboutActive = pathname === '/about';
+  const isResidentialActive = pathname === '/properties' && currentCategory === 'residential';
+  const isCommercialActive = pathname === '/properties' && currentCategory === 'commercial';
+  const isBlogActive = pathname.startsWith('/blog');
+  const isContactActive = pathname === '/contact';
+  const isCalculatorActive = pathname === '/calculator';
 
   return (
-    <ul className="ace-responsive-menu d-flex justify-content-center">
+    <ul className="ace-responsive-menu d-flex justify-content-center mb-0">
       {/* Home */}
       <li>
-        <Link className={`${handleActive('/')}`} href="/">
+        <Link className={isHomeActive ? 'menuActive' : ''} href="/">
           Home
         </Link>
       </li>
 
       {/* About */}
       <li>
-        <Link className={`${handleActive('/about')}`} href="/about">
+        <Link className={isAboutActive ? 'menuActive' : ''} href="/about">
           About
         </Link>
       </li>
 
-      {/* Commercial */}
+      {/* Residential (First) */}
       <li>
-        <Link className={`${handleActive('/properties')}`} href="/properties?listed_in=commercial">
-          Commercial
+        <Link
+          className={isResidentialActive ? 'menuActive' : ''}
+          href="/properties?category=residential"
+        >
+          Residential
         </Link>
       </li>
 
-      {/* Residential */}
+      {/* Commercial (Second) */}
       <li>
-        <Link href="/properties?listed_in=residential">
-          Residential
+        <Link
+          className={isCommercialActive ? 'menuActive' : ''}
+          href="/properties?category=commercial"
+        >
+          Commercial
         </Link>
       </li>
 
       {/* Blog */}
       <li>
-        <Link className={`${handleActive('/blog')}`} href="/blog">
+        <Link className={isBlogActive ? 'menuActive' : ''} href="/blog">
           Blog
         </Link>
       </li>
 
       {/* Contact */}
       <li>
-        <Link className={`${handleActive('/contact')}`} href="/contact">
+        <Link className={isContactActive ? 'menuActive' : ''} href="/contact">
           Contact
         </Link>
       </li>
 
       {/* Calculator */}
       <li>
-        <Link className={`${handleActive('/calculator')}`} href="/calculator">
+        <Link className={isCalculatorActive ? 'menuActive' : ''} href="/calculator">
           Calculator
         </Link>
       </li>
     </ul>
+  );
+}
+
+const MainMenu = () => {
+  return (
+    <Suspense fallback={
+      <ul className="ace-responsive-menu d-flex justify-content-center mb-0">
+        <li><Link href="/">Home</Link></li>
+        <li><Link href="/about">About</Link></li>
+        <li><Link href="/properties?category=residential">Residential</Link></li>
+        <li><Link href="/properties?category=commercial">Commercial</Link></li>
+        <li><Link href="/blog">Blog</Link></li>
+        <li><Link href="/contact">Contact</Link></li>
+        <li><Link href="/calculator">Calculator</Link></li>
+      </ul>
+    }>
+      <MainMenuContent />
+    </Suspense>
   );
 };
 

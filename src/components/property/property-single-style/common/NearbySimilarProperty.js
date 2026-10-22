@@ -129,17 +129,49 @@ const NearbySimilarProperty = ({ propertyId }) => {
 
                 <p className="list-text">{getLocationText(property.location)}</p>
 
-                <div className="list-meta d-flex align-items-center">
-                  <span>
-                    <span className="flaticon-bed" /> {property.bedrooms || 0} bed
-                  </span>
-                  <span>
-                    <span className="flaticon-shower" /> {property.bathrooms || 0} bath
-                  </span>
-                  <span>
-                    <span className="flaticon-expand" /> {property.size_ft || 0} sqft
-                  </span>
-                </div>
+                {(() => {
+                  const catName = (property.category?.name || '').toLowerCase();
+                  const catSlug = (property.category?.slug || '').toLowerCase();
+                  const isCommercial = catName.includes('commercial') || catSlug.includes('commercial');
+                  const hasBeds = Number(property.bedrooms || 0) > 0;
+                  const hasBaths = Number(property.bathrooms || 0) > 0;
+                  const hasSqft = Number(property.size_ft || 0) > 0;
+
+                  if (isCommercial) {
+                    return (
+                      <div className="list-meta d-flex align-items-center">
+                        <span className="badge bgc-thm text-white px-2 py-1 fz12 me-2" style={{ borderRadius: '12px' }}>
+                          Commercial
+                        </span>
+                        {hasSqft && (
+                          <span>
+                            <span className="flaticon-expand" /> {property.size_ft} sqft
+                          </span>
+                        )}
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div className="list-meta d-flex align-items-center">
+                      {hasBeds && (
+                        <span>
+                          <span className="flaticon-bed" /> {property.bedrooms} bed
+                        </span>
+                      )}
+                      {hasBaths && (
+                        <span>
+                          <span className="flaticon-shower" /> {property.bathrooms} bath
+                        </span>
+                      )}
+                      {hasSqft && (
+                        <span>
+                          <span className="flaticon-expand" /> {property.size_ft} sqft
+                        </span>
+                      )}
+                    </div>
+                  );
+                })()}
 
                 <hr className="mt-2 mb-2" />
 

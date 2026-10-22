@@ -3,8 +3,6 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import AboutCompany from "@/components/pages/about/AboutCompany";
-import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -23,18 +21,6 @@ const About = () => {
       {/* Mobile Nav  */}
       <MobileMenu />
       {/* End Mobile Nav  */}
-
-      {/* Breadcrumb Banner */}
-      <BreadcrumbBanner
-        pageKey="about"
-        title="About Us"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "About" },
-        ]}
-        defaultBg="/images/background/about-page-bg.cad1db94.jpg"
-      />
-      {/* End Breadcrumb Banner */}
 
       {/* About Section: Left Side Image & Right Side Content about Company */}
       <AboutCompany />

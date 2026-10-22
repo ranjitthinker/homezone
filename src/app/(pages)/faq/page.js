@@ -22,19 +22,8 @@ const Faq = () => {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Banner */}
-      <BreadcrumbBanner
-        pageKey="faq"
-        title="Frequently Asked Questions"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "FAQ" },
-        ]}
-      />
-      {/* End Breadcrumb Banner */}
-
       {/* FAQ Section Area */}
-      <section className="our-faq pb90 pt-0">
+      <section className="our-faq pb90" style={{ paddingTop: '100px' }}>
         <div className="container">
           <div className="row wow fadeInUp" data-wow-delay="300ms">
             <div className="col-lg-12">

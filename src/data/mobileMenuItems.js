@@ -4,27 +4,27 @@ module.exports = [
     path: "/",
   },
   {
-    label: "Properties",
-    path: "/properties",
+    label: "About",
+    path: "/about",
   },
   {
-    label: "Calculator",
-    path: "/calculator",
+    label: "Residential",
+    path: "/properties?category=residential",
   },
   {
-    label: "Pricing Plans",
-    path: "/pricing",
+    label: "Commercial",
+    path: "/properties?category=commercial",
   },
   {
     label: "Blog",
     path: "/blog",
   },
   {
-    label: "About",
-    path: "/about",
-  },
-  {
     label: "Contact",
     path: "/contact",
+  },
+  {
+    label: "Calculator",
+    path: "/calculator",
   },
 ];

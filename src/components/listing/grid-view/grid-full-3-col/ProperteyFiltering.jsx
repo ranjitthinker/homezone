@@ -15,6 +15,13 @@ export default function ProperteyFiltering() {
   const cityFromUrl  = searchParams.get('city') || searchParams.get('city_id') || ''; // ✅ get ?city=7 or ?city_id=7
   const searchQuery  = searchParams.get('q') || '';              // ✅ get ?q=Luxury
 
+  // ✅ Read category / listed_in from URL params
+  const categoryParam = searchParams.get('category') || searchParams.get('property_category_id') || '';
+  const listedInParam = searchParams.get('listed_in') || '';
+  const isCategoryInListedIn = ['commercial', 'residential'].includes((listedInParam || '').toLowerCase());
+  const effectiveCategory = (categoryParam || (isCategoryInListedIn ? listedInParam : '')).toLowerCase();
+  const effectiveListedIn = !isCategoryInListedIn && ['sale', 'rent'].includes((listedInParam || '').toLowerCase()) ? listedInParam.toLowerCase() : '';
+
   const [listings, setListings]         = useState([]);
   const [apiLoading, setApiLoading]     = useState(true);
   const [apiError, setApiError]         = useState(null);
@@ -23,8 +30,8 @@ export default function ProperteyFiltering() {
   const [colstyle, setColstyle]         = useState(false);
   const [currentSortingOption, setCurrentSortingOption] = useState('');
 
-  const [listingStatus, setListingStatus] = useState('');
-  const [propertyTypes, setPropertyTypes] = useState([]);
+  const [listingStatus, setListingStatus] = useState(effectiveListedIn || '');
+  const [propertyTypes, setPropertyTypes] = useState(effectiveCategory ? [effectiveCategory] : []);
   const [priceRange, setPriceRange]       = useState([0, 100000]);
   const [bedrooms, setBedrooms]           = useState(0);
   const [bathroms, setBathroms]           = useState(0);
@@ -38,7 +45,15 @@ export default function ProperteyFiltering() {
   useEffect(() => {
     if (cityFromUrl) setLocation(cityFromUrl);
     if (searchQuery) setKeyword(searchQuery);
-  }, [cityFromUrl, searchQuery]);
+    if (effectiveCategory) {
+      setPropertyTypes([effectiveCategory]);
+    } else {
+      setPropertyTypes([]);
+    }
+    if (effectiveListedIn) {
+      setListingStatus(effectiveListedIn);
+    }
+  }, [cityFromUrl, searchQuery, effectiveCategory, effectiveListedIn]);
 
   const buildParams = useCallback(() => {
     const params = {};
@@ -50,7 +65,11 @@ export default function ProperteyFiltering() {
     if (priceRange[1] < 100000)           params.max_price    = priceRange[1];
     if (bedrooms > 0)                     params.bedrooms     = bedrooms;
     if (bathroms > 0)                     params.bathrooms    = bathroms;
-    if (propertyTypes.length > 0)         params.property_category_id = propertyTypes.join(',');
+    if (propertyTypes.length > 0) {
+      params.property_category_id = propertyTypes.join(',');
+    } else if (effectiveCategory) {
+      params.property_category_id = effectiveCategory;
+    }
     if (squirefeet[0])                    params.min_size_ft  = squirefeet[0];
     if (squirefeet[1])                    params.max_size_ft  = squirefeet[1];
     if (categories.length > 0)           params.amenity_ids  = categories.join(',');
@@ -63,7 +82,7 @@ export default function ProperteyFiltering() {
 
     return params;
   }, [keyword, location, listingStatus, priceRange, bedrooms, bathroms,
-      propertyTypes, squirefeet, categories, currentSortingOption, pageNumber]);
+      propertyTypes, effectiveCategory, squirefeet, categories, currentSortingOption, pageNumber]);
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -123,15 +142,93 @@ export default function ProperteyFiltering() {
     squirefeet, yearBuild, categories,
   };
 
+  // Client-side strict category isolation guard
+  const displayListings = listings.filter((item) => {
+    const activeCat = (propertyTypes.length > 0 ? propertyTypes[0] : effectiveCategory).toLowerCase();
+    if (!activeCat || activeCat === 'all') return true;
+
+    const catSlug = (item.category?.slug || '').toLowerCase();
+    const catName = (item.category?.name || '').toLowerCase();
+    const parentName = (item.category?.is_child_of || '').toLowerCase();
+
+    if (activeCat === 'residential') {
+      return (
+        catSlug === 'residential' ||
+        catName === 'residential' ||
+        parentName === 'residential' ||
+        ['apartment', 'villa', 'builder-floor'].includes(catSlug)
+      );
+    }
+    if (activeCat === 'commercial') {
+      return (
+        catSlug === 'commercial' ||
+        catName === 'commercial' ||
+        parentName === 'commercial' ||
+        ['office-space', 'shop', 'showroom', 'commercial-spaces'].includes(catSlug)
+      );
+    }
+    return catSlug === activeCat || catName === activeCat;
+  });
+
+  const effectiveTotal = displayListings.length > 0
+    ? (displayListings.length < listings.length ? displayListings.length : totalItems)
+    : 0;
+
+  const currentCategoryTitle =
+    effectiveCategory === 'residential'
+      ? 'Residential Properties'
+      : effectiveCategory === 'commercial'
+      ? 'Commercial Properties'
+      : 'Explore Properties';
+
+  const currentCategoryDesc =
+    effectiveCategory === 'residential'
+      ? 'Discover premium verified apartments, villas, and residential developments.'
+      : effectiveCategory === 'commercial'
+      ? 'Explore prime commercial offices, showrooms, and retail spaces.'
+      : 'Find your dream property and commercial investment opportunities.';
+
   const pageContentTrac = [
     (pageNumber - 1) * 9 + 1,
-    Math.min(pageNumber * 9, totalItems),
-    totalItems,
+    Math.min(pageNumber * 9, effectiveTotal),
+    effectiveTotal,
   ];
 
   return (
-    <section className="pt0 pb90 bgc-f7">
+    <section className="pb90 bgc-f7" style={{ paddingTop: '100px' }}>
       <div className="container">
+
+        {/* Clean Header Bar with Title & Mobile Filter Trigger */}
+        <div className="row align-items-center justify-content-between mb25 pt10">
+          <div className="col-md-9 col-12">
+            <h2 className="title fz28 fw700 mb-1" style={{ color: '#181a20' }}>
+              {currentCategoryTitle}
+            </h2>
+            <p className="paragraph fz14 text-muted mb-0">{currentCategoryDesc}</p>
+          </div>
+          <div className="col-md-3 col-12 text-md-end mt-2 mt-md-0 d-block d-lg-none">
+            <a
+              className="filter-btn-left mobile-filter-btn ud-btn btn-white"
+              data-bs-toggle="offcanvas"
+              href="#listingSidebarFilter"
+              role="button"
+              aria-controls="listingSidebarFilter"
+              style={{
+                borderRadius: '30px',
+                padding: '8px 20px',
+                fontSize: '13px',
+                fontWeight: 600,
+                border: '1px solid #ddd',
+                background: '#fff',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <span className="flaticon-settings" /> Filter Options
+            </a>
+          </div>
+        </div>
 
         <div className="offcanvas offcanvas-start p-0" tabIndex="-1"
           id="listingSidebarFilter" aria-labelledby="listingSidebarFilterLabel">
@@ -177,7 +274,7 @@ export default function ProperteyFiltering() {
                 Reset Filters
               </button>
             </div>
-          ) : listings.length === 0 ? (
+          ) : displayListings.length === 0 ? (
             <div className="col-12 text-center py-5">
               <div
                 style={{
@@ -212,7 +309,7 @@ export default function ProperteyFiltering() {
                 <p style={{ color: '#717171', fontSize: '15px', lineHeight: '1.6', marginBottom: '24px' }}>
                   {keyword
                     ? `We couldn't find any properties matching "${keyword}".`
-                    : "We couldn't find any properties matching your current filter criteria."}
+                    : `We couldn't find any ${effectiveCategory ? effectiveCategory + ' ' : ''}properties matching your current filter criteria.`}
                   <br />
                   Try adjusting your search terms or clearing your filters to see all available properties.
                 </p>
@@ -233,15 +330,15 @@ export default function ProperteyFiltering() {
               </div>
             </div>
           ) : (
-            <FeaturedListings colstyle={colstyle} data={listings} />
+            <FeaturedListings colstyle={colstyle} data={displayListings} />
           )}
         </div>
 
-        {totalItems > 0 && listings.length > 0 && (
+        {effectiveTotal > 0 && displayListings.length > 0 && (
           <div className="row">
             <PaginationTwo
               pageCapacity={9}
-              data={{ total: totalItems }}
+              data={{ total: effectiveTotal }}
               pageNumber={pageNumber}
               setPageNumber={setPageNumber}
             />

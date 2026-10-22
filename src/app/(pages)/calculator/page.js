@@ -3,8 +3,6 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import CallToActions from "@/components/common/CallToActions";
-import BreadcrumbBanner from "@/components/common/BreadcrumbBanner";
-import Link from "next/link";
 
 export const metadata = {
   title: "Mortgage & EMI Calculator || Home Zone Real Estate",
@@ -21,19 +19,8 @@ export default function Calculator() {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Banner */}
-      <BreadcrumbBanner
-        pageKey="calculator"
-        title="Mortgage & EMI Calculator"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Calculator" },
-        ]}
-      />
-      {/* End Breadcrumb Banner */}
-
       {/* Calculator Section Area */}
-      <section className="pb90 pt-0">
+      <section className="pb90" style={{ paddingTop: '100px' }}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-10">

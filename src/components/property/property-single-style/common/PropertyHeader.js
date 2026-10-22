@@ -109,22 +109,53 @@ const PropertyHeader = ({ data }) => {
             </span>
           </div>
 
-          <div className="property-meta d-flex align-items-center">
-            <span className="text fz15">
-              <i className="flaticon-bed pe-2" />
-              {data.details?.bedrooms || 0} bed
-            </span>
+          {(() => {
+            const catName = (data.category?.name || '').toLowerCase();
+            const catSlug = (data.category?.slug || '').toLowerCase();
+            const isCommercial = catName.includes('commercial') || catSlug.includes('commercial') || ['office-space', 'shop', 'showroom', 'commercial-spaces'].includes(catSlug);
+            const hasBeds = Number(data.details?.bedrooms || 0) > 0;
+            const hasBaths = Number(data.details?.bathrooms || 0) > 0;
+            const hasSqft = Number(data.details?.size_ft || 0) > 0;
 
-            <span className="text ml20 fz15">
-              <i className="flaticon-shower pe-2" />
-              {data.details?.bathrooms || 0} bath
-            </span>
+            if (isCommercial) {
+              return (
+                <div className="property-meta d-flex align-items-center flex-wrap gap-3">
+                  <span className="badge bgc-thm text-white px-3 py-1 fz13 fw600" style={{ borderRadius: '20px' }}>
+                    <i className="flaticon-home-1 pe-1" /> Commercial Space
+                  </span>
+                  {hasSqft && (
+                    <span className="text fz15">
+                      <i className="flaticon-expand pe-2" />
+                      {data.details.size_ft} sqft
+                    </span>
+                  )}
+                </div>
+              );
+            }
 
-            <span className="text ml20 fz15">
-              <i className="flaticon-expand pe-2" />
-              {data.details?.size_ft || 0} sqft
-            </span>
-          </div>
+            return (
+              <div className="property-meta d-flex align-items-center flex-wrap gap-3">
+                {hasBeds && (
+                  <span className="text fz15">
+                    <i className="flaticon-bed pe-2" />
+                    {data.details.bedrooms} bed
+                  </span>
+                )}
+                {hasBaths && (
+                  <span className="text fz15">
+                    <i className="flaticon-shower pe-2" />
+                    {data.details.bathrooms} bath
+                  </span>
+                )}
+                {hasSqft && (
+                  <span className="text fz15">
+                    <i className="flaticon-expand pe-2" />
+                    {data.details.size_ft} sqft
+                  </span>
+                )}
+              </div>
+            );
+          })()}
         </div>
       </div>
 

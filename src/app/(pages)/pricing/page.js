@@ -21,19 +21,8 @@ const PricingPlan = () => {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Banner */}
-      <BreadcrumbBanner
-        pageKey="pricing"
-        title="Membership Plans"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Plans" },
-        ]}
-      />
-      {/* End Breadcrumb Banner */}
-
       {/* Pricing Section Area */}
-      <section className="our-pricing pb90 pt-0">
+      <section className="our-pricing pb90" style={{ paddingTop: '100px' }}>
         <div className="container">
           <div className="row" data-aos="fade-up" data-aos-delay="100">
             <div className="col-lg-6 offset-lg-3">

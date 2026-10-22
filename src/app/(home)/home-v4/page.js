@@ -147,8 +147,8 @@ const Home_V4 = async () => {
           <div className="row  justify-content-between align-items-center">
             <div className="col-auto">
               <div className="main-title" data-aos="fade-up" data-aos-delay="100">
-                <h2 className="title">Featured Homes</h2>
-                <p className="paragraph">Get some Inspirations from 800+ Properties</p>
+                <h2 className="title">Property Showcase & Visual Gallery</h2>
+                <p className="paragraph">Explore photos from our verified residential and commercial developments</p>
               </div>
             </div>
             {/* End header */}
