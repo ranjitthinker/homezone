@@ -13,29 +13,30 @@ function MenuItemsContent() {
     if (typeof window === 'undefined') return;
     const el = document.getElementById('SidebarPanel');
     if (el) {
-      // Trigger bootstrap dismiss if available
+      // 1. Try bootstrap instance hide
       try {
         const bs = window.bootstrap || (typeof bootstrap !== 'undefined' ? bootstrap : null);
         if (bs?.Offcanvas) {
-          const instance = bs.Offcanvas.getInstance(el);
-          if (instance) {
-            instance.hide();
-            return;
+          const inst = bs.Offcanvas.getInstance(el);
+          if (inst) {
+            inst.hide();
           }
         }
       } catch (e) {
         // ignore
       }
 
-      // Fallback: click close button
+      // 2. Click close button
       const closeBtn = el.querySelector('.sidebar-close-icon');
-      if (closeBtn) {
-        closeBtn.click();
-      } else {
-        el.classList.remove('show');
-        const backdrop = document.querySelector('.offcanvas-backdrop');
-        if (backdrop) backdrop.remove();
-      }
+      if (closeBtn) closeBtn.click();
+
+      // 3. Fallback CSS cleanup
+      el.classList.remove('show');
+      document.body.classList.remove('offcanvas-open', 'modal-open');
+      document.body.style.removeProperty('overflow');
+      document.body.style.removeProperty('padding-right');
+      const backdrops = document.querySelectorAll('.offcanvas-backdrop');
+      backdrops.forEach((b) => b.remove());
     }
   };
 
@@ -65,7 +66,7 @@ function MenuItemsContent() {
     },
     {
       id: 'calculator',
-      title: 'EMI Calculator',
+      title: 'EMI & Loan Calculator',
       href: '/calculator',
       icon: 'fas fa-calculator',
       isActive: pathname === '/calculator',
@@ -80,13 +81,13 @@ function MenuItemsContent() {
   ];
 
   const propertyTypes = [
-    { title: 'Apartments', category: 'Apartments' },
-    { title: 'Bungalow', category: 'Bungalow' },
-    { title: 'Houses', category: 'Houses' },
-    { title: 'Loft', category: 'Loft' },
-    { title: 'Office', category: 'Office' },
-    { title: 'Townhome', category: 'Townhome' },
-    { title: 'Villa', category: 'Villa' },
+    { title: 'Apartments', category: 'apartment' },
+    { title: 'Villas', category: 'villa' },
+    { title: 'Builder Floors', category: 'builder-floor' },
+    { title: 'Plots & Land', category: 'plot-land' },
+    { title: 'Commercial', category: 'commercial' },
+    { title: 'Office Spaces', category: 'office-space' },
+    { title: 'Farm Houses', category: 'farm-house' },
   ];
 
   return (
@@ -131,36 +132,53 @@ function MenuItemsContent() {
         </ul>
       </div>
 
-      {/* Property Categories */}
+      {/* Real Property Categories */}
       <div className="pt-3 border-top">
         <p className="fz12 text-uppercase text-muted fw-bold letter-spacing-1 mb-3 px-4" style={{ letterSpacing: '1px' }}>
           Explore Property Types
         </p>
         <div className="px-4 d-flex flex-wrap gap-2">
-          {propertyTypes.map((pt, idx) => (
-            <Link
-              key={idx}
-              href={`/properties?propertyType=${encodeURIComponent(pt.category)}`}
-              data-bs-dismiss="offcanvas"
-              onClick={handleLinkClick}
-              className="badge bg-light text-dark border px-3 py-2 rounded-pill fz12 hover-bg-thm hover-text-white transition text-decoration-none"
-              style={{ fontWeight: 500 }}
-            >
-              {pt.title}
-            </Link>
-          ))}
+          {propertyTypes.map((pt, idx) => {
+            const isCatActive = currentCategory === pt.category;
+            return (
+              <Link
+                key={idx}
+                href={`/properties?category=${encodeURIComponent(pt.category)}`}
+                data-bs-dismiss="offcanvas"
+                onClick={handleLinkClick}
+                className={`badge px-3 py-2 rounded-pill fz12 transition text-decoration-none ${
+                  isCatActive
+                    ? 'bg-thm text-white border-0'
+                    : 'bg-light text-dark border hover-bg-thm hover-text-white'
+                }`}
+                style={{
+                  fontWeight: 500,
+                  transition: 'all 0.2s ease',
+                  backgroundColor: isCatActive ? '#eb6753' : '#f8f9fa',
+                  color: isCatActive ? '#ffffff' : '#212529',
+                }}
+              >
+                {pt.title}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
   );
 }
 
-const MenuItems = () => {
+export default function MenuItems() {
   return (
-    <Suspense fallback={<div className="p-4 text-muted fz14">Loading menu...</div>}>
+    <Suspense
+      fallback={
+        <div className="p-4 text-muted fz14">
+          <div className="spinner-border spinner-border-sm me-2 text-thm" role="status" />
+          Loading menu...
+        </div>
+      }
+    >
       <MenuItemsContent />
     </Suspense>
   );
-};
-
-export default MenuItems;
+}

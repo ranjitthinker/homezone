@@ -150,6 +150,8 @@ const Header = () => {
                         src={siteLogo}
                         alt="Header Logo"
                         style={{ objectFit: 'contain' }}
+                        unoptimized={Boolean(siteLogo?.startsWith('http'))}
+                        priority
                       />
                     </Link>
                     <Link className="header-logo logo2" href="/">
@@ -159,6 +161,8 @@ const Header = () => {
                         src={siteLogoDark}
                         alt="Header Logo"
                         style={{ objectFit: 'contain' }}
+                        unoptimized={Boolean(siteLogoDark?.startsWith('http'))}
+                        priority
                       />
                     </Link>
                   </div>

@@ -17,8 +17,8 @@ const MobileMenu = () => {
       }, {})
     : {};
 
-  const logo = settings?.site_logo || settings?.logo_light;
-  const siteName = settings?.site_name || 'Homez';
+  const logo = settings?.site_logo || settings?.logo_dark || settings?.logo_light || '/images/header-logo2.svg';
+  const siteName = settings?.site_name || 'Home Zone';
 
   return (
     <div className="mobilie_header_nav stylehome1">
@@ -47,6 +47,9 @@ const MobileMenu = () => {
                   height={44}
                   src={logo}
                   alt={siteName}
+                  style={{ objectFit: 'contain', maxHeight: '44px' }}
+                  unoptimized={Boolean(logo?.startsWith('http'))}
+                  priority
                 />
               </Link>
 
@@ -77,14 +80,29 @@ const MobileMenu = () => {
         aria-labelledby="mobileMenuLabel"
         data-bs-scroll="true">
         <div className="rightside-hidden-bar">
-          <div className="hsidebar-header">
+          <div className="hsidebar-header d-flex justify-content-between align-items-center px-4 py-3 border-bottom">
+            <Link className="mobile_logo" href="/" data-bs-dismiss="offcanvas">
+              <Image
+                width={138}
+                height={44}
+                src={logo}
+                alt={siteName}
+                style={{ objectFit: 'contain', maxHeight: '44px' }}
+                unoptimized={Boolean(logo?.startsWith('http'))}
+              />
+            </Link>
             <div
-              className="sidebar-close-icon"
+              className="sidebar-close-icon cursor-pointer d-flex align-items-center justify-content-center"
               data-bs-dismiss="offcanvas"
-              aria-label="Close">
-              <span className="far fa-times"></span>
+              aria-label="Close"
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                backgroundColor: '#f7f7f7',
+              }}>
+              <span className="far fa-times fz16 text-dark"></span>
             </div>
-            <h4 className="title">Welcome to {siteName}</h4>
           </div>
 
           <div className="hsidebar-content">

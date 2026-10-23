@@ -5,8 +5,8 @@ import { useSettings } from "@/context/SettingsProvider";
 const ContactInfo = () => {
   const settings = useSettings();
 
-  const phone = settings?.contact_phone || "+(0) 123 050 945 02";
-  const email = settings?.contact_email || "hi@HomeZone.com";
+  const phone = settings?.contact_phone || "+91-9855515783";
+  const email = settings?.contact_email || settings?.site_email || "info@homezone.com";
 
   const contactInfo = [
     {

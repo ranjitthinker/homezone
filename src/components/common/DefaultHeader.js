@@ -562,7 +562,15 @@ const DefaultHeader = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/">
-                <Image width={140} height={45} src={siteLogo} alt="Header Logo" style={{ objectFit: 'contain' }} />
+                <Image
+                  width={140}
+                  height={45}
+                  src={siteLogo}
+                  alt="Header Logo"
+                  style={{ objectFit: 'contain' }}
+                  unoptimized={Boolean(siteLogo?.startsWith('http'))}
+                  priority
+                />
               </Link>
             </div>
 

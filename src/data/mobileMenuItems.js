@@ -4,8 +4,12 @@ module.exports = [
     path: "/",
   },
   {
-    label: "About",
+    label: "About Us",
     path: "/about",
+  },
+  {
+    label: "All Properties",
+    path: "/properties",
   },
   {
     label: "Residential",
@@ -16,15 +20,27 @@ module.exports = [
     path: "/properties?category=commercial",
   },
   {
-    label: "Blog",
+    label: "Apartments",
+    path: "/properties?category=apartment",
+  },
+  {
+    label: "Villas",
+    path: "/properties?category=villa",
+  },
+  {
+    label: "Plots & Land",
+    path: "/properties?category=plot-land",
+  },
+  {
+    label: "Blog & Insights",
     path: "/blog",
   },
   {
-    label: "Contact",
-    path: "/contact",
+    label: "EMI Calculator",
+    path: "/calculator",
   },
   {
-    label: "Calculator",
-    path: "/calculator",
+    label: "Contact Us",
+    path: "/contact",
   },
 ];

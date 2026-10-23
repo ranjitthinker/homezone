@@ -16,7 +16,7 @@ export default function ProperteyFiltering() {
   const searchQuery  = searchParams.get('q') || '';              // ✅ get ?q=Luxury
 
   // ✅ Read category / listed_in from URL params
-  const categoryParam = searchParams.get('category') || searchParams.get('property_category_id') || '';
+  const categoryParam = searchParams.get('category') || searchParams.get('property_category_id') || searchParams.get('propertyType') || searchParams.get('type') || '';
   const listedInParam = searchParams.get('listed_in') || '';
   const isCategoryInListedIn = ['commercial', 'residential'].includes((listedInParam || '').toLowerCase());
   const effectiveCategory = (categoryParam || (isCategoryInListedIn ? listedInParam : '')).toLowerCase();

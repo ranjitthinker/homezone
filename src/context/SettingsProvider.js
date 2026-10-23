@@ -5,8 +5,20 @@ import apiService from '@/utils/api/apiService';
 
 const SettingsContext = createContext({});
 
+const normalizeSettings = (raw) => {
+  if (!raw) return {};
+  const list = Array.isArray(raw?.data) ? raw.data : (Array.isArray(raw) ? raw : []);
+  const map = { data: list };
+  list.forEach((item) => {
+    if (item && item.key) {
+      map[item.key] = item.value;
+    }
+  });
+  return map;
+};
+
 export default function SettingsProvider({ settings: initialSettings, children }) {
-  const [settings, setSettings] = useState(initialSettings ?? {});
+  const [settings, setSettings] = useState(() => normalizeSettings(initialSettings));
 
   useEffect(() => {
     let isMounted = true;
@@ -20,7 +32,7 @@ export default function SettingsProvider({ settings: initialSettings, children }
           },
         });
         if (isMounted && res?.data) {
-          setSettings(res.data);
+          setSettings(normalizeSettings(res.data));
         }
       } catch (err) {
         // Silently preserve initialSettings if network fails
