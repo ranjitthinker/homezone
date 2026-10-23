@@ -710,23 +710,8 @@ const DefaultHeader = () => {
               )}
             </div>
 
-            {/* ✅ Right Actions: Post Property + Contact Us + Hamburger Menu */}
+            {/* ✅ Right Actions: Contact Us + Hamburger Menu */}
             <div className="d-flex align-items-center gap-2 gap-xl-3 flex-shrink-0">
-              <Link
-                href="/post-property"
-                className="btn text-white d-none d-lg-inline-flex align-items-center px-3 py-2"
-                style={{
-                  backgroundColor: '#eb6753',
-                  borderRadius: '30px',
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                <i className="flaticon-home me-2" /> Post Property Free
-              </Link>
-
               <Link href="/contact" className="header-contact-btn">
                 <span className="flaticon-call btn-icon" />
                 <span>Contact Us</span>
