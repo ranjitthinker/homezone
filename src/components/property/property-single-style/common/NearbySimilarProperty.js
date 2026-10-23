@@ -196,18 +196,33 @@ const NearbySimilarProperty = ({ propertyId }) => {
 
                 <hr className="mt-2 mb-2" />
 
-                <div className="list-meta2 d-flex justify-content-between align-items-center">
-                  <span className="for-what">{getListingType(property.listed_in)}</span>
+                <div className="list-meta2 d-flex justify-content-between align-items-center pt-2">
+                  <span className="for-what fw600 text-muted fz13">{getListingType(property.listed_in)}</span>
 
-                  <div className="icons d-flex align-items-center">
-                    <a href="#">
-                      <span className="flaticon-fullscreen" />
-                    </a>
-                    <a href="#">
-                      <span className="flaticon-new-tab" />
-                    </a>
-                    <a href="#">
-                      <span className="flaticon-like" />
+                  <div className="d-flex align-items-center gap-2">
+                    <a
+                      href={`https://wa.me/919855515783?text=${encodeURIComponent(
+                        `Hi Home Zone, I am interested in "${property.title}" (ID: #${property.custom_id || property.id}). Please share details.`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="d-inline-flex align-items-center text-white"
+                      style={{
+                        backgroundColor: '#25D366',
+                        borderRadius: '20px',
+                        padding: '4px 10px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                        lineHeight: '1.2',
+                        boxShadow: '0 2px 6px rgba(37, 211, 102, 0.25)',
+                        whiteSpace: 'nowrap',
+                        height: '28px',
+                      }}
+                      title="Chat on WhatsApp"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <i className="fab fa-whatsapp me-1" style={{ fontSize: '13px' }} /> WhatsApp
                     </a>
                   </div>
                 </div>

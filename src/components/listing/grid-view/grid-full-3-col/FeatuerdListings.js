@@ -173,30 +173,34 @@ const FeaturedListings = ({ data, colstyle }) => {
 
                 <hr className="mt-2 mb-2" />
 
-                <div className="list-meta2 d-flex justify-content-between align-items-center">
-                  <span className="for-what">
+                <div className="list-meta2 d-flex justify-content-between align-items-center pt-2">
+                  <span className="for-what fw600 text-muted fz13">
                     {isCommercial ? 'Commercial' : `For ${listing.listed_in === 'rent' ? 'Rent' : 'Sale'}`}
                   </span>
-                  <div className="icons d-flex align-items-center gap-2">
+                  <div className="d-flex align-items-center gap-2">
                     <a
                       href={`https://wa.me/919855515783?text=${encodeURIComponent(
                         `Hi Home Zone, I am interested in "${listing.title}" (ID: #${listing.custom_id || listing.id}) ${priceValue > 0 ? `priced at ₹${Math.round(priceValue).toLocaleString('en-IN')}` : '(Price on Request)'}. Please share details.`
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn btn-sm text-white d-inline-flex align-items-center"
+                      className="d-inline-flex align-items-center text-white"
                       style={{
                         backgroundColor: '#25D366',
                         borderRadius: '20px',
-                        padding: '3px 10px',
+                        padding: '4px 10px',
                         fontSize: '11px',
                         fontWeight: 600,
                         textDecoration: 'none',
+                        lineHeight: '1.2',
+                        boxShadow: '0 2px 6px rgba(37, 211, 102, 0.25)',
+                        whiteSpace: 'nowrap',
+                        height: '28px',
                       }}
                       title="Chat on WhatsApp"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <i className="fab fa-whatsapp me-1" /> WhatsApp
+                      <i className="fab fa-whatsapp me-1" style={{ fontSize: '13px' }} /> WhatsApp
                     </a>
 
                     <button
@@ -204,47 +208,43 @@ const FeaturedListings = ({ data, colstyle }) => {
                       onClick={(e) => toggleCompare(e, listing)}
                       title={compareList[listing.id] ? "Remove from Compare" : "Add to Compare"}
                       style={{
-                        background: 'none',
-                        border: 'none',
-                        padding: 0,
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: '50%',
+                        backgroundColor: compareList[listing.id] ? '#fff0ed' : '#f7f7f7',
+                        border: '1px solid #ebebeb',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         cursor: 'pointer',
-                        color: compareList[listing.id] ? '#eb6753' : '#717171',
-                        lineHeight: 1,
+                        color: compareList[listing.id] ? '#eb6753' : '#6c757d',
+                        transition: 'all 0.2s ease',
+                        padding: 0,
                       }}
                     >
-                      <i className="fas fa-columns" style={{ fontSize: '13px' }} />
+                      <i className="fas fa-columns" style={{ fontSize: '11px' }} />
                     </button>
 
-                    <Link
-                      href={`/property/${listing.slug}`}
-                      title="View Property"
-                      className="text-dark"
-                    >
-                      <span className="flaticon-fullscreen" />
-                    </Link>
-                    <Link
-                      href={`/property/${listing.slug}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Open in new tab"
-                      className="text-dark"
-                    >
-                      <span className="flaticon-new-tab" />
-                    </Link>
                     <button
                       type="button"
                       onClick={(e) => toggleFavorite(e, listing)}
                       title={favorites[listing.id] ? "Remove from favorites" : "Save to favorites"}
                       style={{
-                        background: 'none',
-                        border: 'none',
-                        padding: 0,
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: '50%',
+                        backgroundColor: favorites[listing.id] ? '#fff0ed' : '#f7f7f7',
+                        border: '1px solid #ebebeb',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         cursor: 'pointer',
-                        color: favorites[listing.id] ? '#e53935' : 'inherit',
-                        lineHeight: 1,
+                        color: favorites[listing.id] ? '#eb6753' : '#6c757d',
+                        transition: 'all 0.2s ease',
+                        padding: 0,
                       }}
                     >
-                      <span className="flaticon-like" />
+                      <i className={favorites[listing.id] ? "fas fa-heart text-danger" : "far fa-heart"} style={{ fontSize: '12px' }} />
                     </button>
                   </div>
                 </div>
