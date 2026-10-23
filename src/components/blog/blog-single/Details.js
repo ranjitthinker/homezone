@@ -9,6 +9,17 @@ import { API_URLS } from '@/utils/api/apiUrls';
 import Social from './Social';
 
 /**
+ * Strips accidental transparent/white/inherited background colors inserted when
+ * pasting from Google Docs, MS Word, or other rich-text sources.
+ */
+function sanitizeBlogContent(html) {
+  if (!html) return '';
+  return html
+    .replace(/background-color:\s*(transparent|rgba\(\s*0\s*,\s*0\s*,\s*0\s*,\s*0\s*\)|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\)|#ffffff|#fff|inherit|initial);?/gi, '')
+    .replace(/style="\s*"/gi, '');
+}
+
+/**
  * Intelligent formatter that turns raw/plain database text into high-quality,
  * editorial HTML with headings, checklists, callouts, and tip boxes matching the PDF layout.
  * If the content already contains rich HTML (e.g. from Summernote), it preserves it directly.
@@ -16,10 +27,12 @@ import Social from './Social';
 function formatBlogTextToHtml(rawText) {
   if (!rawText) return '';
 
+  const cleaned = sanitizeBlogContent(rawText);
+
   // Check if content is already formatted HTML (e.g. from Summernote)
-  const hasHtml = /<[a-z][\s\S]*>/i.test(rawText);
+  const hasHtml = /<[a-z][\s\S]*>/i.test(cleaned);
   if (hasHtml) {
-    return rawText;
+    return cleaned;
   }
 
   const lines = rawText
@@ -349,13 +362,24 @@ export default function BlogDetails({ id: propId }) {
 
         /* Highlighting and Mark text */
         .blog-content-body mark,
-        .blog-content-body .highlight,
-        .blog-content-body span[style*="background-color"] {
+        .blog-content-body .highlight {
           background-color: #fef08a !important;
           color: #713f12 !important;
           padding: 2px 6px;
           border-radius: 4px;
           font-weight: 500;
+        }
+
+        /* Prevent unwanted background color from pasted spans (Google Docs / MS Word) */
+        .blog-content-body span[style*="background-color: transparent"],
+        .blog-content-body span[style*="background-color:transparent"],
+        .blog-content-body span[style*="background-color: #fff"],
+        .blog-content-body span[style*="background-color:#fff"],
+        .blog-content-body span[style*="background-color: rgb(255, 255, 255)"],
+        .blog-content-body span[style*="background-color:rgb(255,255,255)"] {
+          background-color: transparent !important;
+          color: inherit !important;
+          padding: 0 !important;
         }
 
         /* Checklist Bullets */
