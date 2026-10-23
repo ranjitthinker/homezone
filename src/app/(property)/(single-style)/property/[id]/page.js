@@ -154,12 +154,14 @@ const SingleV4 = async (props) => {
               </div>
               {/* End .ps-widget */}
 
-              {/* <div id="video" className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 ">
-                <h4 className="title fz17 mb30">Video</h4>
-                <div className="row">
-                  <PropertyVideo videoUrl={property.video_url} />
+              {property?.video_url && (
+                <div id="video" className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30">
+                  <h4 className="title fz17 mb30">Property Video Walkthrough</h4>
+                  <div className="row">
+                    <PropertyVideo url={property.video_url} />
+                  </div>
                 </div>
-              </div> */}
+              )}
               {/* End .ps-widget */}
 
               {/* <div

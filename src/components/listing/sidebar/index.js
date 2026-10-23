@@ -47,21 +47,25 @@ const ListingSidebar = ({filterFunctions}) => {
       </div>
       {/* End .widget-wrapper */}
 
-      <div className="widget-wrapper">
-        <h6 className="list-title">Bedrooms</h6>
-        <div className="d-flex">
-          <Bedroom filterFunctions={filterFunctions} />
-        </div>
-      </div>
-      {/* End .widget-wrapper */}
+      {filterFunctions?.effectiveCategory !== 'commercial' && (
+        <>
+          <div className="widget-wrapper">
+            <h6 className="list-title">Bedrooms</h6>
+            <div className="d-flex">
+              <Bedroom filterFunctions={filterFunctions} />
+            </div>
+          </div>
+          {/* End .widget-wrapper */}
 
-      <div className="widget-wrapper">
-        <h6 className="list-title">Bathrooms</h6>
-        <div className="d-flex">
-          <Bathroom filterFunctions={filterFunctions}  />
-        </div>
-      </div>
-      {/* End .widget-wrapper */}
+          <div className="widget-wrapper">
+            <h6 className="list-title">Bathrooms</h6>
+            <div className="d-flex">
+              <Bathroom filterFunctions={filterFunctions}  />
+            </div>
+          </div>
+          {/* End .widget-wrapper */}
+        </>
+      )}
 
       <div className="widget-wrapper advance-feature-modal">
         <h6 className="list-title">Location</h6>

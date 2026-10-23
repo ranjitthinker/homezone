@@ -78,11 +78,12 @@ const PropertyHeader = ({ data }) => {
 
   // ✅ Clean integer prices without decimal paise
   const rawPrice = Number(data.price) || 0;
+  const hasPrice = rawPrice > 0;
   const cleanPrice = Math.round(rawPrice);
-  const formattedPrice = `₹${cleanPrice.toLocaleString('en-IN')}`;
+  const formattedPrice = hasPrice ? `₹${cleanPrice.toLocaleString('en-IN')}` : 'Price on Request';
 
   const sizeFt = data.details?.size_ft;
-  const pricePerSqft = sizeFt && sizeFt > 0 ? Math.round(rawPrice / sizeFt).toLocaleString('en-IN') : null;
+  const pricePerSqft = hasPrice && sizeFt && sizeFt > 0 ? Math.round(rawPrice / sizeFt).toLocaleString('en-IN') : null;
 
   return (
     <>
@@ -222,10 +223,43 @@ const PropertyHeader = ({ data }) => {
               </button>
             </div>
 
-            <h3 className="price mb-0 fw-bold">{formattedPrice}</h3>
-
-            {pricePerSqft && (
-              <p className="text space fz15 text-muted mb-0">₹{pricePerSqft}/sq ft</p>
+            {hasPrice ? (
+              <>
+                <h3 className="price mb-0 fw-bold">{formattedPrice}</h3>
+                {pricePerSqft && (
+                  <p className="text space fz15 text-muted mb-0">₹{pricePerSqft}/sq ft</p>
+                )}
+              </>
+            ) : (
+              <div className="d-flex flex-column align-items-lg-end">
+                <a
+                  href={`https://wa.me/919855515783?text=${encodeURIComponent(
+                    `Hi Home Zone, I would like to request the price & details for property #${data.custom_id || data.id} (${data.title}).`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn d-inline-flex align-items-center gap-2 fw600 px-3 py-2 text-decoration-none shadow-sm"
+                  style={{
+                    backgroundColor: '#fff3f0',
+                    color: '#eb6753',
+                    border: '1.5px solid #eb6753',
+                    borderRadius: '8px',
+                    fontSize: '15px',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#eb6753';
+                    e.currentTarget.style.color = '#ffffff';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#fff3f0';
+                    e.currentTarget.style.color = '#eb6753';
+                  }}
+                  title="Request Price on WhatsApp"
+                >
+                  <i className="flaticon-call fz14" /> Price on Request
+                </a>
+              </div>
             )}
           </div>
         </div>

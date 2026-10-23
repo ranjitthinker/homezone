@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Contact Us || Home Zone Real Estate",
+  description: "Connect with Home Zone property consultants. Instant phone and WhatsApp support for verified residential and commercial properties.",
 };
 
 const Contact = () => {
@@ -20,8 +21,8 @@ const Contact = () => {
       <MobileMenu />
       {/* End Mobile Nav  */}
 
-      {/* Start Our Contact Form & Office Address Section */}
-      <section className="pb70" style={{ paddingTop: '100px', backgroundColor: '#f7f7f7' }}>
+      {/* Start Contact Form & Direct Connect Section */}
+      <section className="pb90" style={{ paddingTop: '100px', backgroundColor: '#f7f7f7' }}>
         <div className="container">
           {/* Page Heading */}
           <div className="row mb30">
@@ -35,13 +36,13 @@ const Contact = () => {
                   fontSize: '13px',
                 }}
               >
-                GET IN TOUCH
+                DIRECT SUPPORT
               </span>
               <h2 className="title fz32 fw700 mb-2" style={{ color: '#181a20' }}>
                 Contact Home Zone Real Estate
               </h2>
               <p className="text text-muted fz15 mb-0">
-                Have questions about our residential or commercial properties? Visit our office or connect directly with our advisory team.
+                Have questions about our residential or commercial properties? Connect directly with our dedicated advisory team.
               </p>
             </div>
           </div>
@@ -61,7 +62,7 @@ const Contact = () => {
             </div>
             {/* End .col */}
 
-            {/* Right Column: Office Address & Direct Connect Card */}
+            {/* Right Column: Direct Connect & Support Card (No physical address) */}
             <div className="col-lg-6">
               <div
                 className="default-box-shadow1 bdrs12 bdr1 p35 bgc-white h-100"
@@ -77,55 +78,18 @@ const Contact = () => {
                       fontSize: '12px',
                     }}
                   >
-                    HEAD OFFICE & SUPPORT
+                    CUSTOMER SUPPORT &amp; ADVISORY
                   </span>
                   <h3 className="fz24 fw700 mt-2 mb-2" style={{ color: '#181a20' }}>
-                    Visit Our Office
+                    Connect Directly With Us
                   </h3>
                   <p className="text-muted fz14 mb-0">
-                    Feel free to visit our office during working hours or call our helpline for instant assistance with verified property deals.
+                    Reach out to our expert property advisors via phone call, WhatsApp, or email for instant assistance with verified property deals.
                   </p>
                 </div>
 
-                {/* Office Info Items */}
+                {/* Support Info Items */}
                 <div className="d-flex flex-column gap-3 mb30">
-                  {/* Address */}
-                  <div
-                    className="d-flex align-items-start p-3 rounded-3"
-                    style={{ backgroundColor: '#fcfcfc', border: '1px solid #f0f0f0' }}
-                  >
-                    <div
-                      className="d-flex align-items-center justify-content-center me-3 flex-shrink-0"
-                      style={{
-                        width: '46px',
-                        height: '46px',
-                        borderRadius: '12px',
-                        backgroundColor: '#fff0ed',
-                        color: '#eb6753',
-                        fontSize: '20px',
-                      }}
-                    >
-                      <i className="flaticon-map" />
-                    </div>
-                    <div>
-                      <h6 className="fz14 fw600 mb-1" style={{ color: '#717171' }}>
-                        Office Address
-                      </h6>
-                      <p className="fz15 fw600 mb-1" style={{ color: '#181a20' }}>
-                        Bahadurgarh, Patiala, Punjab, India
-                      </p>
-                      <a
-                        href="https://www.google.com/maps/search/?api=1&query=Bahadurgarh+Patiala+Punjab"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="fz13 fw600 text-decoration-underline"
-                        style={{ color: '#eb6753' }}
-                      >
-                        Get Directions on Google Maps <i className="fal fa-arrow-up-right ms-1" />
-                      </a>
-                    </div>
-                  </div>
-
                   {/* Phone & WhatsApp */}
                   <div
                     className="d-flex align-items-start p-3 rounded-3"
@@ -146,14 +110,14 @@ const Contact = () => {
                     </div>
                     <div>
                       <h6 className="fz14 fw600 mb-1" style={{ color: '#717171' }}>
-                        Call & WhatsApp Helpline
+                        Call &amp; WhatsApp Helpline
                       </h6>
                       <p className="fz16 fw700 mb-1" style={{ color: '#181a20' }}>
                         <a href="tel:+919855515783" style={{ color: 'inherit' }}>
                           +91-9855515783
                         </a>
                       </p>
-                      <small className="text-muted">Direct phone consultations available</small>
+                      <small className="text-muted">Instant advisory on verified properties</small>
                     </div>
                   </div>
 
@@ -192,7 +156,7 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  {/* Hours */}
+                  {/* Working Hours */}
                   <div
                     className="d-flex align-items-start p-3 rounded-3"
                     style={{ backgroundColor: '#fcfcfc', border: '1px solid #f0f0f0' }}
@@ -212,12 +176,41 @@ const Contact = () => {
                     </div>
                     <div>
                       <h6 className="fz14 fw600 mb-1" style={{ color: '#717171' }}>
-                        Working Hours
+                        Support &amp; Consultation Hours
                       </h6>
                       <p className="fz14 fw600 mb-0" style={{ color: '#181a20' }}>
                         Monday – Saturday: 9:30 AM – 7:00 PM
                       </p>
                       <small className="text-muted">Sunday: By Prior Appointment</small>
+                    </div>
+                  </div>
+
+                  {/* Response Promise */}
+                  <div
+                    className="d-flex align-items-start p-3 rounded-3"
+                    style={{ backgroundColor: '#fcfcfc', border: '1px solid #f0f0f0' }}
+                  >
+                    <div
+                      className="d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+                      style={{
+                        width: '46px',
+                        height: '46px',
+                        borderRadius: '12px',
+                        backgroundColor: '#fff0ed',
+                        color: '#eb6753',
+                        fontSize: '20px',
+                      }}
+                    >
+                      <i className="flaticon-chat" />
+                    </div>
+                    <div>
+                      <h6 className="fz14 fw600 mb-1" style={{ color: '#717171' }}>
+                        Quick Response Guarantee
+                      </h6>
+                      <p className="fz14 fw600 mb-0" style={{ color: '#181a20' }}>
+                        Within 15 to 30 Minutes
+                      </p>
+                      <small className="text-muted">Direct connect with verified experts, zero spam calls</small>
                     </div>
                   </div>
                 </div>
@@ -254,20 +247,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
-      {/* End Our Contact Form & Office Address Section */}
-
-      {/* Our Contact With Map pointing to Bahadurgarh, Patiala */}
-      <section className="p-0">
-        <iframe
-          className="home8-map contact-page"
-          loading="lazy"
-          src="https://maps.google.com/maps?q=Bahadurgarh%2C%20Patiala%2C%20Punjab%2C%20India&t=m&z=14&output=embed&iwloc=near"
-          title="Home Zone Real Estate, Bahadurgarh, Patiala, Punjab"
-          aria-label="Home Zone Real Estate, Bahadurgarh, Patiala, Punjab"
-          style={{ width: '100%', height: '420px', border: 0 }}
-        />
-      </section>
-      {/* End Our Contact With Map */}
+      {/* End Contact Form & Direct Connect Section */}
 
       {/* Our CTA */}
       <CallToActions />

@@ -1,10 +1,15 @@
 import React from "react";
 
 const PropertyDetails = ({ data }) => {
+  const catName = (data?.category?.name || '').toLowerCase();
+  const catSlug = (data?.category?.slug || '').toLowerCase();
+  const isCommercial = catName.includes('commercial') || catSlug.includes('commercial') ||
+                       ['office-space', 'shop', 'showroom', 'commercial-plot'].includes(catSlug);
+
   // Helper to format price
   const formatPrice = (price) => {
-    if (!price) return "N/A";
-    return `₹${Number(price).toLocaleString("en-IN")}`;
+    if (!price || Number(price) <= 0) return "Price on Request";
+    return `₹${Math.round(Number(price)).toLocaleString("en-IN")}`;
   };
 
   // Helper to format listed_in status
@@ -18,7 +23,7 @@ const PropertyDetails = ({ data }) => {
     return statusMap[listedIn] || listedIn;
   };
 
-  const columns = [
+  const residentialColumns = [
     [
       {
         label: "Property ID",
@@ -35,18 +40,26 @@ const PropertyDetails = ({ data }) => {
           : "N/A",
       },
       {
-        label: "Bathrooms",
-        value: data?.details?.bathrooms || "N/A",
+        label: "Bedrooms",
+        value: data?.details?.bedrooms ? `${data.details.bedrooms} BHK / Beds` : "N/A",
       },
       {
-        label: "Bedrooms",
-        value: data?.details?.bedrooms || "N/A",
+        label: "Bathrooms",
+        value: data?.details?.bathrooms || "N/A",
       },
     ],
     [
       {
-        label: "Garage",
-        value: data?.details?.garages || "N/A",
+        label: "Property Type",
+        value: data?.category?.name || "Residential",
+      },
+      {
+        label: "Property Status",
+        value: formatListedIn(data?.listed_in),
+      },
+      {
+        label: "Parking / Garage",
+        value: data?.details?.garages || "Available",
       },
       {
         label: "Garage Size",
@@ -58,16 +71,59 @@ const PropertyDetails = ({ data }) => {
         label: "Year Built",
         value: data?.details?.year_built || "N/A",
       },
+    ],
+  ];
+
+  const commercialColumns = [
+    [
       {
-        label: "Property Type",
-        value: data?.category?.name || "N/A",
+        label: "Property ID",
+        value: data?.custom_id || `#${data?.id}` || "N/A",
+      },
+      {
+        label: "Price / Value",
+        value: formatPrice(data?.price),
+      },
+      {
+        label: "Carpet Area",
+        value: data?.details?.size_ft
+          ? `${data.details.size_ft} Sq Ft`
+          : "N/A",
+      },
+      {
+        label: "Frontage / Access",
+        value: data?.extra_details?.frontage || "Main Road / High Footfall Access",
+      },
+      {
+        label: "Power Backup",
+        value: data?.extra_details?.power_backup || "Available (100% DG Backup)",
+      },
+    ],
+    [
+      {
+        label: "Commercial Type",
+        value: data?.category?.name || "Commercial Space",
       },
       {
         label: "Property Status",
         value: formatListedIn(data?.listed_in),
       },
+      {
+        label: "Suitable For",
+        value: data?.extra_details?.suitable_for || "Office, Showroom, Retail, Clinic",
+      },
+      {
+        label: "Parking Spaces",
+        value: data?.details?.garages ? `${data.details.garages} Dedicated` : "Customer & Dedicated Parking",
+      },
+      {
+        label: "Year Built",
+        value: data?.details?.year_built || "N/A",
+      },
     ],
   ];
+
+  const columns = isCommercial ? commercialColumns : residentialColumns;
 
   return (
     <div className="row">

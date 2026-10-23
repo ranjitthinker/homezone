@@ -44,8 +44,8 @@ const NearbySimilarProperty = ({ propertyId }) => {
   }, [propertyId]);
 
   const formatPrice = (price) => {
-    if (!price) return '';
-    return Number(price).toLocaleString('en-IN');
+    if (!price || Number(price) <= 0) return '';
+    return Math.round(Number(price)).toLocaleString('en-IN');
   };
 
   const getLocationText = (location) => {
@@ -131,10 +131,16 @@ const NearbySimilarProperty = ({ propertyId }) => {
                   </div>
                 )}
 
-                <div className="list-price">
-                  ₹{formatPrice(property.price)}{' '}
-                  {property.after_price_label ? <span>{property.after_price_label}</span> : null}
-                </div>
+                {Number(property.price) > 0 ? (
+                  <div className="list-price">
+                    ₹{formatPrice(property.price)}{' '}
+                    {property.after_price_label ? <span>{property.after_price_label}</span> : null}
+                  </div>
+                ) : (
+                  <div className="list-price">
+                    Price on Request
+                  </div>
+                )}
               </div>
 
               <div className="list-content">

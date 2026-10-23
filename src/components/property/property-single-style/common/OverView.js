@@ -9,34 +9,44 @@ const OverView = ({ data }) => {
     !isCommercial && Number(data?.details?.bedrooms || 0) > 0 && {
       icon: "flaticon-bed",
       label: "Bedroom",
-      value: `${data.details.bedrooms} Beds`,
+      value: `${data.details.bedrooms} BHK / Beds`,
     },
     !isCommercial && Number(data?.details?.bathrooms || 0) > 0 && {
       icon: "flaticon-shower",
       label: "Bath",
       value: `${data.details.bathrooms} Baths`,
     },
+    isCommercial && {
+      icon: "flaticon-expand",
+      label: "Frontage / Access",
+      value: data?.extra_details?.frontage || "Main Road Access",
+    },
+    isCommercial && {
+      icon: "flaticon-electricity",
+      label: "Power Backup",
+      value: data?.extra_details?.power_backup || "100% DG Backup",
+    },
+    data?.details?.size_ft && Number(data.details.size_ft) > 0 && {
+      icon: "flaticon-expand",
+      label: isCommercial ? "Carpet Area" : "Area / Size",
+      value: `${data.details.size_ft} sqft`,
+      xs: true,
+    },
+    data?.details?.garages && {
+      icon: "flaticon-garage",
+      label: isCommercial ? "Parking / Loading" : "Garage / Parking",
+      value: data.details.garages,
+      xs: true,
+    },
     data?.details?.year_built && {
       icon: "flaticon-event",
       label: "Year Built",
       value: data.details.year_built,
     },
-    data?.details?.garages && {
-      icon: "flaticon-garage",
-      label: "Garage / Parking",
-      value: data.details.garages,
-      xs: true,
-    },
-    data?.details?.size_ft && Number(data.details.size_ft) > 0 && {
-      icon: "flaticon-expand",
-      label: "Area / Size",
-      value: `${data.details.size_ft} sqft`,
-      xs: true,
-    },
     {
       icon: "flaticon-home-1",
       label: "Property Type",
-      value: data?.category?.name || (isCommercial ? "Commercial" : "Residential"),
+      value: data?.category?.name || (isCommercial ? "Commercial Space" : "Residential"),
     },
   ].filter(Boolean);
 

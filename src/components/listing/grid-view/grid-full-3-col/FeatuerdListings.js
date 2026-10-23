@@ -180,7 +180,7 @@ const FeaturedListings = ({ data, colstyle }) => {
                   <div className="icons d-flex align-items-center gap-2">
                     <a
                       href={`https://wa.me/919855515783?text=${encodeURIComponent(
-                        `Hi Home Zone, I am interested in "${listing.title}" (ID: #${listing.custom_id || listing.id}) priced at ₹${Math.round(priceValue || 0).toLocaleString('en-IN')}. Please share details.`
+                        `Hi Home Zone, I am interested in "${listing.title}" (ID: #${listing.custom_id || listing.id}) ${priceValue > 0 ? `priced at ₹${Math.round(priceValue).toLocaleString('en-IN')}` : '(Price on Request)'}. Please share details.`
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"

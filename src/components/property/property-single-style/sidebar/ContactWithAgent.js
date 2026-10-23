@@ -44,12 +44,26 @@ const ContactWithAgent = ({ property }) => {
       </div>
       {/* End agent-single */}
 
-      {/* <div className="d-grid">
-        <Link href="/agent-single/3" className="ud-btn btn-white2">
-          Contact Agent
-          <i className="fal fa-arrow-right-long" />
-        </Link>
-      </div> */}
+      <div className="d-grid mt-3">
+        <a
+          href={`https://wa.me/919855515783?text=${encodeURIComponent(
+            `Hi Home Zone, I am interested in property #${property?.custom_id || property?.id} (${property?.title || 'Property'}) ${Number(property?.price) > 0 ? `priced at ₹${Math.round(Number(property.price)).toLocaleString('en-IN')}` : '(Price on Request)'}. Please connect me with the developer/agent.`
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ud-btn text-white d-flex align-items-center justify-content-center"
+          style={{
+            backgroundColor: '#25D366',
+            borderColor: '#25D366',
+            borderRadius: '10px',
+            padding: '12px',
+            fontWeight: 600,
+          }}
+        >
+          <i className="fab fa-whatsapp me-2" style={{ fontSize: '18px' }} />
+          Chat on WhatsApp
+        </a>
+      </div>
     </>
   );
 };

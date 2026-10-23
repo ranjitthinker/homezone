@@ -137,6 +137,7 @@ export default function ProperteyFiltering() {
     },
     setPropertyTypes,
     resetFilter,
+    effectiveCategory,
     priceRange, listingStatus, propertyTypes,
     bedrooms, bathroms, location,
     squirefeet, yearBuild, categories,

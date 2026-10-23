@@ -24,17 +24,27 @@ const MobileBottomBar = ({property}) => {
 
         {/* Action Buttons */}
         <div className="bottom-bar-buttons">
+          <a
+            href={`https://wa.me/919855515783?text=${encodeURIComponent(
+              `Hi Home Zone, I am interested in property #${property?.custom_id || property?.id} (${property?.title || 'Property'}) ${Number(property?.price) > 0 ? `priced at ₹${Math.round(Number(property.price)).toLocaleString('en-IN')}` : '(Price on Request)'}. Please share details.`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-whatsapp-bar"
+          >
+            <i className="fab fa-whatsapp me-1"></i> WhatsApp
+          </a>
+          <a
+            href="tel:+919855515783"
+            className="btn btn-call-bar"
+          >
+            <i className="fas fa-phone-alt me-1"></i> Call
+          </a>
           <button
             className="btn btn-callback"
             onClick={() => setShowCallbackModal(true)}
           >
-            Get Callback
-          </button>
-          <button
-            className="btn btn-contact-developer"
-            onClick={() => setShowContactModal(true)}
-          >
-            Contact Developer
+            Callback
           </button>
         </div>
       </div>
@@ -143,14 +153,45 @@ const MobileBottomBar = ({property}) => {
           padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
         }
 
+        .btn-whatsapp-bar {
+          flex: 1.3;
+          padding: 10px 12px;
+          border: none;
+          background: #25D366;
+          color: #fff;
+          font-weight: 600;
+          font-size: 13px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          box-shadow: 0 2px 6px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-call-bar {
+          flex: 1;
+          padding: 10px 12px;
+          border: 1.5px solid #181a20;
+          background: #fff;
+          color: #181a20;
+          font-weight: 600;
+          font-size: 13px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+        }
+
         .btn-callback {
           flex: 1;
-          padding: 12px 16px;
-          border: 2px solid #333;
-          background: #fff;
-          color: #333;
+          padding: 10px 12px;
+          border: 1.5px solid #ebebeb;
+          background: #f7f7f7;
+          color: #555;
           font-weight: 600;
-          font-size: 14px;
+          font-size: 13px;
           border-radius: 8px;
           transition: all 0.3s ease;
         }
