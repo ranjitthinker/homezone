@@ -1,42 +1,56 @@
 module.exports = [
   {
     id: 1,
-    title: "Exceptional Service & Complete Transparency",
+    title: "Seamless 3 BHK Purchase in Sector 82, Mohali",
     quote:
-      "Home Zone made finding our dream sea-view apartment in Mumbai completely effortless. Their verified legal documentation, timely updates, and zero hidden charges gave us tremendous peace of mind.",
+      "Home Zone made our property search in Mohali completely effortless. Their team verified all RERA approvals, coordinated private site visits, and handled bank documentation transparently. Excellent advisory!",
     stars: 5,
-    image: "/images/testimonials/testi-1.png",
-    name: "Rajesh & Sunita Sharma",
-    company: "Worli Resident, Mumbai",
+    name: "Harpreet & Simran Singh",
+    company: "Sector 82 Resident, Mohali",
   },
   {
     id: 2,
-    title: "Found Our Dream Independent Villa",
+    title: "High-Yield Commercial Showroom on PR7 Airport Road",
     quote:
-      "The Home Zone team understood our exact requirements for a 4 BHK villa in Whitefield. Their in-depth knowledge of builder reputations and RERA compliances helped us make the perfect investment.",
+      "I was looking for a high-rental-yield commercial showroom on PR7 Airport Road, Zirakpur. The market analysis, footfall data, and builder reputation checks provided by Home Zone were spot on.",
     stars: 5,
-    image: "/images/testimonials/testi-2.png",
-    name: "Vikramaditya Reddy",
-    company: "Tech Entrepreneur, Bengaluru",
+    name: "Rajeev Aggarwal",
+    company: "Business Owner, Chandigarh",
   },
   {
     id: 3,
-    title: "Seamless Buying Experience from Start to Finish",
+    title: "Honest Legal Verification & Hassle-Free Registry in Panchkula",
     quote:
-      "From scheduling private property visits to the final registry documentation, the guidance was top-notch. Truly the most reliable real estate consultancy we have worked with.",
+      "From title deed verification to municipal approvals and final registry at the tehsil office, Home Zone handled everything with utmost integrity. Truly the most reliable property consultants in Tricity.",
     stars: 5,
-    image: "/images/testimonials/testi-3.png",
-    name: "Priya & Amit Malhotra",
-    company: "Golf Course Road, Gurugram",
+    name: "Col. Rajesh & Anita Sharma",
+    company: "Sector 7 Resident, Panchkula",
   },
   {
     id: 4,
-    title: "Prime Overseas Investment Guidance",
+    title: "Top NRI Advisory for Luxury Villa in New Chandigarh",
     quote:
-      "As an NRI investor looking for high rental yields, Home Zone delivered unmatched advisory on prime properties in Dubai and Mumbai. Highly professional and dependable.",
+      "As an NRI looking to invest in New Chandigarh, I needed a trusted partner on the ground. Home Zone provided end-to-end guidance from plot selection to legal paperwork with zero hassle.",
     stars: 5,
-    image: "/images/testimonials/testi-1.png",
-    name: "Ananya Singhania",
-    company: "International Investor, Dubai",
+    name: "Gurinder Sandhu",
+    company: "NRI Property Investor, New Chandigarh",
+  },
+  {
+    id: 5,
+    title: "Found Our Dream 4 BHK Gated Flat in Zirakpur",
+    quote:
+      "Home Zone understood our family's exact needs for clubhouse amenities and security. They negotiated the best direct deal with the developer and saved us substantial closing costs.",
+    stars: 5,
+    name: "Vikas & Meenakshi Verma",
+    company: "VIP Road Resident, Zirakpur",
+  },
+  {
+    id: 6,
+    title: "Transparent Guidance for First-Time Homebuyers in Kharar",
+    quote:
+      "Being first-time buyers, we were anxious about builder timelines and registry approvals. The Home Zone team stood by us at every step, making the entire journey smooth and stress-free.",
+    stars: 5,
+    name: "Rohan & Pooja Kapila",
+    company: "Sunny Enclave, Kharar",
   },
 ];

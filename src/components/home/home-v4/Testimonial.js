@@ -1,6 +1,5 @@
 "use client";
 import testimonialData from "@/data/testimonials";
-import Image from "next/image";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -51,18 +50,32 @@ const Testimonial = () => {
                   </div>
                 </div>
                 <div className="thumb d-flex align-items-center">
-                  <div className="flex-shrink-0">
-                    <Image
-                      width={60}
-                      height={60}
-                      className="wa"
-                      src={testimonial.image}
-                      alt="avatar"
-                    />
+                  <div
+                    className="flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center text-white fw-bold shadow-sm"
+                    style={{
+                      width: 48,
+                      height: 48,
+                      background: 'linear-gradient(135deg, #eb6753, #e0533d)',
+                      fontSize: '15px',
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    {testimonial.name
+                      .split(' ')
+                      .filter((w) => !['&', 'and', 'Col.'].includes(w))
+                      .map((n) => n[0])
+                      .filter(Boolean)
+                      .slice(0, 2)
+                      .join('')}
                   </div>
                   <div className="flex-grow-1 ms-3">
-                    <h6 className="mb-0">{testimonial.name}</h6>
-                    <p className="mb-0">{testimonial.company}</p>
+                    <h6 className="mb-0 fw600 fz16 d-flex align-items-center flex-wrap">
+                      <span>{testimonial.name}</span>
+                      <span className="ms-2 badge bg-success-subtle text-success border border-success-subtle rounded-pill fz11 fw-normal px-2 py-0">
+                        <i className="fas fa-check-circle me-1" /> Verified
+                      </span>
+                    </h6>
+                    <p className="mb-0 text-muted fz13">{testimonial.company}</p>
                   </div>
                 </div>
               </div>
