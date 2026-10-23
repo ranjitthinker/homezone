@@ -234,8 +234,11 @@ export default function BlogDetails({ id: propId }) {
             },
             author: {
               name: apiBlog.author_name || 'Home Zone Editorial',
-              role: 'Real Estate Research Specialist',
-              avatar: '/images/blog/author-1.png',
+              role: apiBlog.author_role || 'Real Estate Research Specialist',
+              avatar: apiBlog.author_avatar || '/images/header-logo2.svg',
+              bio:
+                apiBlog.author_bio ||
+                'Senior consultant analyzing verified property documentation, high-growth investment corridors, and luxury residential trends for Home Zone.',
             },
             intro: apiBlog.excerpt || '',
             content: apiBlog.content || '',
@@ -539,16 +542,23 @@ export default function BlogDetails({ id: propId }) {
             <div className="blog-single-meta pb30 bdrb1">
               <div className="post-author d-sm-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center mb10-sm">
-                  <Image
-                    width={48}
-                    height={48}
-                    className="rounded-circle mr15 border"
-                    src={blog.author?.avatar || '/images/blog/author-1.png'}
-                    alt={blog.author?.name || 'Author'}
-                  />
+                  <div
+                    className="rounded-circle mr15 border d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0"
+                    style={{ width: 44, height: 44, background: '#ffffff', padding: '3px' }}
+                  >
+                    <Image
+                      width={40}
+                      height={40}
+                      unoptimized={Boolean(blog.author?.avatar?.startsWith('http'))}
+                      className="rounded-circle"
+                      src={blog.author?.avatar || '/images/header-logo2.svg'}
+                      alt={blog.author?.name || 'Home Zone Editorial'}
+                      style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+                    />
+                  </div>
                   <div>
                     <h6 className="mb-0 fw600 fz15">{blog.author?.name || 'Home Zone Editorial'}</h6>
-                    <span className="text-muted fz13">{blog.author?.role || 'Real Estate Specialist'}</span>
+                    <span className="text-muted fz13">{blog.author?.role || 'Real Estate Research Specialist'}</span>
                   </div>
                 </div>
 
@@ -612,21 +622,35 @@ export default function BlogDetails({ id: propId }) {
               style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}
             >
               <div className="d-flex align-items-center flex-wrap flex-sm-nowrap">
-                <Image
-                  width={68}
-                  height={68}
-                  className="rounded-circle mr20 mb-3 mb-sm-0 border"
-                  src={blog.author?.avatar || '/images/blog/author-1.png'}
-                  alt={blog.author?.name || 'Author'}
-                />
+                <div
+                  className="rounded-circle mr20 mb-3 mb-sm-0 border d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0"
+                  style={{
+                    width: 68,
+                    height: 68,
+                    minWidth: 68,
+                    background: '#ffffff',
+                    padding: '6px',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
+                  }}
+                >
+                  <Image
+                    width={56}
+                    height={56}
+                    unoptimized={Boolean(blog.author?.avatar?.startsWith('http'))}
+                    className="rounded-circle"
+                    src={blog.author?.avatar || '/images/header-logo2.svg'}
+                    alt={blog.author?.name || 'Home Zone Editorial'}
+                    style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+                  />
+                </div>
                 <div>
                   <h6 className="mb-1 fw600 fz17">{blog.author?.name || 'Home Zone Editorial'}</h6>
-                  <p className="text-primary fz13 mb-1 fw500">
-                    {blog.author?.role || 'Real Estate Advisory Specialist'}
+                  <p className="text-primary fz13 mb-2 fw500">
+                    {blog.author?.role || 'Real Estate Research Specialist'}
                   </p>
-                  <p className="fz13 text-secondary mb-0">
-                    Senior consultant analyzing verified property documentation, high-growth investment
-                    corridors, and luxury residential trends for Home Zone.
+                  <p className="fz13 text-secondary mb-0" style={{ lineHeight: '1.6' }}>
+                    {blog.author?.bio ||
+                      'Senior consultant analyzing verified property documentation, high-growth investment corridors, and luxury residential trends for Home Zone.'}
                   </p>
                 </div>
               </div>
