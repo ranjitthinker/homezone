@@ -236,6 +236,38 @@ const DefaultHeader = () => {
     document.body.classList.add('modal-open');
   };
 
+  // ✅ Open Sidebar Panel reliably on all pages
+  const handleOpenSidebar = async (e) => {
+    if (e) e.preventDefault();
+    if (typeof window === 'undefined') return;
+
+    const sidebarEl = document.getElementById('SidebarPanel');
+    if (!sidebarEl) return;
+
+    try {
+      const bootstrap = await import('bootstrap');
+      const offcanvasInstance = bootstrap.Offcanvas.getOrCreateInstance(sidebarEl);
+      offcanvasInstance.show();
+      return;
+    } catch (err) {
+      console.warn('Bootstrap offcanvas show fallback:', err);
+    }
+
+    sidebarEl.classList.add('show');
+    sidebarEl.style.visibility = 'visible';
+    let backdrop = document.querySelector('.offcanvas-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'offcanvas-backdrop fade show';
+      document.body.appendChild(backdrop);
+      backdrop.addEventListener('click', () => {
+        sidebarEl.classList.remove('show');
+        sidebarEl.style.visibility = '';
+        backdrop.remove();
+      });
+    }
+  };
+
   return (
     <>
       <style>{`
@@ -443,6 +475,81 @@ const DefaultHeader = () => {
   align-items: center;
   justify-content: center;
 }
+.header-hamburger-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  color: #1a1a1a;
+  outline: none;
+}
+.header-hamburger-btn:hover {
+  background: #eb6753;
+  border-color: #eb6753;
+  color: #ffffff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 14px rgba(235, 103, 83, 0.35);
+}
+.header-hamburger-btn .hamburger-icon-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18px;
+  height: 13px;
+}
+.header-hamburger-btn .hamburger-bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: currentColor;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+.header-hamburger-btn:hover .hamburger-bar {
+  background-color: #ffffff;
+}
+
+@media (max-width: 1250px) {
+  .search-master-wrapper {
+    max-width: 520px;
+  }
+  .search-island-pill {
+    padding: 6px 8px 6px 14px;
+  }
+  .header-contact-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+  .header-hamburger-btn {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .search-master-wrapper {
+    max-width: 420px;
+  }
+  .btn-text-only {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  .pill-divider {
+    margin: 0 8px;
+  }
+}
       `}</style>
 
       <header
@@ -603,12 +710,44 @@ const DefaultHeader = () => {
               )}
             </div>
 
-            {/* ✅ Contact Us CTA Button — replaces old hamburger menu */}
-            <div className="flex-shrink-0">
+            {/* ✅ Right Actions: Post Property + Contact Us + Hamburger Menu */}
+            <div className="d-flex align-items-center gap-2 gap-xl-3 flex-shrink-0">
+              <Link
+                href="/post-property"
+                className="btn text-white d-none d-lg-inline-flex align-items-center px-3 py-2"
+                style={{
+                  backgroundColor: '#eb6753',
+                  borderRadius: '30px',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                <i className="flaticon-home me-2" /> Post Property Free
+              </Link>
+
               <Link href="/contact" className="header-contact-btn">
                 <span className="flaticon-call btn-icon" />
                 <span>Contact Us</span>
               </Link>
+
+              <button
+                type="button"
+                className="header-hamburger-btn"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#SidebarPanel"
+                aria-controls="SidebarPanelLabel"
+                aria-label="Open Navigation Menu"
+                title="Open Navigation Menu"
+                onClick={handleOpenSidebar}
+              >
+                <span className="hamburger-icon-box">
+                  <span className="hamburger-bar" />
+                  <span className="hamburger-bar" />
+                  <span className="hamburger-bar" />
+                </span>
+              </button>
             </div>
           </div>
         </div>

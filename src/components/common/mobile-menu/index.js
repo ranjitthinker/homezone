@@ -50,7 +50,21 @@ const MobileMenu = () => {
                 />
               </Link>
 
-              <div></div>
+              <Link
+                href="/contact"
+                className="d-inline-flex align-items-center justify-content-center text-white"
+                style={{
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #eb6753, #e0533d)',
+                  boxShadow: '0 2px 8px rgba(235, 103, 83, 0.4)',
+                }}
+                aria-label="Contact Us"
+                title="Contact Us"
+              >
+                <i className="flaticon-call" style={{ fontSize: '13px' }} />
+              </Link>
             </div>
           </div>
         </div>
