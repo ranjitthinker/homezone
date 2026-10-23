@@ -2,14 +2,23 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useEffect, useState } from 'react';
 import apiService from '@/utils/api/apiService';
 
 const NearbySimilarProperty = ({ propertyId }) => {
+  const router = useRouter();
   const [relatedProperties, setRelatedProperties] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const handleCardClick = (e, slug) => {
+    if (e.target.closest('button, a, input, select, textarea, .icons')) {
+      return;
+    }
+    router.push(`/property/${slug}`);
+  };
 
   useEffect(() => {
     const fetchRelatedProperties = async () => {
@@ -97,15 +106,21 @@ const NearbySimilarProperty = ({ propertyId }) => {
       {relatedProperties.map((property, index) => (
         <SwiperSlide key={property.id}>
           <div className="item">
-            <div className="listing-style1">
+            <div
+              className="listing-style1"
+              style={{ cursor: 'pointer', transition: 'transform 0.25s ease, box-shadow 0.25s ease' }}
+              onClick={(e) => handleCardClick(e, property.slug || property.id)}
+            >
               <div className="list-thumb">
-                <Image
-                  width={382}
-                  height={248}
-                  className="w-100 h-100 cover"
-                  src={property.image || '/images/no-image.jpg'}
-                  alt={property.title || 'Property'}
-                />
+                <Link href={`/property/${property.slug || property.id}`} className="d-block w-100 h-100">
+                  <Image
+                    width={382}
+                    height={248}
+                    className="w-100 h-100 cover"
+                    src={property.image || '/images/no-image.jpg'}
+                    alt={property.title || 'Property'}
+                  />
+                </Link>
 
                 {index === 1 && (
                   <div className="sale-sticker-wrap">
@@ -124,7 +139,7 @@ const NearbySimilarProperty = ({ propertyId }) => {
 
               <div className="list-content">
                 <h6 className="list-title">
-                  <Link href={`/single-v1/${property.slug || property.id}`}>{property.title}</Link>
+                  <Link href={`/property/${property.slug || property.id}`}>{property.title}</Link>
                 </h6>
 
                 <p className="list-text">{getLocationText(property.location)}</p>

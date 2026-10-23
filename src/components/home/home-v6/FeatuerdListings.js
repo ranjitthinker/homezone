@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import apiService from '@/utils/api/apiService';
@@ -10,9 +11,17 @@ import { API_URLS } from '@/utils/api/apiUrls';
 import { toast } from 'react-hot-toast';
 
 const FeaturedListings = () => {
+  const router = useRouter();
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [favorites, setFavorites] = useState({});
+
+  const handleCardClick = (e, slug) => {
+    if (e.target.closest('button, a, input, select, textarea, .icons')) {
+      return;
+    }
+    router.push(`/property/${slug}`);
+  };
 
   useEffect(() => {
     try {
@@ -86,17 +95,23 @@ const FeaturedListings = () => {
           return (
             <SwiperSlide key={listing.id}>
               <div className="item">
-                <div className="listing-style1">
+                <div
+                  className="listing-style1"
+                  style={{ cursor: 'pointer', transition: 'transform 0.25s ease, box-shadow 0.25s ease' }}
+                  onClick={(e) => handleCardClick(e, listing.slug)}
+                >
                   <div className="list-thumb">
-                    <Image
-                      width={382}
-                      height={248}
-                      style={{ aspectRatio: '1170/600', objectFit: 'cover' }}
-                      className="w-100 h-100 cover"
-                      unoptimized={Boolean(listing.image?.startsWith('http'))}
-                      src={listing.image || '/images/listings/listing-single-slide1.jpg'}
-                      alt={listing.title}
-                    />
+                    <Link href={`/property/${listing.slug}`} className="d-block w-100 h-100">
+                      <Image
+                        width={382}
+                        height={248}
+                        style={{ aspectRatio: '1170/600', objectFit: 'cover' }}
+                        className="w-100 h-100 cover"
+                        unoptimized={Boolean(listing.image?.startsWith('http'))}
+                        src={listing.image || '/images/listings/listing-single-slide1.jpg'}
+                        alt={listing.title}
+                      />
+                    </Link>
                     <div className="sale-sticker-wrap">
                       <div className="list-tag rounded-0 fz12">
                         <span className="flaticon-electricity" />

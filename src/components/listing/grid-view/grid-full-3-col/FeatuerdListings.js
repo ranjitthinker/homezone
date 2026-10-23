@@ -2,17 +2,30 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 const FALLBACK_IMAGE = '/images/listings/listing-single-slide1.jpg';
 
 const FeaturedListings = ({ data, colstyle }) => {
+  const router = useRouter();
   const [favorites, setFavorites] = useState({});
+  const [compareList, setCompareList] = useState({});
+
+  const handleCardClick = (e, slug) => {
+    // If user clicked an interactive child element, don't navigate card
+    if (e.target.closest('button, a, input, select, textarea, .icons')) {
+      return;
+    }
+    router.push(`/property/${slug}`);
+  };
 
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem('favorite_properties') || '{}');
       setFavorites(saved);
+      const savedCompare = JSON.parse(localStorage.getItem('compare_properties') || '{}');
+      setCompareList(savedCompare);
     } catch (_) {}
   }, []);
 
@@ -31,6 +44,28 @@ const FeaturedListings = ({ data, colstyle }) => {
       }
       localStorage.setItem('favorite_properties', JSON.stringify(saved));
       setFavorites({ ...saved });
+    } catch (_) {}
+  };
+
+  const toggleCompare = (e, listing) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const saved = JSON.parse(localStorage.getItem('compare_properties') || '{}');
+      const currentKeys = Object.keys(saved);
+      if (saved[listing.id]) {
+        delete saved[listing.id];
+        toast.success(`Removed from comparison.`);
+      } else {
+        if (currentKeys.length >= 3) {
+          toast.error("You can compare up to 3 properties at a time.");
+          return;
+        }
+        saved[listing.id] = listing;
+        toast.success(`Added "${listing.title}" to compare!`);
+      }
+      localStorage.setItem('compare_properties', JSON.stringify(saved));
+      setCompareList({ ...saved });
     } catch (_) {}
   };
 
@@ -53,17 +88,23 @@ const FeaturedListings = ({ data, colstyle }) => {
           <div
             className={`${colstyle ? "col-sm-12 col-lg-6" : "col-sm-6 col-lg-4"}`}
             key={listing.id}>
-            <div className={colstyle ? "listing-style1 listCustom listing-type" : "listing-style1"}>
+            <div
+              className={`${colstyle ? "listing-style1 listCustom listing-type" : "listing-style1"} h-100`}
+              style={{ cursor: 'pointer', transition: 'transform 0.25s ease, box-shadow 0.25s ease' }}
+              onClick={(e) => handleCardClick(e, listing.slug)}
+            >
               <div className="list-thumb">
-                <Image
-                  width={382}
-                  height={248}
-                  className="w-100 cover"
-                  style={{ height: "230px", objectFit: "cover" }}
-                  unoptimized={Boolean(listing.image?.startsWith('http'))}
-                  src={listing.image || FALLBACK_IMAGE}
-                  alt={listing.title || 'listing'}
-                />
+                <Link href={`/property/${listing.slug}`} className="d-block w-100 h-100">
+                  <Image
+                    width={382}
+                    height={248}
+                    className="w-100 cover"
+                    style={{ height: "230px", objectFit: "cover" }}
+                    unoptimized={Boolean(listing.image?.startsWith('http'))}
+                    src={listing.image || FALLBACK_IMAGE}
+                    alt={listing.title || 'listing'}
+                  />
+                </Link>
                 <div className="sale-sticker-wrap">
                   <div className="list-tag fz12">
                     <span className="flaticon-electricity me-2" />
@@ -137,6 +178,43 @@ const FeaturedListings = ({ data, colstyle }) => {
                     {isCommercial ? 'Commercial' : `For ${listing.listed_in === 'rent' ? 'Rent' : 'Sale'}`}
                   </span>
                   <div className="icons d-flex align-items-center gap-2">
+                    <a
+                      href={`https://wa.me/919855515783?text=${encodeURIComponent(
+                        `Hi Home Zone, I am interested in "${listing.title}" (ID: #${listing.custom_id || listing.id}) priced at ₹${Math.round(priceValue || 0).toLocaleString('en-IN')}. Please share details.`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-sm text-white d-inline-flex align-items-center"
+                      style={{
+                        backgroundColor: '#25D366',
+                        borderRadius: '20px',
+                        padding: '3px 10px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                      }}
+                      title="Chat on WhatsApp"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <i className="fab fa-whatsapp me-1" /> WhatsApp
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={(e) => toggleCompare(e, listing)}
+                      title={compareList[listing.id] ? "Remove from Compare" : "Add to Compare"}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                        color: compareList[listing.id] ? '#eb6753' : '#717171',
+                        lineHeight: 1,
+                      }}
+                    >
+                      <i className="fas fa-columns" style={{ fontSize: '13px' }} />
+                    </button>
+
                     <Link
                       href={`/property/${listing.slug}`}
                       title="View Property"
