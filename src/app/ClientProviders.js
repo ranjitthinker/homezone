@@ -5,6 +5,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import SettingsProvider from "@/context/SettingsProvider";
 import ScrollToTop from "@/components/common/ScrollTop";
+import GoogleAnalyticsScripts from "@/components/common/GoogleAnalyticsScripts";
 
 export default function ClientProviders({ settings, children }) {
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function ClientProviders({ settings, children }) {
 
   return (
     <SettingsProvider settings={settings}>  {/* ✅ wraps everything once */}
+      <GoogleAnalyticsScripts />
       <div className="wrapper ovh">{children}</div>
       <ScrollToTop />
     </SettingsProvider>
