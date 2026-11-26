@@ -177,16 +177,16 @@ export default function ProperteyFiltering() {
 
   const currentCategoryTitle =
     effectiveCategory === 'residential'
-      ? 'Residential Properties'
+      ? 'Residential Properties & Luxury Flats for Sale in Patiala'
       : effectiveCategory === 'commercial'
-      ? 'Commercial Properties'
+      ? 'Commercial Properties, Showrooms & Retail Spaces in Patiala'
       : 'Explore Properties';
 
   const currentCategoryDesc =
     effectiveCategory === 'residential'
-      ? 'Discover premium verified apartments, villas, and residential developments.'
+      ? 'Browse RERA-approved 3 BHK apartments, gated residential homes, and modern flats in prime locations like Urban Estate and Bahadurgarh, Patiala.'
       : effectiveCategory === 'commercial'
-      ? 'Explore prime commercial offices, showrooms, and retail spaces.'
+      ? 'Explore high-footfall commercial shops, double-height showrooms, and prime retail spaces on Patiala–Rajpura Road and across Patiala.'
       : 'Find your dream property and commercial investment opportunities.';
 
   const pageContentTrac = [
@@ -202,9 +202,9 @@ export default function ProperteyFiltering() {
         {/* Clean Header Bar with Title & Mobile Filter Trigger */}
         <div className="row align-items-center justify-content-between mb25 pt10">
           <div className="col-md-9 col-12">
-            <h2 className="title fz28 fw700 mb-1" style={{ color: '#181a20' }}>
+            <h1 className="title fz28 fw700 mb-1" style={{ color: '#181a20' }}>
               {currentCategoryTitle}
-            </h2>
+            </h1>
             <p className="paragraph fz14 text-muted mb-0">{currentCategoryDesc}</p>
           </div>
           <div className="col-md-3 col-12 text-md-end mt-2 mt-md-0 d-block d-lg-none">

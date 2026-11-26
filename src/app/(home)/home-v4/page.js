@@ -61,9 +61,9 @@ const Home_V4 = async () => {
           <div className="row align-items-center" data-aos="fade-up" data-aos-delay="100">
             <div className="col-lg-9">
               <div className="main-title2">
-                <h2 className="title">Properties by Cities</h2>
+                <h2 className="title">Properties by City</h2>
                 <p className="paragraph">
-                  Explore the best properties available in top cities, tailored to your needs and lifestyle.
+                  Explore top residential and commercial real estate listings across Patiala, Chandigarh, Mohali, and Kharar.
                 </p>
               </div>
             </div>
@@ -95,9 +95,9 @@ const Home_V4 = async () => {
           <div className="row  justify-content-between align-items-center">
             <div className="col-auto">
               <div className="main-title" data-aos="fade-up" data-aos-delay="100">
-                <h2 className="title">Discover Our Featured Listings</h2>
+                <h2 className="title">Discover Our Featured Listings in Patiala</h2>
                 <p className="paragraph">
-                  Find the best properties available in top cities, tailored to your needs and lifestyle.
+                  Browse verified luxury apartments, residential homes, and prime commercial spaces in Patiala—tailored to your lifestyle and investment goals.
                 </p>
               </div>
             </div>
@@ -148,7 +148,7 @@ const Home_V4 = async () => {
             <div className="col-auto">
               <div className="main-title" data-aos="fade-up" data-aos-delay="100">
                 <h2 className="title">Property Showcase & Visual Gallery</h2>
-                <p className="paragraph">Explore photos from our verified residential and commercial developments</p>
+                <p className="paragraph">View real site photos and architectural highlights of our RERA-approved residential apartments, luxury homes, and commercial spaces in Patiala.</p>
               </div>
             </div>
             {/* End header */}
